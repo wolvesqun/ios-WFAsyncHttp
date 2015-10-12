@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C8487FF1BCBBB700087961F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8487FE1BCBBB700087961F /* Foundation.framework */; };
+		2C8488011BCBBB700087961F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488001BCBBB700087961F /* CoreGraphics.framework */; };
+		2C8488031BCBBB700087961F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488021BCBBB700087961F /* UIKit.framework */; };
+		2C8488091BCBBB700087961F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C8488071BCBBB700087961F /* InfoPlist.strings */; };
+		2C84880B1BCBBB700087961F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84880A1BCBBB700087961F /* main.m */; };
+		2C84880F1BCBBB700087961F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84880E1BCBBB700087961F /* AppDelegate.m */; };
+		2C8488121BCBBB700087961F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8488101BCBBB700087961F /* Main.storyboard */; };
+		2C8488151BCBBB700087961F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488141BCBBB700087961F /* ViewController.m */; };
+		2C8488171BCBBB700087961F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C8488161BCBBB700087961F /* Images.xcassets */; };
+		2C84881E1BCBBB700087961F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C84881D1BCBBB700087961F /* XCTest.framework */; };
+		2C84881F1BCBBB700087961F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8487FE1BCBBB700087961F /* Foundation.framework */; };
+		2C8488201BCBBB700087961F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488021BCBBB700087961F /* UIKit.framework */; };
+		2C8488281BCBBB700087961F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C8488261BCBBB700087961F /* InfoPlist.strings */; };
+		2C84882A1BCBBB700087961F /* WFAsyncHttpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488291BCBBB700087961F /* WFAsyncHttpTests.m */; };
+		2C84884E1BCBBB9F0087961F /* WFAsynHttpCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488361BCBBB9F0087961F /* WFAsynHttpCacheManager.m */; };
+		2C84884F1BCBBB9F0087961F /* WFFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488381BCBBB9F0087961F /* WFFileManager.m */; };
+		2C8488501BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84883B1BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m */; };
+		2C8488511BCBBB9F0087961F /* WFAsyncHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84883D1BCBBB9F0087961F /* WFAsyncHttp.m */; };
+		2C8488521BCBBB9F0087961F /* WFAsyncHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84883F1BCBBB9F0087961F /* WFAsyncHttpClient.m */; };
+		2C8488531BCBBB9F0087961F /* WFAsyncHttpCONST.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488411BCBBB9F0087961F /* WFAsyncHttpCONST.m */; };
+		2C8488541BCBBB9F0087961F /* WFAsyncHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488431BCBBB9F0087961F /* WFAsyncHttpManager.m */; };
+		2C8488551BCBBB9F0087961F /* WFAsyncHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488451BCBBB9F0087961F /* WFAsyncHttpRequest.m */; };
+		2C8488561BCBBB9F0087961F /* WFAsyncHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488471BCBBB9F0087961F /* WFAsyncHttpUtil.m */; };
+		2C8488571BCBBB9F0087961F /* WFSyncHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488491BCBBB9F0087961F /* WFSyncHttpClient.m */; };
+		2C8488581BCBBB9F0087961F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84884C1BCBBB9F0087961F /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C8488211BCBBB700087961F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C8487F31BCBBB700087961F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C8487FA1BCBBB700087961F;
+			remoteInfo = WFAsyncHttp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2C8487FB1BCBBB700087961F /* WFAsyncHttp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFAsyncHttp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C8487FE1BCBBB700087961F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2C8488001BCBBB700087961F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2C8488021BCBBB700087961F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2C8488061BCBBB700087961F /* WFAsyncHttp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WFAsyncHttp-Info.plist"; sourceTree = "<group>"; };
+		2C8488081BCBBB700087961F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2C84880A1BCBBB700087961F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2C84880C1BCBBB700087961F /* WFAsyncHttp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WFAsyncHttp-Prefix.pch"; sourceTree = "<group>"; };
+		2C84880D1BCBBB700087961F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2C84880E1BCBBB700087961F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2C8488111BCBBB700087961F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2C8488131BCBBB700087961F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2C8488141BCBBB700087961F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2C8488161BCBBB700087961F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2C84881C1BCBBB700087961F /* WFAsyncHttpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WFAsyncHttpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C84881D1BCBBB700087961F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		2C8488251BCBBB700087961F /* WFAsyncHttpTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WFAsyncHttpTests-Info.plist"; sourceTree = "<group>"; };
+		2C8488271BCBBB700087961F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2C8488291BCBBB700087961F /* WFAsyncHttpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpTests.m; sourceTree = "<group>"; };
+		2C8488351BCBBB9F0087961F /* WFAsynHttpCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsynHttpCacheManager.h; sourceTree = "<group>"; };
+		2C8488361BCBBB9F0087961F /* WFAsynHttpCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsynHttpCacheManager.m; sourceTree = "<group>"; };
+		2C8488371BCBBB9F0087961F /* WFFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFFileManager.h; sourceTree = "<group>"; };
+		2C8488381BCBBB9F0087961F /* WFFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFFileManager.m; sourceTree = "<group>"; };
+		2C84883A1BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+WFAsyncHttpMutableURLRequest.h"; sourceTree = "<group>"; };
+		2C84883B1BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m"; sourceTree = "<group>"; };
+		2C84883C1BCBBB9F0087961F /* WFAsyncHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttp.h; sourceTree = "<group>"; };
+		2C84883D1BCBBB9F0087961F /* WFAsyncHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttp.m; sourceTree = "<group>"; };
+		2C84883E1BCBBB9F0087961F /* WFAsyncHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpClient.h; sourceTree = "<group>"; };
+		2C84883F1BCBBB9F0087961F /* WFAsyncHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpClient.m; sourceTree = "<group>"; };
+		2C8488401BCBBB9F0087961F /* WFAsyncHttpCONST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpCONST.h; sourceTree = "<group>"; };
+		2C8488411BCBBB9F0087961F /* WFAsyncHttpCONST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpCONST.m; sourceTree = "<group>"; };
+		2C8488421BCBBB9F0087961F /* WFAsyncHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpManager.h; sourceTree = "<group>"; };
+		2C8488431BCBBB9F0087961F /* WFAsyncHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpManager.m; sourceTree = "<group>"; };
+		2C8488441BCBBB9F0087961F /* WFAsyncHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpRequest.h; sourceTree = "<group>"; };
+		2C8488451BCBBB9F0087961F /* WFAsyncHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpRequest.m; sourceTree = "<group>"; };
+		2C8488461BCBBB9F0087961F /* WFAsyncHttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpUtil.h; sourceTree = "<group>"; };
+		2C8488471BCBBB9F0087961F /* WFAsyncHttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpUtil.m; sourceTree = "<group>"; };
+		2C8488481BCBBB9F0087961F /* WFSyncHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSyncHttpClient.h; sourceTree = "<group>"; };
+		2C8488491BCBBB9F0087961F /* WFSyncHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSyncHttpClient.m; sourceTree = "<group>"; };
+		2C84884B1BCBBB9F0087961F /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		2C84884C1BCBBB9F0087961F /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		2C84884D1BCBBB9F0087961F /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C8487F81BCBBB700087961F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C8488011BCBBB700087961F /* CoreGraphics.framework in Frameworks */,
+				2C8488031BCBBB700087961F /* UIKit.framework in Frameworks */,
+				2C8487FF1BCBBB700087961F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C8488191BCBBB700087961F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C84881E1BCBBB700087961F /* XCTest.framework in Frameworks */,
+				2C8488201BCBBB700087961F /* UIKit.framework in Frameworks */,
+				2C84881F1BCBBB700087961F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C8487F21BCBBB700087961F = {
+			isa = PBXGroup;
+			children = (
+				2C8488041BCBBB700087961F /* WFAsyncHttp */,
+				2C8488231BCBBB700087961F /* WFAsyncHttpTests */,
+				2C8487FD1BCBBB700087961F /* Frameworks */,
+				2C8487FC1BCBBB700087961F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C8487FC1BCBBB700087961F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C8487FB1BCBBB700087961F /* WFAsyncHttp.app */,
+				2C84881C1BCBBB700087961F /* WFAsyncHttpTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C8487FD1BCBBB700087961F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C8487FE1BCBBB700087961F /* Foundation.framework */,
+				2C8488001BCBBB700087961F /* CoreGraphics.framework */,
+				2C8488021BCBBB700087961F /* UIKit.framework */,
+				2C84881D1BCBBB700087961F /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C8488041BCBBB700087961F /* WFAsyncHttp */ = {
+			isa = PBXGroup;
+			children = (
+				2C84880D1BCBBB700087961F /* AppDelegate.h */,
+				2C84880E1BCBBB700087961F /* AppDelegate.m */,
+				2C8488101BCBBB700087961F /* Main.storyboard */,
+				2C8488131BCBBB700087961F /* ViewController.h */,
+				2C8488141BCBBB700087961F /* ViewController.m */,
+				2C8488331BCBBB9F0087961F /* WFAsyncHttp */,
+				2C8488161BCBBB700087961F /* Images.xcassets */,
+				2C8488051BCBBB700087961F /* Supporting Files */,
+			);
+			path = WFAsyncHttp;
+			sourceTree = "<group>";
+		};
+		2C8488051BCBBB700087961F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C8488061BCBBB700087961F /* WFAsyncHttp-Info.plist */,
+				2C8488071BCBBB700087961F /* InfoPlist.strings */,
+				2C84880A1BCBBB700087961F /* main.m */,
+				2C84880C1BCBBB700087961F /* WFAsyncHttp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C8488231BCBBB700087961F /* WFAsyncHttpTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C8488291BCBBB700087961F /* WFAsyncHttpTests.m */,
+				2C8488241BCBBB700087961F /* Supporting Files */,
+			);
+			path = WFAsyncHttpTests;
+			sourceTree = "<group>";
+		};
+		2C8488241BCBBB700087961F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C8488251BCBBB700087961F /* WFAsyncHttpTests-Info.plist */,
+				2C8488261BCBBB700087961F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C8488331BCBBB9F0087961F /* WFAsyncHttp */ = {
+			isa = PBXGroup;
+			children = (
+				2C8488341BCBBB9F0087961F /* Cache */,
+				2C8488391BCBBB9F0087961F /* Core */,
+				2C84884A1BCBBB9F0087961F /* opensource */,
+			);
+			path = WFAsyncHttp;
+			sourceTree = "<group>";
+		};
+		2C8488341BCBBB9F0087961F /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				2C8488351BCBBB9F0087961F /* WFAsynHttpCacheManager.h */,
+				2C8488361BCBBB9F0087961F /* WFAsynHttpCacheManager.m */,
+				2C8488371BCBBB9F0087961F /* WFFileManager.h */,
+				2C8488381BCBBB9F0087961F /* WFFileManager.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		2C8488391BCBBB9F0087961F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2C84883A1BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.h */,
+				2C84883B1BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m */,
+				2C84883C1BCBBB9F0087961F /* WFAsyncHttp.h */,
+				2C84883D1BCBBB9F0087961F /* WFAsyncHttp.m */,
+				2C84883E1BCBBB9F0087961F /* WFAsyncHttpClient.h */,
+				2C84883F1BCBBB9F0087961F /* WFAsyncHttpClient.m */,
+				2C8488401BCBBB9F0087961F /* WFAsyncHttpCONST.h */,
+				2C8488411BCBBB9F0087961F /* WFAsyncHttpCONST.m */,
+				2C8488421BCBBB9F0087961F /* WFAsyncHttpManager.h */,
+				2C8488431BCBBB9F0087961F /* WFAsyncHttpManager.m */,
+				2C8488441BCBBB9F0087961F /* WFAsyncHttpRequest.h */,
+				2C8488451BCBBB9F0087961F /* WFAsyncHttpRequest.m */,
+				2C8488461BCBBB9F0087961F /* WFAsyncHttpUtil.h */,
+				2C8488471BCBBB9F0087961F /* WFAsyncHttpUtil.m */,
+				2C8488481BCBBB9F0087961F /* WFSyncHttpClient.h */,
+				2C8488491BCBBB9F0087961F /* WFSyncHttpClient.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2C84884A1BCBBB9F0087961F /* opensource */ = {
+			isa = PBXGroup;
+			children = (
+				2C84884B1BCBBB9F0087961F /* Base64.h */,
+				2C84884C1BCBBB9F0087961F /* Base64.m */,
+				2C84884D1BCBBB9F0087961F /* Base64Defines.h */,
+			);
+			path = opensource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C8487FA1BCBBB700087961F /* WFAsyncHttp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C84882D1BCBBB700087961F /* Build configuration list for PBXNativeTarget "WFAsyncHttp" */;
+			buildPhases = (
+				2C8487F71BCBBB700087961F /* Sources */,
+				2C8487F81BCBBB700087961F /* Frameworks */,
+				2C8487F91BCBBB700087961F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WFAsyncHttp;
+			productName = WFAsyncHttp;
+			productReference = 2C8487FB1BCBBB700087961F /* WFAsyncHttp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2C84881B1BCBBB700087961F /* WFAsyncHttpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C8488301BCBBB700087961F /* Build configuration list for PBXNativeTarget "WFAsyncHttpTests" */;
+			buildPhases = (
+				2C8488181BCBBB700087961F /* Sources */,
+				2C8488191BCBBB700087961F /* Frameworks */,
+				2C84881A1BCBBB700087961F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C8488221BCBBB700087961F /* PBXTargetDependency */,
+			);
+			name = WFAsyncHttpTests;
+			productName = WFAsyncHttpTests;
+			productReference = 2C84881C1BCBBB700087961F /* WFAsyncHttpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C8487F31BCBBB700087961F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = wolf;
+				TargetAttributes = {
+					2C84881B1BCBBB700087961F = {
+						TestTargetID = 2C8487FA1BCBBB700087961F;
+					};
+				};
+			};
+			buildConfigurationList = 2C8487F61BCBBB700087961F /* Build configuration list for PBXProject "WFAsyncHttp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2C8487F21BCBBB700087961F;
+			productRefGroup = 2C8487FC1BCBBB700087961F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C8487FA1BCBBB700087961F /* WFAsyncHttp */,
+				2C84881B1BCBBB700087961F /* WFAsyncHttpTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C8487F91BCBBB700087961F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C8488171BCBBB700087961F /* Images.xcassets in Resources */,
+				2C8488091BCBBB700087961F /* InfoPlist.strings in Resources */,
+				2C8488121BCBBB700087961F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C84881A1BCBBB700087961F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C8488281BCBBB700087961F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C8487F71BCBBB700087961F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C8488581BCBBB9F0087961F /* Base64.m in Sources */,
+				2C8488521BCBBB9F0087961F /* WFAsyncHttpClient.m in Sources */,
+				2C8488551BCBBB9F0087961F /* WFAsyncHttpRequest.m in Sources */,
+				2C8488541BCBBB9F0087961F /* WFAsyncHttpManager.m in Sources */,
+				2C8488501BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m in Sources */,
+				2C8488531BCBBB9F0087961F /* WFAsyncHttpCONST.m in Sources */,
+				2C8488151BCBBB700087961F /* ViewController.m in Sources */,
+				2C84880F1BCBBB700087961F /* AppDelegate.m in Sources */,
+				2C84884E1BCBBB9F0087961F /* WFAsynHttpCacheManager.m in Sources */,
+				2C8488571BCBBB9F0087961F /* WFSyncHttpClient.m in Sources */,
+				2C84884F1BCBBB9F0087961F /* WFFileManager.m in Sources */,
+				2C8488561BCBBB9F0087961F /* WFAsyncHttpUtil.m in Sources */,
+				2C84880B1BCBBB700087961F /* main.m in Sources */,
+				2C8488511BCBBB9F0087961F /* WFAsyncHttp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C8488181BCBBB700087961F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C84882A1BCBBB700087961F /* WFAsyncHttpTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C8488221BCBBB700087961F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C8487FA1BCBBB700087961F /* WFAsyncHttp */;
+			targetProxy = 2C8488211BCBBB700087961F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2C8488071BCBBB700087961F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C8488081BCBBB700087961F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2C8488101BCBBB700087961F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C8488111BCBBB700087961F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2C8488261BCBBB700087961F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C8488271BCBBB700087961F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2C84882B1BCBBB700087961F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2C84882C1BCBBB700087961F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C84882E1BCBBB700087961F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WFAsyncHttp/WFAsyncHttp-Prefix.pch";
+				INFOPLIST_FILE = "WFAsyncHttp/WFAsyncHttp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2C84882F1BCBBB700087961F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WFAsyncHttp/WFAsyncHttp-Prefix.pch";
+				INFOPLIST_FILE = "WFAsyncHttp/WFAsyncHttp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2C8488311BCBBB700087961F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WFAsyncHttp.app/WFAsyncHttp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WFAsyncHttp/WFAsyncHttp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "WFAsyncHttpTests/WFAsyncHttpTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		2C8488321BCBBB700087961F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WFAsyncHttp.app/WFAsyncHttp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WFAsyncHttp/WFAsyncHttp-Prefix.pch";
+				INFOPLIST_FILE = "WFAsyncHttpTests/WFAsyncHttpTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C8487F61BCBBB700087961F /* Build configuration list for PBXProject "WFAsyncHttp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C84882B1BCBBB700087961F /* Debug */,
+				2C84882C1BCBBB700087961F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C84882D1BCBBB700087961F /* Build configuration list for PBXNativeTarget "WFAsyncHttp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C84882E1BCBBB700087961F /* Debug */,
+				2C84882F1BCBBB700087961F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2C8488301BCBBB700087961F /* Build configuration list for PBXNativeTarget "WFAsyncHttpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C8488311BCBBB700087961F /* Debug */,
+				2C8488321BCBBB700087961F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C8487F31BCBBB700087961F /* Project object */;
+}
