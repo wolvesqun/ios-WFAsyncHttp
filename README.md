@@ -7,7 +7,7 @@
       1. 所有的请求都必须传入URLString，以及成功|失败回调，其它参数根据需要引入
       2. 缓存策略：
           2.1. WFAsyncCachePolicyType_Default = 0, // *** 不提供缓存
-          2.2. WFAsyncCachePolicyType_ReturnCache_DontLoad = 1, // *** 返回缓存
+          2.2. WFAsyncCachePolicyType_ReturnCache_DontLoad = 1, // *** 返回缓存不请求网络
           2.3. WFAsyncCachePolicyType_ReturnCache_DidLoad = 2,  // *** 返回缓存并且加载
     
 一：引入WFAsyncHttp.h, 并且设置里面的公司名称（最好是英文，中文也没事），此处是做User-agent（不懂百度|google就知道了）用的
