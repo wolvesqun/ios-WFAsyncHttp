@@ -1,7 +1,7 @@
 # IOS-WFAsyncHttp
   
   此请求框架主要封装了IOS的Http请求，封装了同步请求（WFSyncHttpClient.h）与异步请求(WFAsyncHttpManager.h |          WFAsyncHttpClient.h)，两种请求方式都有POST请求和GET请求,其中WFAsyncHttpClient.h还封装了系统的请求（系统请求是采取队列方式），
-当然，此框架还提供设置请求头。最重要的是还提供了缓存策略，目前只提供也三种。具体使用如下：
+当然，此框架还提供设置请求头。最重要的是还提供了缓存策略，目前只提供三种。具体使用如下：
     
     注意
       1. 所有的请求都必须传入URLString，以及成功|失败回调，其它参数根据需要引入
