@@ -145,6 +145,7 @@
     self.tempDownloadData = nil;
     self.totalLength = -1;
     self.connection = nil;
+    self.cachePolicy = WFAsyncCachePolicyType_Default;
     [self.httpHeaders removeAllObjects];
 }
 
@@ -167,6 +168,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [self cancel];
     [WFAsyncHttpUtil handleRequestResultWithKey:connection.originalRequest.URL.absoluteString
                                         andData:self.tempDownloadData
                                  andCachePolicy:self.cachePolicy
@@ -175,6 +177,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    [self cancel];
     [WFAsyncHttpUtil handleRequestResultWithError:error andFailure:self.failure];
 }
 
