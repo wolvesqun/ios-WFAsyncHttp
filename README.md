@@ -25,7 +25,7 @@
          
      }];
 
- 2. POST异步请求
+  2. POST异步请求
  
     [WFAsyncHttpManager POST_WithURLString:@"http://www.baidu.com"
                                      andParams:@{@"pp":@"pp"}
@@ -48,6 +48,7 @@
        } andFailure:^(NSError *error) {
         
       }];
+
   4. POST同步请求
   
       [WFSyncHttpClient System_POST_WithURLString:URLString
