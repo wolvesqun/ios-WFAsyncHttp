@@ -5,6 +5,10 @@
 //  Created by mba on 15-10-10.
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
+//  Github : https://github.com/wolvesqun/IOS-WFAsyncHttp
+//  当前版本 2.0.1
+
+
 
 #import <UIKit/UIKit.h>
 #import "WFAsyncHttpCONST.h"

@@ -17,7 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *freeHttpClientArray;
 @property (strong, nonatomic) NSMutableArray *taskHttpClientArray;
 
-
 - (id)getItem;
 
 - (void)releaseItem:(id)item;

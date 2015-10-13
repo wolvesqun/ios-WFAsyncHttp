@@ -556,6 +556,7 @@
 				2C84882F1BCBBB700087961F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C8488301BCBBB700087961F /* Build configuration list for PBXNativeTarget "WFAsyncHttpTests" */ = {
 			isa = XCConfigurationList;
@@ -564,6 +565,7 @@
 				2C8488321BCBBB700087961F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
