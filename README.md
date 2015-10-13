@@ -9,7 +9,6 @@
           2.1. WFAsyncCachePolicyType_Default = 0, // *** 不提供缓存
           2.2. WFAsyncCachePolicyType_ReturnCache_DontLoad = 1, // *** 返回缓存
           2.3. WFAsyncCachePolicyType_ReturnCache_DidLoad = 2,  // *** 返回缓存并且加载
-          2.4. WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet = 3,  // *** 返回缓存并且加载
     
 一：引入WFAsyncHttp.h, 并且设置里面的公司名称（最好是英文，中文也没事），此处是做User-agent（不懂百度|google就知道了）用的
   
