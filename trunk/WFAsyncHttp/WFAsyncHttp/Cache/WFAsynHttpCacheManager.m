@@ -6,13 +6,12 @@
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
 
-#define kWFAsynHttpCache_Folder         @"kWFAsynHttpCache_Folder"
-#define kWFAsynHttpCache_Folder_Image   @"Image"
-#define kWFAsynHttpCache_Folder_Other   @"Other"
+#define kWFAsynHttpCache_Folder             @"kWFAsynHttpCache_Folder" // *** 缓存文件包
 
 typedef enum : NSUInteger {
+    WFAsynHttpCacheFolderType_Default,
     WFAsynHttpCacheFolderType_Image,
-    WFAsynHttpCacheFolderType_Other,
+    WFAsynHttpCacheFolderType_Web,
 } WFAsynHttpCacheFolderType;
 
 #import "WFAsynHttpCacheManager.h"
@@ -22,6 +21,7 @@ typedef enum : NSUInteger {
 
 @implementation WFAsynHttpCacheManager
 
+#pragma mark - 添加 | 获取 | 判断
 + (void)saveWithData:(NSData *)data andKey:(NSString *)key
 {
     if(data == nil || key == nil || key.length == 0) return;
@@ -32,7 +32,15 @@ typedef enum : NSUInteger {
 {
     return [Base64 decodeData:[WFFileManager getWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key]];
 }
++ (BOOL)isExistWithKey:(NSString *)key
+{
+    if(key == nil || key.length == 0) return NO;
+    return [WFFileManager isExistWityType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
+}
 
+
+
+#pragma mark - 清除缓存
 + (void)removeAllCache
 {
     [WFFileManager deleteWithType:WFFilePathTypeDocument andFolder:kWFAsynHttpCache_Folder];
@@ -40,7 +48,17 @@ typedef enum : NSUInteger {
 
 + (void)removeAllImageCache
 {
-    [WFFileManager deleteWithType:WFFilePathTypeDocument andFolder:[self getFolderWithType:WFAsynHttpCacheFolderType_Image]];
+    [self removeCacheWithType:WFAsynHttpCacheFolderType_Image];
+}
+
++ (void)removeAllWebCache
+{
+    [self removeCacheWithType:WFAsynHttpCacheFolderType_Web];
+}
+
++ (void)removeCacheWithType:(WFAsynHttpCacheFolderType)type
+{
+    [WFFileManager deleteWithType:WFFilePathTypeDocument andFolder:[self getFolderWithType:type]];
 }
 
 + (void)removeWithKey:(NSString *)key
@@ -50,12 +68,9 @@ typedef enum : NSUInteger {
     [WFFileManager deleteWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
 }
 
-+ (BOOL)isExistWithKey:(NSString *)key
-{
-    if(key == nil || key.length == 0) return NO;
-    return [WFFileManager isExistWityType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
-}
 
+
+#pragma mark - 文件夹相关
 + (NSString *)getFolder:(NSString *)key
 {
     if(key && [WFAsyncHttpUtil isImageRequest:key])
@@ -64,10 +79,9 @@ typedef enum : NSUInteger {
     }
     else
     {
-        return [self getFolderWithType:WFAsynHttpCacheFolderType_Other];;
+        return [self getFolderWithType:WFAsynHttpCacheFolderType_Default];;
     }
 }
-
 
 + (NSString *)getFolderWithType:(WFAsynHttpCacheFolderType)type
 {
@@ -76,19 +90,20 @@ typedef enum : NSUInteger {
     switch (type) {
         case WFAsynHttpCacheFolderType_Image:
         {
-            [folder appendString:kWFAsynHttpCache_Folder_Image];
+            [folder appendString:@"Image"];
             return folder;
             
         }
-        case WFAsynHttpCacheFolderType_Other:
+        case WFAsynHttpCacheFolderType_Web:
         {
-            [folder appendString:kWFAsynHttpCache_Folder_Other];
+            [folder appendString:@"Web"];
             return folder;
             
         }
+            
         default:
         {
-            [folder appendString:kWFAsynHttpCache_Folder_Other];
+            [folder appendString:@"Default"];
             return folder;
         }
             

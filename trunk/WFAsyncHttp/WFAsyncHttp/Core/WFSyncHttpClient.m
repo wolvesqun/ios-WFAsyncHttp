@@ -25,6 +25,7 @@
     if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
     
     
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
                                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                             timeoutInterval:10];
@@ -36,30 +37,12 @@
     // *** start
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-    if(error == nil)
-    {
-        if(success)
-        {
-            NSError *error = nil;
-            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            if(error == nil)
-            {
-                success(jsonObject);
-            }
-            else
-            {
-                success(data);
-            }
-            
-        }
-    }
-    else
-    {
-        if(failure)
-        {
-            failure(error);
-        }
-    }
+    
+    [WFAsyncHttpUtil handleRequestResultWithKey:URLString
+                                        andData:data
+                                     andCachePolicy:WFAsyncCachePolicyType_Default
+                                     andSuccess:success
+                                       andError:error andFailure:failure];
 }
 
 #pragma mark - GET请求

@@ -26,34 +26,11 @@
     // *** 传入参数无效
     if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
     
+    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
                                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                             timeoutInterval:10];
-    
-    switch (cachePolicy) {
-        case WFAsyncCachePolicyType_ReturnCache_DidLoad:
-        {
-            [WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success];
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_DontLoad:
-        {
-            if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success])
-            {
-                return;
-            }
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet:
-        {
-            
-            break;
-        }
-            
-        default:
-            break;
-    }
     
     [request setHTTPMethod:httpMethod];
     [request addHttpHeaderWithRequest:[NSMutableDictionary dictionaryWithDictionary:headers]];
@@ -62,27 +39,12 @@
     // *** start
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         if(connectionError == nil)
-         {
-             if(cachePolicy != WFAsyncCachePolicyType_Default)
-             {
-                 
-                 [WFAsynHttpCacheManager saveWithData:data andKey:URLString];
-             }
-             [WFAsyncHttpUtil handleSuccessWithData:data andSuccess:success];
-         }
-         else
-         {
-             if(cachePolicy == WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet)
-             {
-                 
-                 if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success])
-                 {
-                     return;
-                 }
-             }
-             [WFAsyncHttpUtil handleFailureWithError:connectionError andFailure:failure];
-         }
+         [WFAsyncHttpUtil handleRequestResultWithKey:URLString
+                                             andData:data
+                                      andCachePolicy:cachePolicy
+                                          andSuccess:success
+                                            andError:connectionError
+                                          andFailure:failure];
      }];
 }
 
@@ -172,6 +134,39 @@
                        andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
     [self System_POST_WithURLString:URLString andParams:nil andSuccess:success andFailure:failure];
+}
+
+#pragma mark - 自定义
++ (void)requestWithRequest:(NSURLRequest *)request
+            andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                andFailure:(WFFailureAsyncHttpDataCompletion)failure
+{
+    NSString *URLString = request.URL.absoluteURL.absoluteString;
+    // *** 传入参数无效
+    if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
+    
+    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
+    
+    // *** start
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         if(connectionError == nil)
+         {
+             if(cachePolicy != WFAsyncCachePolicyType_Default)
+             {
+                 [WFAsynHttpCacheManager saveWithData:data andKey:URLString];
+             }
+             if(success)
+             {
+                 success(data);
+             }
+         }
+         else
+         {
+             [WFAsyncHttpUtil handleRequestResultWithKey:nil andData:nil andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:success andError:connectionError andFailure:failure];
+         }
+     }];
 }
 
 

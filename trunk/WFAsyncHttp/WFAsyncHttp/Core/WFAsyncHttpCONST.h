@@ -22,7 +22,6 @@ typedef NS_ENUM(NSUInteger,WFAsyncCachePolicy)
     WFAsyncCachePolicyType_Default = 0, // *** 不提供缓存
     WFAsyncCachePolicyType_ReturnCache_DontLoad = 1, // *** 返回缓存
     WFAsyncCachePolicyType_ReturnCache_DidLoad = 2,  // *** 返回缓存并且加载
-    WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet = 3,  // *** 返回缓存并且加载
 };
 
 

@@ -22,6 +22,7 @@
  */
 + (void)removeAllCache;
 + (void)removeAllImageCache;
++ (void)removeAllWebCache;
 
 /**
  *  remove cache with a key

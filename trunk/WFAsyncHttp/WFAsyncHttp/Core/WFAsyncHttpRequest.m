@@ -50,34 +50,12 @@
     self.success = success;
     self.failure = failure;
     
-    switch (self.cachePolicy) {
-        case WFAsyncCachePolicyType_ReturnCache_DidLoad:
-        {
-            [WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success];
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_DontLoad:
-        {
-            if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success])
-            {
-                return;
-            }
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet:
-        {
-            
-            break;
-        }
-            
-        default:
-            break;
-    }
+    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:self.cachePolicy]) return;
     
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
                                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                                            timeoutInterval:15];
+                                                            timeoutInterval:self.timeoutInterval];
     
     // *** 设置请求参数
     [request setHTTPMethod:requestType];
@@ -189,25 +167,15 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if(self.cachePolicy != WFAsyncCachePolicyType_Default)
-    {
-        [WFAsynHttpCacheManager saveWithData:self.tempDownloadData andKey:connection.originalRequest.URL.absoluteString];
-    }
-   
-    [WFAsyncHttpUtil handleSuccessWithData:self.tempDownloadData andSuccess:self.success];
+    [WFAsyncHttpUtil handleRequestResultWithKey:connection.originalRequest.URL.absoluteString
+                                        andData:self.tempDownloadData
+                                 andCachePolicy:self.cachePolicy
+                                     andSuccess:self.success];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    if(self.cachePolicy == WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet)
-    {
-        if([WFAsyncHttpUtil handleCacheWithKey:connection.originalRequest.URL.absoluteString andSuccess:self.success])
-        {
-            return;
-        }
-    }
-    
-    [WFAsyncHttpUtil handleFailureWithError:error andFailure:self.failure];
+    [WFAsyncHttpUtil handleRequestResultWithError:error andFailure:self.failure];
 }
 
 

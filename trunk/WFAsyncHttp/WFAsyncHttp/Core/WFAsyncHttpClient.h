@@ -56,6 +56,8 @@
                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                        andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
+
+
 /**
  *  POST请求系统自带网络请求 -》带缓存
  *
@@ -82,6 +84,12 @@
 + (void)System_POST_WithURLString:(NSString *)URLString
                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                        andFailure:(WFFailureAsyncHttpDataCompletion)failure;
+
+#pragma mark - 自定义 NSURLRequest -> 回调成功返回 NSData, 其它一样
++ (void)requestWithRequest:(NSURLRequest *)request
+            andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 
 @end
