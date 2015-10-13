@@ -110,6 +110,23 @@
     return b;
 }
 
++ (BOOL)isImageRequest:(NSString *)URLString
+{
+    NSRange pngRange = [URLString rangeOfString:@".png"];
+    NSRange gifRange = [URLString rangeOfString:@".gif"];
+    NSRange jpgRange = [URLString rangeOfString:@".jpg"];
+    NSRange jpegRange = [URLString rangeOfString:@".jpeg"];
+    NSRange bmpRange = [URLString rangeOfString:@".bmp"];
+    if(pngRange.length > 0 || gifRange.length > 0 || jpegRange.length > 0 || jpgRange.length > 0 || bmpRange.length > 0)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
 @end
 
 

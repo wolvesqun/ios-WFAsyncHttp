@@ -21,6 +21,7 @@
  *  remove all cache
  */
 + (void)removeAllCache;
++ (void)removeAllImageCache;
 
 /**
  *  remove cache with a key

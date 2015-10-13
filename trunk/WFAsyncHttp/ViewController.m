@@ -41,16 +41,32 @@
 
 - (void)testAsync
 {
-    [WFAsyncHttpManager POST_WithURLString:@"https://www.baidu.com"
-                                 andParams:nil
-                                andHeaders:nil
-                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet
-                                andSuccess:^(id responseObject)
-     {
-         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-     } andFailure:^(NSError *error) {
-         
-     }];
+//    [WFAsyncHttpClient System_GET_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png" andSuccess:^(id responseObject) {
+//        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//    } andFailure:^(NSError *error) {
+//        
+//    }];
+    [WFAsyncHttpManager GET_WithURLString:@"http://www.baidu.com" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } andFailure:^(NSError *error) {
+        
+    }];
+    
+//    [WFAsyncHttpClient System_POST_WithURLString:@"http://www.baidu.com" andSuccess:^(id responseObject) {
+//        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//    } andFailure:^(NSError *error) {
+//        
+//    }];
+//    [WFAsyncHttpManager POST_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png"
+//                                 andParams:nil
+//                                andHeaders:nil
+//                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet
+//                                andSuccess:^(id responseObject)
+//     {
+//         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//     } andFailure:^(NSError *error) {
+//         
+//     }];
     //    [WFAsyncHttpManager GET_WithURLString:@"https://www.baidu.com/" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet
     //                               andSuccess:^(id responseObject)
     //    {
@@ -79,11 +95,14 @@
     //
     //    }];
     //
-    //    [WFAsyncHttpManager POST_WithURLString:URLString andParams:@{@"pp":@"pp"} andHeaders:@{@"uu":@"uu"} andSuccess:^(id responseObject) {
-    //        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-    //    } andFailure:^(NSError *error) {
-    //
-    //    }];
+//        [WFAsyncHttpManager POST_WithURLString:@"http://www.baidu.com"
+//                                     andParams:@{@"pp":@"pp"}
+//                                    andHeaders:@{@"uu":@"uu"}
+//                                    andSuccess:^(id responseObject) {
+//            NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//        } andFailure:^(NSError *error) {
+//    
+//        }];
     //
     //    [WFAsyncHttpManager POST_WithURLString:URLString andParams:nil andUserAgent:@"fasdjf;" andSuccess:^(id responseObject) {
     //        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
@@ -107,8 +126,20 @@
     //    } andFailure:^(NSError *error) {
     //
     //    }];
+    [WFAsyncHttpClient System_GET_WithURLString:@"http://www.baidu.com/"
+                                     andHeaders:nil
+                                 andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
+                                     andSuccess:^(id responseObject)
+    {
+        
+    } andFailure:^(NSError *error) {
+        
+    }];
     
-    [WFSyncHttpClient System_POST_WithURLString:URLString andParams:nil andUserAgent:@"sadfa;sdjfa;sdjk" andSuccess:^(id responseObject) {
+    [WFSyncHttpClient System_POST_WithURLString:URLString
+                                      andParams:nil
+                                   andUserAgent:@"sadfa;sdjfa;sdjk"
+                                     andSuccess:^(id responseObject) {
         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
     } andFailure:^(NSError *error) {
         

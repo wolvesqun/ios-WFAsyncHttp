@@ -84,7 +84,7 @@
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    [self System_GET_WithURLString:URLString andSuccess:success andFailure:failure];
+    [self System_GET_WithURLString:URLString andUserAgent:nil andSuccess:success andFailure:failure];
 }
 
 #pragma mark - POST请求

@@ -30,4 +30,6 @@
 
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success;
 
++ (BOOL)isImageRequest:(NSString *)URLString;
+
 @end
