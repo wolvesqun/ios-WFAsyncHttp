@@ -168,17 +168,19 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self cancel];
+    
     [WFAsyncHttpUtil handleRequestResultWithKey:connection.originalRequest.URL.absoluteString
                                         andData:self.tempDownloadData
                                  andCachePolicy:self.cachePolicy
                                      andSuccess:self.success];
+    [self cancel];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [self cancel];
+    
     [WFAsyncHttpUtil handleRequestResultWithError:error andFailure:self.failure];
+    [self cancel];
 }
 
 

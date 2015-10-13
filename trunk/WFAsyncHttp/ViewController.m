@@ -46,27 +46,27 @@
 //    } andFailure:^(NSError *error) {
 //        
 //    }];
-    [WFAsyncHttpManager GET_WithURLString:@"http://www.baidu.com" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-    } andFailure:^(NSError *error) {
-        
-    }];
+//    [WFAsyncHttpManager GET_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject) {
+//        NSLog(@"%@",responseObject);
+//    } andFailure:^(NSError *error) {
+//        
+//    }];
     
 //    [WFAsyncHttpClient System_POST_WithURLString:@"http://www.baidu.com" andSuccess:^(id responseObject) {
 //        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
 //    } andFailure:^(NSError *error) {
 //        
 //    }];
-//    [WFAsyncHttpManager POST_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png"
-//                                 andParams:nil
-//                                andHeaders:nil
-//                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet
-//                                andSuccess:^(id responseObject)
-//     {
-//         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-//     } andFailure:^(NSError *error) {
-//         
-//     }];
+    [WFAsyncHttpManager POST_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png"
+                                 andParams:@{@"1":@"1"}
+                                andHeaders:nil
+                            andCachePolicy:WFAsyncCachePolicyType_Default
+                                andSuccess:^(id responseObject)
+     {
+         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+     } andFailure:^(NSError *error) {
+         
+     }];
     //    [WFAsyncHttpManager GET_WithURLString:@"https://www.baidu.com/" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet
     //                               andSuccess:^(id responseObject)
     //    {
