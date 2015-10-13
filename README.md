@@ -13,6 +13,7 @@
 一：引入WFAsyncHttp.h, 并且设置里面的公司名称（最好是英文，中文也没事），此处是做User-agent（不懂百度|google就知道了）用的
   
   1. GET异步请求
+  
     [WFAsyncHttpManager POST_WithURLString:@"https://www.baidu.com"
                                  andParams:nil
                                 andHeaders:nil
@@ -25,6 +26,7 @@
      }];
 
  2. POST异步请求
+ 
     [WFAsyncHttpManager POST_WithURLString:@"http://www.baidu.com"
                                      andParams:@{@"pp":@"pp"}
                                     andHeaders:@{@"uu":@"uu"}
@@ -47,6 +49,7 @@
         
       }];
   4. POST同步请求
+  
       [WFSyncHttpClient System_POST_WithURLString:URLString
                                       andParams:nil
                                    andUserAgent:@"sadfa;sdjfa;sdjk"
