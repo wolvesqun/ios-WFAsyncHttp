@@ -85,4 +85,16 @@
          NSLog(@"webview load error ------------------");
     }];
     
-
+三. 图片缓存功能（两步操作）
+    1. 引入 #import "UIImageView+WFImageViewCache.h"
+    2. 创建UIImageView , 然后调用 
+    
+        [self.img setImageWithKey:@"http://d.hiphotos.baidu.com/image/w%3D310/sign=d12bf5db19d5ad6eaaf962ebb1cb39a3/b64543a98226cffc1d2771adbb014a90f603eaa4.jpg"
+             placeholderImage:nil
+                   andSuccess:^(UIImage *image)
+     {
+        
+    } andFailure:^(NSError *error) {
+        
+    }];
+    
