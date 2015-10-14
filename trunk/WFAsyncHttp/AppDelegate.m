@@ -56,4 +56,15 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
++ (void)showLog:(id)obj
+{
+    NSLog(@"log ========> %@", obj);
+}
+
++ (void)showAlert:(NSString *)log
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:log delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil , nil];
+    [alertView show];
+}
+
 @end

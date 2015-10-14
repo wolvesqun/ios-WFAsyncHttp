@@ -18,13 +18,14 @@
                            andParams:(NSDictionary *)params
                           andHeaders:(NSDictionary *)headers
                        andHttpMethod:(NSString *)httpMethod
+                      andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                           andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                           andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
     // *** 传入参数无效
     if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
     
-    
+    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
                                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
@@ -40,12 +41,29 @@
     
     [WFAsyncHttpUtil handleRequestResultWithKey:URLString
                                         andData:data
-                                     andCachePolicy:WFAsyncCachePolicyType_Default
+                                 andCachePolicy:cachePolicy
                                      andSuccess:success
                                        andError:error
                                      andFailure:failure];
 }
-
++ (void)System_Request_WithURLString:(NSString *)URLString
+                           andParams:(NSDictionary *)params
+                          andHeaders:(NSDictionary *)headers
+                       andHttpMethod:(NSString *)httpMethod
+                          andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                          andFailure:(WFFailureAsyncHttpDataCompletion)failure
+{
+    [self System_Request_WithURLString:URLString andParams:params andHeaders:headers andHttpMethod:httpMethod andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:success andFailure:failure];
+}
++ (void)System_GET_WithURLString:(NSString *)URLString
+                           andParams:(NSDictionary *)params
+                          andHeaders:(NSDictionary *)headers
+                        andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                          andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                          andFailure:(WFFailureAsyncHttpDataCompletion)failure
+{
+    [self System_Request_WithURLString:URLString andParams:params andHeaders:headers andHttpMethod:kWFHttpRequestType_GET andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
+}
 #pragma mark - GET请求
 + (void)System_GET_WithURLString:(NSString *)URLString
                       andHeaders:(NSDictionary *)headers
@@ -79,7 +97,15 @@
 {
     [self System_Request_WithURLString:URLString andParams:params andHeaders:nil andHttpMethod:kWFHttpRequestType_POST andSuccess:success andFailure:failure];
 }
-
++ (void)System_POST_WithURLString:(NSString *)URLString
+                       andParams:(NSDictionary *)params
+                      andHeaders:(NSDictionary *)headers
+                  andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                      andFailure:(WFFailureAsyncHttpDataCompletion)failure
+{
+    [self System_Request_WithURLString:URLString andParams:params andHeaders:headers andHttpMethod:kWFHttpRequestType_POST andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
+}
 + (void)System_POST_WithURLString:(NSString *)URLString
                         andParams:(NSDictionary *)params
                        andHeaders:(NSDictionary *)headers

@@ -21,6 +21,13 @@
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 + (void)System_GET_WithURLString:(NSString *)URLString
+                       andParams:(NSDictionary *)params
+                      andHeaders:(NSDictionary *)headers
+                  andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                      andFailure:(WFFailureAsyncHttpDataCompletion)failure;
+
++ (void)System_GET_WithURLString:(NSString *)URLString
                     andUserAgent:(NSString *)userAgent
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
@@ -31,6 +38,13 @@
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 #pragma mark - POST请求
++ (void)System_POST_WithURLString:(NSString *)URLString
+                        andParams:(NSDictionary *)params
+                       andHeaders:(NSDictionary *)headers
+                   andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
+
 + (void)System_POST_WithURLString:(NSString *)URLString
                         andParams:(NSDictionary *)params
                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success

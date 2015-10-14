@@ -19,17 +19,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     // Do any additional setup after loading the view.
     self.webview = [[UIWebView alloc] initWithFrame:self.view.frame];
     self.webview.delegate = self;
     self.webview.scalesPageToFit = YES;
     [self.view addSubview:self.webview];
    
-#warning 网页要缓存必须使用这个请求方式 | 不支持  [self.webview loadRequest:...];
+#warning 网页要缓存必须使用这个请求方式， 而且还要在设置AppDelegate里 设置 [WFAsyncURLCache setURLCache]; | 不支持  [self.webview loadRequest:...];
     [WFAsyncHttpManager GET_WithURLString:@"http://wiki.mbalib.com/wiki/2015%E5%B9%B4%E8%AF%BA%E8%B4%9D%E5%B0%94%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%A5%96?app=1" andHeaders:nil
-                           andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                               andSuccess:^(id responseObject)
+                        andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
+                            andSuccess:^(id responseObject)
     {
+        
         [self.webview loadData:responseObject MIMEType:nil textEncodingName:nil baseURL:[NSURL URLWithString:@"http://wiki.mbalib.com/"]];
         
     } andFailure:^(NSError *error)
