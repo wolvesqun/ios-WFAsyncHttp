@@ -73,28 +73,11 @@
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    
+    [self System_Request_WithURLString:URLString andParams:nil andHeaders:nil andHttpMethod:kWFHttpRequestType_GET andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
 }
 
 
 #pragma mark - POST请求
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                        andParams:(NSDictionary *)params
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    [self System_Request_WithURLString:URLString andParams:params andHeaders:nil andHttpMethod:kWFHttpRequestType_POST andSuccess:success andFailure:failure];
-}
-
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                        andParams:(NSDictionary *)params
-                       andHeaders:(NSDictionary *)headers
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    [self System_Request_WithURLString:URLString andParams:params andHeaders:headers andHttpMethod:kWFHttpRequestType_POST andSuccess:success andFailure:failure];
-}
-
 + (void)System_POST_WithURLString:(NSString *)URLString
                         andParams:(NSDictionary *)params
                        andHeaders:(NSDictionary *)headers
@@ -107,19 +90,13 @@
 
 + (void)System_POST_WithURLString:(NSString *)URLString
                         andParams:(NSDictionary *)params
-                     andUserAgent:(NSString *)userAgent
+                   andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                        andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    [self System_POST_WithURLString:URLString andParams:params andHeaders:[WFAsyncHttpUtil getUserAgentWithValue:userAgent] andSuccess:success andFailure:failure];
+    [self System_Request_WithURLString:URLString andParams:params andHeaders:nil andHttpMethod:kWFHttpRequestType_POST andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
 }
 
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    [self System_POST_WithURLString:URLString andParams:nil andSuccess:success andFailure:failure];
-}
 
 #pragma mark - 自定义
 + (void)requestWithRequest:(NSURLRequest *)request

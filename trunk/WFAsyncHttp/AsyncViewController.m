@@ -61,6 +61,18 @@
     } andFailure:^(NSError *error) {
         [AppDelegate showLog:@"WFAsyncHttpManager - GET异步方式 -> 离线失败"];
     }];
+    
+//    [WFAsyncHttpManager GET_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?password=p1"
+//                               andHeaders:@{@"uu":@"**"}
+//                           andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
+//                               andSuccess:^(id responseObject)
+//     {
+//         [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+//         [AppDelegate showAlert:@"WFAsyncHttpManager - GET异步方式 -> 离线成功"];
+//     } andFailure:^(NSError *error) {
+//         [AppDelegate showLog:@"WFAsyncHttpManager - GET异步方式 -> 离线失败"];
+//     }];
+
 }
 
 - (void)testPOST
@@ -75,6 +87,17 @@
     } andFailure:^(NSError *error) {
          [AppDelegate showLog:@"WFAsyncHttpManager - POST异步方式 -> 离线失败"];
     }];
+    
+//    [WFAsyncHttpManager POST_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?pass=passd"
+//                                 andParams:@{@"pp":@"pp"}
+//                                andHeaders:@{@"uu":@"##"}
+//                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject)
+//     {
+//         [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+//         [AppDelegate showAlert:@"WFAsyncHttpManager - POST异步方式 -> 离线成功"];
+//     } andFailure:^(NSError *error) {
+//         [AppDelegate showLog:@"WFAsyncHttpManager - POST异步方式 -> 离线失败"];
+//     }];
 }
 
 /*

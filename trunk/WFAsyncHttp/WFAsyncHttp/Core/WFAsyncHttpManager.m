@@ -150,12 +150,6 @@
     [self GET_WithURLString:URLString andHeaders:nil andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
 }
 
-+ (void)GET_WithURLString:(NSString *)URLString
-               andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-               andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    [self GET_WithURLString:URLString andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:success andFailure:failure];
-}
 
 #pragma mark - POST 请求
 + (void)POST_WithURLString:(NSString *)URLString

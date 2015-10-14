@@ -33,10 +33,6 @@
                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
-+ (void)GET_WithURLString:(NSString *)URLString
-               andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-               andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
 #pragma mark - POST请求
 
 /**

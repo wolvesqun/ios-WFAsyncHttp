@@ -35,19 +35,6 @@
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 #pragma mark - POST请求
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                        andParams:(NSDictionary *)params
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                        andParams:(NSDictionary *)params
-                       andHeaders:(NSDictionary *)headers
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-
-
 /**
  *  POST请求系统自带网络请求 -》带缓存
  *
@@ -67,11 +54,7 @@
 
 + (void)System_POST_WithURLString:(NSString *)URLString
                         andParams:(NSDictionary *)params
-                     andUserAgent:(NSString *)userAgent
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)System_POST_WithURLString:(NSString *)URLString
+                   andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                        andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
