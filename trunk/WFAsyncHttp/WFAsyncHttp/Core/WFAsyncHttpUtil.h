@@ -34,7 +34,8 @@
                            andData:(NSData *)data
                     andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                         andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                          andError:(NSError *)error andFailure:(WFFailureAsyncHttpDataCompletion)failure;
+                          andError:(NSError *)error
+                        andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 + (void)handleRequestResultWithKey:(NSString *)key
                            andData:(NSData *)data
@@ -48,5 +49,7 @@
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy;
 
 + (BOOL)isImageRequest:(NSString *)URLString;
+
+
 
 @end

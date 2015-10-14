@@ -7,12 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "WFAsyncHttp.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [WFAsyncURLCache setURLCache];
+    
     NSString *url = NSHomeDirectory();
     NSLog(@"url path = %@", url);
     return YES;

@@ -42,7 +42,8 @@
                                         andData:data
                                      andCachePolicy:WFAsyncCachePolicyType_Default
                                      andSuccess:success
-                                       andError:error andFailure:failure];
+                                       andError:error
+                                     andFailure:failure];
 }
 
 #pragma mark - GET请求

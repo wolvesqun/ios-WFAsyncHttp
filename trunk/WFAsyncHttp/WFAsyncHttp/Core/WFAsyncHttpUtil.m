@@ -17,7 +17,7 @@
                             andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
     if(success == nil || failure == nil || URLString == nil || URLString.length == 0) {
-        NSLog(@"======================= 请求参数传入错误 =======================");
+        NSLog(@"======================= request param is error =======================");
         return YES;
     }
     return NO;
@@ -62,12 +62,14 @@
     NSString *systemVertion = [UIDevice currentDevice].systemVersion;
     NSString *iphoneInfo = [NSString stringWithFormat:@"%@;%@ %@",model, systemName, systemVertion];
     
+    // *** 获取appname信息
     NSString *app_Name = [infoDic objectForKey:@"CFBundleDisplayName"];
     if(app_Name == nil)
     {
         app_Name = @"app_Name";
     }
     NSString *userAgent = [NSString stringWithFormat:@"%@-%@-APP/%@(%@;Build/%@)",  kWFWFAsyncHttp_CompanyName , app_Name, app_Build, iphoneInfo , app_Version];
+    
     return [userAgent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
@@ -85,7 +87,10 @@
     }
     else
     {
-        [WFAsynHttpCacheManager saveWithData:data andKey:key];
+        if(cachePolicy != WFAsyncCachePolicyType_Default)
+        {
+            [WFAsynHttpCacheManager saveWithData:data andKey:key];
+        }
         [self handleDataSuccess:data andSuccess:success];
     }
 }
@@ -165,6 +170,12 @@
             }
             break;
         }
+        case WFAsyncCachePolicyType_Reload_IgnoringLocalCache:
+        {
+            
+            break;
+        }
+            
             
         default:
             break;
@@ -188,6 +199,8 @@
         return NO;
     }
 }
+
+
 
 @end
 

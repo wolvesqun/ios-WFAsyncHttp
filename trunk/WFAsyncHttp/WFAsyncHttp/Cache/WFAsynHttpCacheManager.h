@@ -13,9 +13,9 @@
 /**
  *  save data with a key
  */
-+ (void)saveWithData:(NSData *)data andKey:(NSString *)key;
++ (void)saveWithData:(id)data andKey:(NSString *)key;
 
-+ (NSData *)getWithKey:(NSString *)key;
++ (id)getWithKey:(NSString *)key;
 
 /**
  *  remove all cache

@@ -18,19 +18,37 @@ typedef enum : NSUInteger {
 #import "WFFileManager.h"
 #import "Base64.h"
 #import "WFAsyncHttpUtil.h"
+#import "WFAsyncURLCache.h"
 
 @implementation WFAsynHttpCacheManager
 
 #pragma mark - 添加 | 获取 | 判断
-+ (void)saveWithData:(NSData *)data andKey:(NSString *)key
++ (void)saveWithData:(id)data andKey:(NSString *)key
 {
     if(data == nil || key == nil || key.length == 0) return;
-    [WFFileManager saveWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andData:[Base64 encodeData:data] andKey:key];
+    
+    if([data isKindOfClass:[NSData class]])
+    {
+        [WFFileManager saveWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andData:[Base64 encodeData:data] andKey:key];
+    }
+    else
+    {
+        [WFFileManager saveWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andData:data andKey:key];
+    }
+    
 }
 
 + (NSData *)getWithKey:(NSString *)key
 {
-    return [Base64 decodeData:[WFFileManager getWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key]];
+    id data = [WFFileManager getWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
+    if([data isKindOfClass:[NSData class]])
+    {
+        return [Base64 decodeData:data];
+    }
+    else
+    {
+        return data;
+    }
 }
 + (BOOL)isExistWithKey:(NSString *)key
 {
@@ -73,14 +91,21 @@ typedef enum : NSUInteger {
 #pragma mark - 文件夹相关
 + (NSString *)getFolder:(NSString *)key
 {
-    if(key && [WFAsyncHttpUtil isImageRequest:key])
+    
+    if(key)
     {
-        return [self getFolderWithType:WFAsynHttpCacheFolderType_Image];
+        if([WFAsyncURLCache checkURLCache:key])
+        {
+            return [self getFolderWithType:WFAsynHttpCacheFolderType_Web];
+        }
+        else if([WFAsyncHttpUtil isImageRequest:key])
+        {
+            return [self getFolderWithType:WFAsynHttpCacheFolderType_Image];
+        }
+        
+        
     }
-    else
-    {
-        return [self getFolderWithType:WFAsynHttpCacheFolderType_Default];;
-    }
+    return [self getFolderWithType:WFAsynHttpCacheFolderType_Default];
 }
 
 + (NSString *)getFolderWithType:(WFAsynHttpCacheFolderType)type

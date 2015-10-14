@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "WFAsyncHttp.h"
 
-@interface ViewController ()
+@interface ViewController ()<UIWebViewDelegate>
+
+@property (strong, nonatomic) UIWebView *webview;
 
 @end
 
@@ -18,9 +20,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    [self testAsync];
+    [self testWeb];
+//    [self testAsync];
     //    [self testSystemAsync];
+}
+
+- (void)testWeb
+{
+    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    self.webview.delegate = self;
+    self.webview.scalesPageToFit = YES;
+    [self.view addSubview:self.webview];
+    
+    [WFAsyncHttpManager GET_WithURLString:@"http://wiki.mbalib.com/wiki/2015%E5%B9%B4%E8%AF%BA%E8%B4%9D%E5%B0%94%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%A5%96?app=1" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject) {
+        [self.webview loadData:responseObject MIMEType:nil textEncodingName:nil baseURL:[NSURL URLWithString:@"http://wiki.mbalib.com/"]];
+    } andFailure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)testSystemAsync
@@ -57,16 +73,16 @@
 //    } andFailure:^(NSError *error) {
 //        
 //    }];
-    [WFAsyncHttpManager POST_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png"
-                                 andParams:@{@"1":@"1"}
-                                andHeaders:nil
-                            andCachePolicy:WFAsyncCachePolicyType_Default
-                                andSuccess:^(id responseObject)
-     {
-         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-     } andFailure:^(NSError *error) {
-         
-     }];
+//    [WFAsyncHttpManager POST_WithURLString:@"http://pic002.cnblogs.com/images/2012/423466/2012072010285994.png"
+//                                 andParams:@{@"1":@"1"}
+//                                andHeaders:nil
+//                            andCachePolicy:WFAsyncCachePolicyType_Default
+//                                andSuccess:^(id responseObject)
+//     {
+//         NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//     } andFailure:^(NSError *error) {
+//         
+//     }];
     //    [WFAsyncHttpManager GET_WithURLString:@"https://www.baidu.com/" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_WhenNotConnectedInternet
     //                               andSuccess:^(id responseObject)
     //    {

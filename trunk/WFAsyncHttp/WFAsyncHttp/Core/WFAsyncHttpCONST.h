@@ -19,9 +19,10 @@ typedef void(^WFFailureAsyncHttpDataCompletion)(NSError *error);
 
 typedef NS_ENUM(NSUInteger,WFAsyncCachePolicy)
 {
-    WFAsyncCachePolicyType_Default = 0, // *** 不提供缓存
-    WFAsyncCachePolicyType_ReturnCache_DontLoad = 1, // *** 返回缓存
-    WFAsyncCachePolicyType_ReturnCache_DidLoad = 2,  // *** 返回缓存并且加载
+    WFAsyncCachePolicyType_Default = 0,                     // *** 不提供缓存
+    WFAsyncCachePolicyType_ReturnCache_DontLoad = 1,        // *** 返回缓存
+    WFAsyncCachePolicyType_ReturnCache_DidLoad = 2,         // *** 返回缓存并且加载
+    WFAsyncCachePolicyType_Reload_IgnoringLocalCache = 3,   // *** 忽略本地缓存并加载 （使用在更新缓存）
 };
 
 

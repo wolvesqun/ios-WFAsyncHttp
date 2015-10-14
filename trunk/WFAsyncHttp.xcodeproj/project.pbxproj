@@ -32,6 +32,7 @@
 		2C8488561BCBBB9F0087961F /* WFAsyncHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488471BCBBB9F0087961F /* WFAsyncHttpUtil.m */; };
 		2C8488571BCBBB9F0087961F /* WFSyncHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488491BCBBB9F0087961F /* WFSyncHttpClient.m */; };
 		2C8488581BCBBB9F0087961F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84884C1BCBBB9F0087961F /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2C8A57521BCD0A910051ADD6 /* WFAsyncURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A57511BCD0A910051ADD6 /* WFAsyncURLCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		2C84884B1BCBBB9F0087961F /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		2C84884C1BCBBB9F0087961F /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		2C84884D1BCBBB9F0087961F /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
+		2C8A57501BCD0A910051ADD6 /* WFAsyncURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncURLCache.h; sourceTree = "<group>"; };
+		2C8A57511BCD0A910051ADD6 /* WFAsyncURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncURLCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +230,8 @@
 				2C8488471BCBBB9F0087961F /* WFAsyncHttpUtil.m */,
 				2C8488481BCBBB9F0087961F /* WFSyncHttpClient.h */,
 				2C8488491BCBBB9F0087961F /* WFSyncHttpClient.m */,
+				2C8A57501BCD0A910051ADD6 /* WFAsyncURLCache.h */,
+				2C8A57511BCD0A910051ADD6 /* WFAsyncURLCache.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				2C8488561BCBBB9F0087961F /* WFAsyncHttpUtil.m in Sources */,
 				2C84880B1BCBBB700087961F /* main.m in Sources */,
 				2C8488511BCBBB9F0087961F /* WFAsyncHttp.m in Sources */,
+				2C8A57521BCD0A910051ADD6 /* WFAsyncURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

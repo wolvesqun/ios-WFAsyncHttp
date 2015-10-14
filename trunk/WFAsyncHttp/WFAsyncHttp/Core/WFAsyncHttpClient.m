@@ -151,21 +151,7 @@
     // *** start
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         if(connectionError == nil)
-         {
-             if(cachePolicy != WFAsyncCachePolicyType_Default)
-             {
-                 [WFAsynHttpCacheManager saveWithData:data andKey:URLString];
-             }
-             if(success)
-             {
-                 success(data);
-             }
-         }
-         else
-         {
-             [WFAsyncHttpUtil handleRequestResultWithKey:nil andData:nil andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:success andError:connectionError andFailure:failure];
-         }
+         [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success andError:connectionError andFailure:failure];
      }];
 }
 
