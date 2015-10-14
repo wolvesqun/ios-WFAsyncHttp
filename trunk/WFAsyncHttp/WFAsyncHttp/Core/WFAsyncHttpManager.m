@@ -121,13 +121,6 @@
 }
 
 #pragma mark - GET 请求
-+ (void)GET_WithURLString:(NSString *)URLString
-               andHeaders:(NSDictionary *)headers
-               andSuccess:(WFSuccessAsyncHttpDataCompletion)successBlock
-               andFailure:(WFFailureAsyncHttpDataCompletion)failureBlock
-{
-    [self GET_WithURLString:URLString andHeaders:headers andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:successBlock andFailure:failureBlock ];
-}
 
 + (void)GET_WithURLString:(NSString *)URLString
                andHeaders:(NSDictionary *)headers
@@ -150,43 +143,21 @@
 }
 
 + (void)GET_WithURLString:(NSString *)URLString
-             andUserAgent:(NSString *)userAgent
-               andSuccess:(WFSuccessAsyncHttpDataCompletion)successBlock
-               andFailure:(WFFailureAsyncHttpDataCompletion)failureBlock
+           andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+               andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+               andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    WFAsyncHttpClient *client = [[self shareInstance] getHttpClient];
-    [client addUserAgent:userAgent];
-    [client GET_WithURLString:URLString andSuccess:^(id responseObject)
-     {
-         if(successBlock) successBlock(responseObject);
-         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
-         
-     } andFailure:^(NSError *error) {
-         if(failureBlock) failureBlock(error);
-         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
-     }];
+    [self GET_WithURLString:URLString andHeaders:nil andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
 }
 
-/**
- * get请求
- */
 + (void)GET_WithURLString:(NSString *)URLString
                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    [self GET_WithURLString:URLString andHeaders:nil andSuccess:success andFailure:failure];
+    [self GET_WithURLString:URLString andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:success andFailure:failure];
 }
 
 #pragma mark - POST 请求
-+ (void)POST_WithURLString:(NSString *)URLString
-                 andParams:(NSDictionary *)params
-                andHeaders:(NSDictionary *)headers
-                andSuccess:(WFSuccessAsyncHttpDataCompletion)successBlock
-                andFailure:(WFFailureAsyncHttpDataCompletion)failureBlock
-{
-    [self POST_WithURLString:URLString andParams:params andHeaders:headers andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:successBlock andFailure:failureBlock];
-}
-
 + (void)POST_WithURLString:(NSString *)URLString
                  andParams:(NSDictionary *)params
                 andHeaders:(NSDictionary *)headers
@@ -208,50 +179,11 @@
 
 + (void)POST_WithURLString:(NSString *)URLString
                  andParams:(NSDictionary *)params
-              andUserAgent:(NSString *)userAgent
-                andSuccess:(WFSuccessAsyncHttpDataCompletion)successBlock
-                andFailure:(WFFailureAsyncHttpDataCompletion)failureBlock
-{
-    WFAsyncHttpClient *client = [[self shareInstance] getHttpClient];
-    [client addUserAgent:userAgent];
-    [client POST_WithURLString:URLString andParams:params andSuccess:^(id responseObject)
-     {
-         if(successBlock) successBlock(responseObject);
-         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
-         
-     } andFailure:^(NSError *error) {
-         if(failureBlock) failureBlock(error);
-         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
-     }];
-}
-
-/**
- * post请求
- */
-+ (void)POST_WithURLString:(NSString *)URLString
-                 andParams:(NSDictionary *)params
-                andSuccess:(WFSuccessAsyncHttpDataCompletion)successBlock
-                andFailure:(WFFailureAsyncHttpDataCompletion)failureBlock
-{
-    WFAsyncHttpClient *client = [[self shareInstance] getHttpClient];
-    [client POST_WithURLString:URLString andParams:params andSuccess:^(id responseObject) {
-        if(successBlock) successBlock(responseObject);
-        [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
-    } andFailure:^(NSError *error) {
-        if(failureBlock) failureBlock(error);
-        [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
-    }];
-   
-}
-
-/**
- * post请求
- */
-+ (void)POST_WithURLString:(NSString *)URLString
+            andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                 andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                 andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    return [self POST_WithURLString:URLString andParams:nil andSuccess:success andFailure:failure];
+    [self POST_WithURLString:URLString andParams:params andHeaders:nil andCachePolicy:cachePolicy andSuccess:success andFailure:failure];
 }
 
 @end

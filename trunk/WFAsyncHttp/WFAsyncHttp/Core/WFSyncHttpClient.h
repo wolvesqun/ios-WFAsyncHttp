@@ -16,11 +16,6 @@
 
 #pragma mark - GET请求
 + (void)System_GET_WithURLString:(NSString *)URLString
-                      andHeaders:(NSDictionary *)headers
-                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                      andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)System_GET_WithURLString:(NSString *)URLString
                        andParams:(NSDictionary *)params
                       andHeaders:(NSDictionary *)headers
                   andCachePolicy:(WFAsyncCachePolicy)cachePolicy
@@ -28,14 +23,11 @@
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 + (void)System_GET_WithURLString:(NSString *)URLString
-                    andUserAgent:(NSString *)userAgent
+                       andParams:(NSDictionary *)params
+                  andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
-
-+ (void)System_GET_WithURLString:(NSString *)URLString
-                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                      andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 #pragma mark - POST请求
 + (void)System_POST_WithURLString:(NSString *)URLString
@@ -47,22 +39,7 @@
 
 + (void)System_POST_WithURLString:(NSString *)URLString
                         andParams:(NSDictionary *)params
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                        andParams:(NSDictionary *)params
-                       andHeaders:(NSDictionary *)headers
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)System_POST_WithURLString:(NSString *)URLString
-                        andParams:(NSDictionary *)params
-                     andUserAgent:(NSString *)userAgent
-                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)System_POST_WithURLString:(NSString *)URLString
+                   andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                        andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 

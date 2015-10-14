@@ -61,14 +61,6 @@
 #pragma mark - GET请求
 + (void)System_GET_WithURLString:(NSString *)URLString
                       andHeaders:(NSDictionary *)headers
-                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                      andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    [self System_Request_WithURLString:URLString andParams:nil andHeaders:headers andHttpMethod:kWFHttpRequestType_GET andSuccess:success andFailure:failure];
-}
-
-+ (void)System_GET_WithURLString:(NSString *)URLString
-                      andHeaders:(NSDictionary *)headers
                   andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
@@ -77,20 +69,13 @@
 }
 
 + (void)System_GET_WithURLString:(NSString *)URLString
-                    andUserAgent:(NSString *)userAgent
+                  andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
     
-    [self System_GET_WithURLString:URLString andHeaders:[WFAsyncHttpUtil getUserAgentWithValue:userAgent] andSuccess:success andFailure:failure];
 }
 
-+ (void)System_GET_WithURLString:(NSString *)URLString
-                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                      andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    [self System_GET_WithURLString:URLString andUserAgent:nil andSuccess:success andFailure:failure];
-}
 
 #pragma mark - POST请求
 + (void)System_POST_WithURLString:(NSString *)URLString

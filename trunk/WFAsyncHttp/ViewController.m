@@ -178,33 +178,6 @@
     
 }
 
-- (void)testSync
-{
-    NSString *URLString = @"http://www.dev.mbalib.com/appwiki/test2?user=u1&password=p1";
-    //    [WFSyncHttpClient System_POST_WithURLString:URLString andParams:@{@"pp":@"pp"} andHeaders:@{@"dd":@"dd"} andSuccess:^(id responseObject) {
-    //        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-    //    } andFailure:^(NSError *error) {
-    //
-    //    }];
-    [WFAsyncHttpClient System_GET_WithURLString:@"http://www.baidu.com/"
-                                     andHeaders:nil
-                                 andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                                     andSuccess:^(id responseObject)
-    {
-        
-    } andFailure:^(NSError *error) {
-        
-    }];
-    
-    [WFSyncHttpClient System_POST_WithURLString:URLString
-                                      andParams:nil
-                                   andUserAgent:@"sadfa;sdjfa;sdjk"
-                                     andSuccess:^(id responseObject) {
-        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-    } andFailure:^(NSError *error) {
-        
-    }];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

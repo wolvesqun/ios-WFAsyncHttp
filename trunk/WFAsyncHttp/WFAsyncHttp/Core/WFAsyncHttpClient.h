@@ -14,11 +14,6 @@
 @interface WFAsyncHttpClient : WFAsyncHttpRequest
 
 #pragma mark - GET请求
-+ (void)System_GET_WithURLString:(NSString *)URLString
-                     andHeaders:(NSDictionary *)headers
-                     andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                     andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
 /**
  *  GET请求系统自带网络请求 -》带缓存
  *
@@ -35,12 +30,7 @@
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 + (void)System_GET_WithURLString:(NSString *)URLString
-                    andUserAgent:(NSString *)userAgent
-                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                      andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-
-+ (void)System_GET_WithURLString:(NSString *)URLString
+                  andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 

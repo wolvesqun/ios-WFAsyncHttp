@@ -13,11 +13,6 @@
 @interface WFAsyncHttpManager : NSObject
 
 #pragma mark - GET请求
-+ (void)GET_WithURLString:(NSString *)URLString
-               andHeaders:(NSDictionary *)headers
-               andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-               andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
 /**
  *  GET请求系统自带网络请求 -》带缓存
  *
@@ -34,7 +29,7 @@
                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 + (void)GET_WithURLString:(NSString *)URLString
-             andUserAgent:(NSString *)userAgent
+           andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
@@ -43,14 +38,9 @@
                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 #pragma mark - POST请求
-+ (void)POST_WithURLString:(NSString *)URLString
-                 andParams:(NSDictionary *)params
-                andHeaders:(NSDictionary *)headers
-                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 /**
- *  POST请求系统自带网络请求 -》带缓存
+ *  POST请求系统自带网络请求 -》可以设缓存
  *
  *  @param URLString    请求地址
  *  @param Params       请求参数
@@ -68,17 +58,9 @@
 
 + (void)POST_WithURLString:(NSString *)URLString
                  andParams:(NSDictionary *)params
-              andUserAgent:(NSString *)userAgent
+            andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                 andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                 andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
-+ (void)POST_WithURLString:(NSString *)URLString
-                 andParams:(NSDictionary *)params
-                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
-+ (void)POST_WithURLString:(NSString *)URLString
-                andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 @end
