@@ -21,7 +21,15 @@
  *  remove all cache
  */
 + (void)removeAllCache;
+
+/**
+ *  remove all image cache
+ */
 + (void)removeAllImageCache;
+
+/**
+ *
+ */
 + (void)removeAllWebCache;
 
 /**
