@@ -70,6 +70,7 @@
     }];
 
 二. 网页缓存功能：只需三步操作就可以了（1-》设置缓存， 2-》加载网页数据， 3-》给webview设置数据），是不是so easy
+
     1. 在appdelegate didFinishLaunchingWithOptions这个 方法加入 [WFAsyncURLCache setURLCache];
     2. 请求网页数据
         [WFAsyncHttpManager GET_WithURLString:@"http://wiki.mbalib.com/wiki/2015%E5%B9%B4%E8%AF%BA%E8%B4%9D%E5%B0%94%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%A5%96?app=1" andHeaders:nil
