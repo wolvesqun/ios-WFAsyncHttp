@@ -8,10 +8,18 @@
 
 #import "ViewController.h"
 #import "WFAsyncHttp.h"
+#import "AsyncViewController.h"
+#import "SyncViewController.h"
+#import "WebviewCacheVC.h"
+#import "ImageViewController.h"
 
-@interface ViewController ()<UIWebViewDelegate>
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UIWebView *webview;
+
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *dataArray;
 
 @end
 
@@ -19,24 +27,60 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self testWeb];
-//    [self testAsync];
-    //    [self testSystemAsync];
+
+    self.dataArray = [NSMutableArray arrayWithObjects:
+                      @"异步请求 -> Async Request",
+                      @"同步请求 -> Sync Request",
+                      @"网页缓存 -> webview Cache",
+                      @"图片缓存 -> Image Cache",
+                      nil];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell_Reuse"];
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell_Reuse"];
+    }
+    cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 0)
+    {
+        [self.navigationController pushViewController:[AsyncViewController new] animated:YES];
+    }
+    else if (indexPath.row == 1)
+    {
+        [self.navigationController pushViewController:[SyncViewController new] animated:YES];
+    }
+    else if (indexPath.row == 2)
+    {
+        [self.navigationController pushViewController:[WebviewCacheVC new] animated:YES];
+    }
+    else if (indexPath.row == 3)
+    {
+        [self.navigationController pushViewController:[ImageViewController new] animated:YES];
+    }
 }
 
 - (void)testWeb
 {
-    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
-    self.webview.delegate = self;
-    self.webview.scalesPageToFit = YES;
-    [self.view addSubview:self.webview];
     
-    [WFAsyncHttpManager GET_WithURLString:@"http://wiki.mbalib.com/wiki/2015%E5%B9%B4%E8%AF%BA%E8%B4%9D%E5%B0%94%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%A5%96?app=1" andHeaders:nil andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject) {
-        [self.webview loadData:responseObject MIMEType:nil textEncodingName:nil baseURL:[NSURL URLWithString:@"http://wiki.mbalib.com/"]];
-    } andFailure:^(NSError *error) {
-        
-    }];
 }
 
 - (void)testSystemAsync

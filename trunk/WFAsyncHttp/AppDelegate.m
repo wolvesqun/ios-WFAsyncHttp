@@ -8,16 +8,24 @@
 
 #import "AppDelegate.h"
 #import "WFAsyncHttp.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+#warning 网页缓存要设置这个，而且必须放在这
     [WFAsyncURLCache setURLCache];
     
-    NSString *url = NSHomeDirectory();
-    NSLog(@"url path = %@", url);
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
+    
+    
+    ViewController *vc = [ViewController new];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    
     return YES;
 }
 							

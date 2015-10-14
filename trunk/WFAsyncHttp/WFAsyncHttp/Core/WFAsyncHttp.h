@@ -9,6 +9,7 @@
 #import "WFAsyncHttpManager.h"
 #import "WFSyncHttpClient.h"
 #import "WFAsyncURLCache.h"
+#import "UIImageView+WFImageViewCache.h"
 
 #warning 做 User-agent 用 在WFAsyncHttpUtil -》 getDefaultUserAgent
 #define kWFWFAsyncHttp_CompanyName @"公司名称" // 做user-agent用

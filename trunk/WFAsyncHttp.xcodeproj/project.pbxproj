@@ -33,6 +33,11 @@
 		2C8488571BCBBB9F0087961F /* WFSyncHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488491BCBBB9F0087961F /* WFSyncHttpClient.m */; };
 		2C8488581BCBBB9F0087961F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84884C1BCBBB9F0087961F /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2C8A57521BCD0A910051ADD6 /* WFAsyncURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8A57511BCD0A910051ADD6 /* WFAsyncURLCache.m */; };
+		2CE6544B1BCDFF1800D5D61C /* WebviewCacheVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6544A1BCDFF1800D5D61C /* WebviewCacheVC.m */; };
+		2CE6544E1BCE021C00D5D61C /* AsyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6544D1BCE021C00D5D61C /* AsyncViewController.m */; };
+		2CE654511BCE022800D5D61C /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654501BCE022800D5D61C /* SyncViewController.m */; };
+		2CE654551BCE244400D5D61C /* UIImageView+WFImageViewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */; };
+		2CE654591BCE267E00D5D61C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654571BCE267E00D5D61C /* ImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +95,16 @@
 		2C84884D1BCBBB9F0087961F /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
 		2C8A57501BCD0A910051ADD6 /* WFAsyncURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncURLCache.h; sourceTree = "<group>"; };
 		2C8A57511BCD0A910051ADD6 /* WFAsyncURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncURLCache.m; sourceTree = "<group>"; };
+		2CE654491BCDFF1800D5D61C /* WebviewCacheVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebviewCacheVC.h; sourceTree = "<group>"; };
+		2CE6544A1BCDFF1800D5D61C /* WebviewCacheVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebviewCacheVC.m; sourceTree = "<group>"; };
+		2CE6544C1BCE021C00D5D61C /* AsyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncViewController.h; sourceTree = "<group>"; };
+		2CE6544D1BCE021C00D5D61C /* AsyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncViewController.m; sourceTree = "<group>"; };
+		2CE6544F1BCE022800D5D61C /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
+		2CE654501BCE022800D5D61C /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
+		2CE654531BCE244400D5D61C /* UIImageView+WFImageViewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WFImageViewCache.h"; sourceTree = "<group>"; };
+		2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WFImageViewCache.m"; sourceTree = "<group>"; };
+		2CE654561BCE267E00D5D61C /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		2CE654571BCE267E00D5D61C /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +169,14 @@
 				2C8488101BCBBB700087961F /* Main.storyboard */,
 				2C8488131BCBBB700087961F /* ViewController.h */,
 				2C8488141BCBBB700087961F /* ViewController.m */,
+				2CE654491BCDFF1800D5D61C /* WebviewCacheVC.h */,
+				2CE6544A1BCDFF1800D5D61C /* WebviewCacheVC.m */,
+				2CE6544C1BCE021C00D5D61C /* AsyncViewController.h */,
+				2CE6544D1BCE021C00D5D61C /* AsyncViewController.m */,
+				2CE6544F1BCE022800D5D61C /* SyncViewController.h */,
+				2CE654501BCE022800D5D61C /* SyncViewController.m */,
+				2CE654561BCE267E00D5D61C /* ImageViewController.h */,
+				2CE654571BCE267E00D5D61C /* ImageViewController.m */,
 				2C8488331BCBBB9F0087961F /* WFAsyncHttp */,
 				2C8488161BCBBB700087961F /* Images.xcassets */,
 				2C8488051BCBBB700087961F /* Supporting Files */,
@@ -196,6 +219,7 @@
 				2C8488341BCBBB9F0087961F /* Cache */,
 				2C8488391BCBBB9F0087961F /* Core */,
 				2C84884A1BCBBB9F0087961F /* opensource */,
+				2CE654521BCE21DA00D5D61C /* UI */,
 			);
 			path = WFAsyncHttp;
 			sourceTree = "<group>";
@@ -244,6 +268,15 @@
 				2C84884D1BCBBB9F0087961F /* Base64Defines.h */,
 			);
 			path = opensource;
+			sourceTree = "<group>";
+		};
+		2CE654521BCE21DA00D5D61C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2CE654531BCE244400D5D61C /* UIImageView+WFImageViewCache.h */,
+				2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,19 +377,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C8488581BCBBB9F0087961F /* Base64.m in Sources */,
+				2CE6544B1BCDFF1800D5D61C /* WebviewCacheVC.m in Sources */,
 				2C8488521BCBBB9F0087961F /* WFAsyncHttpClient.m in Sources */,
+				2CE654511BCE022800D5D61C /* SyncViewController.m in Sources */,
 				2C8488551BCBBB9F0087961F /* WFAsyncHttpRequest.m in Sources */,
 				2C8488541BCBBB9F0087961F /* WFAsyncHttpManager.m in Sources */,
 				2C8488501BCBBB9F0087961F /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m in Sources */,
 				2C8488531BCBBB9F0087961F /* WFAsyncHttpCONST.m in Sources */,
 				2C8488151BCBBB700087961F /* ViewController.m in Sources */,
 				2C84880F1BCBBB700087961F /* AppDelegate.m in Sources */,
+				2CE654591BCE267E00D5D61C /* ImageViewController.m in Sources */,
 				2C84884E1BCBBB9F0087961F /* WFAsynHttpCacheManager.m in Sources */,
 				2C8488571BCBBB9F0087961F /* WFSyncHttpClient.m in Sources */,
+				2CE6544E1BCE021C00D5D61C /* AsyncViewController.m in Sources */,
 				2C84884F1BCBBB9F0087961F /* WFFileManager.m in Sources */,
 				2C8488561BCBBB9F0087961F /* WFAsyncHttpUtil.m in Sources */,
 				2C84880B1BCBBB700087961F /* main.m in Sources */,
 				2C8488511BCBBB9F0087961F /* WFAsyncHttp.m in Sources */,
+				2CE654551BCE244400D5D61C /* UIImageView+WFImageViewCache.m in Sources */,
 				2C8A57521BCD0A910051ADD6 /* WFAsyncURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

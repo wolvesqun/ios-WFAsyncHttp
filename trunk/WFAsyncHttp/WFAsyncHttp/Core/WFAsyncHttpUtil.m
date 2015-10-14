@@ -87,6 +87,7 @@
     }
     else
     {
+        // *** save data
         if(cachePolicy != WFAsyncCachePolicyType_Default)
         {
             [WFAsynHttpCacheManager saveWithData:data andKey:key];
@@ -94,7 +95,7 @@
         [self handleDataSuccess:data andSuccess:success];
     }
 }
-
+// - request success
 + (void)handleRequestResultWithKey:(NSString *)key
                            andData:(NSData *)data
                     andCachePolicy:(WFAsyncCachePolicy)cachePolicy
@@ -107,7 +108,7 @@
                             andError:nil
                           andFailure:nil];
 }
-
+// - request error
 + (void)handleRequestResultWithError:(NSError *)error
                           andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
@@ -200,7 +201,14 @@
     }
 }
 
-
++ (BOOL)isWebFileRequest:(NSString *) URLString
+{
+    if([URLString rangeOfString:@".css"].length > 0 || [URLString rangeOfString:@".js"].length > 0)
+    {
+        return YES;
+    }
+    return NO;
+}
 
 @end
 

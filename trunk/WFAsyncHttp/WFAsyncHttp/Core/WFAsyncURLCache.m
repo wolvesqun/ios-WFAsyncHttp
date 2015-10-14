@@ -6,10 +6,18 @@
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
 
+/*** 图片MIMEType ***/
+NSString *const kMIMETypeImgJPEG = @"image/jpeg";
+NSString *const kMIMETypeImgGIF = @"image/gif";
+NSString *const kMIMETypeImgPNG = @"image/png";
+NSString *const kMIMETypeImgTIFF = @"image/tiff";
+NSString *const KMIMETypeImgBMP = @"image/bmp";
+
 #import "WFAsyncURLCache.h"
 #import "WFAsyncHttpUtil.h"
 #import "WFAsyncHttp.h"
 #import "WFAsynHttpCacheManager.h"
+
 
 @interface WFAsyncURLCacheData : NSObject<NSCoding>
 
@@ -75,7 +83,7 @@
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)request {
     NSString *URLString = request.URL.absoluteString;
     @try {
-        if([WFAsyncURLCache isWebFileRequest:URLString] || [WFAsyncHttpUtil isImageRequest:URLString])
+        if([WFAsyncHttpUtil isWebFileRequest:URLString] || [WFAsyncHttpUtil isImageRequest:URLString])
         {
             return [self myCachedResponseForRequest:request];
         }
@@ -94,14 +102,28 @@
 {
     NSString *URLString = request.URL.absoluteString;
     // *** 有缓存
-    if([WFAsynHttpCacheManager isExistWithKey:[WFAsyncURLCache buildURLCacheKey:URLString]])
+    if([WFAsynHttpCacheManager isExistWithKey:[WFAsynHttpCacheManager buildURLCacheKey:URLString]])
     {
-        WFAsyncURLCacheData *cacheData = [WFAsynHttpCacheManager getWithKey:[WFAsyncURLCache buildURLCacheKey:URLString]];
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
-                                                            MIMEType:cacheData.textEncodingName
-                                               expectedContentLength:cacheData.data.length
-                                                    textEncodingName:cacheData.textEncodingName];
-        NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:cacheData.data];
+        id cacheData = [WFAsynHttpCacheManager getWithKey:[WFAsynHttpCacheManager buildURLCacheKey:URLString]];
+        NSCachedURLResponse *cachedResponse;
+        if([cacheData isKindOfClass:[NSData class]])
+        {
+            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
+                                                                MIMEType:[self getMIMETypeImg:request]
+                                                   expectedContentLength:((NSData *)cacheData).length
+                                                        textEncodingName:nil];
+            cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:cacheData];
+        }
+        else
+        {
+            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
+                                                                MIMEType:((WFAsyncURLCacheData *)cacheData).MIMEType
+                                                   expectedContentLength:((WFAsyncURLCacheData *)cacheData).data.length
+                                                        textEncodingName:((WFAsyncURLCacheData *)cacheData).textEncodingName];
+            cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:((WFAsyncURLCacheData *)cacheData).data];
+        }
+        
+        
         return cachedResponse;
         
     }
@@ -121,12 +143,20 @@
                  if(!connectionError && response && data) {
                      
                      // *** 数据持久化
-                    
-                     WFAsyncURLCacheData *cacheData = [WFAsyncURLCacheData new];
-                     cacheData.MIMEType = response.MIMEType;
-                     cacheData.textEncodingName = response.textEncodingName;
-                     cacheData.data = data;
-                     [WFAsynHttpCacheManager saveWithData:cacheData andKey:[WFAsyncURLCache buildURLCacheKey:URLString]];
+                     
+                     if([WFAsyncHttpUtil isWebFileRequest:URLString])
+                     {
+                         WFAsyncURLCacheData *cacheData = [WFAsyncURLCacheData new];
+                         cacheData.MIMEType = response.MIMEType;
+                         cacheData.textEncodingName = response.textEncodingName;
+                         cacheData.data = data;
+                         [WFAsynHttpCacheManager saveWithData:cacheData andKey:[WFAsynHttpCacheManager buildURLCacheKey:URLString]];
+                     }
+                     else
+                     {
+                         [WFAsynHttpCacheManager saveWithData:data andKey:URLString];
+                     }
+                     
                      
                      cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
                      
@@ -142,25 +172,23 @@
     return nil;
 }
 
-+ (BOOL)isWebFileRequest:(NSString *) URLString
-{
-    if([URLString rangeOfString:@".css"].length > 0 || [URLString rangeOfString:@".js"].length > 0)
-    {
-        return YES;
-    }
-    return NO;
+#pragma mark - 获取图片MIMEType
+- (NSString *)getMIMETypeImg:(NSURLRequest *)request {
+    NSRange pngRange = [[request URL].absoluteString rangeOfString:@".png"];
+    if(pngRange.length > 0) return kMIMETypeImgPNG;
+    
+    NSRange gifRange = [[request URL].absoluteString rangeOfString:@".gif"];
+    if(gifRange.length > 0) return kMIMETypeImgGIF;
+    
+    NSRange jpgRange = [[request URL].absoluteString rangeOfString:@".jpg"];
+    NSRange jpegRange = [[request URL].absoluteString rangeOfString:@".jpeg"];
+    if(jpgRange.length > 0 || jpegRange.length > 0) return kMIMETypeImgJPEG;
+    
+    NSRange bmpRange = [[request URL].absoluteString rangeOfString:@".bmp"];
+    if(bmpRange.length > 0) return KMIMETypeImgBMP;
+    
+    return nil;
 }
-+ (BOOL)checkURLCache:(NSString *)Key
-{
-    if([Key rangeOfString:@"WFAsyncURLCacheData_"].length > 0)
-    {
-        return YES;
-    }
-    return NO;
-}
-+ (NSString *)buildURLCacheKey:(NSString *)URLString
-{
-    return [NSString stringWithFormat:@"WFAsyncURLCacheData_%@",URLString];
-}
+
 
 @end

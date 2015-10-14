@@ -12,10 +12,5 @@
 
 + (void)setURLCache;
 
-+ (BOOL)checkURLCache:(NSString *)Key;
-
-+ (NSString *)buildURLCacheKey:(NSString *)URLString;
-
-+ (BOOL)isWebFileRequest:(NSString *) URLString;
 
 @end

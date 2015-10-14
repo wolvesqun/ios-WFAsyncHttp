@@ -8,6 +8,8 @@
 
 #define kWFAsynHttpCache_Folder             @"kWFAsynHttpCache_Folder" // *** 缓存文件包
 
+#define kWFWFAsyncURLCacheData_Pre @"WFAsyncURLCacheData"
+
 typedef enum : NSUInteger {
     WFAsynHttpCacheFolderType_Default,
     WFAsynHttpCacheFolderType_Image,
@@ -26,6 +28,7 @@ typedef enum : NSUInteger {
 + (void)saveWithData:(id)data andKey:(NSString *)key
 {
     if(data == nil || key == nil || key.length == 0) return;
+    if(![data respondsToSelector:@selector(encodeWithCoder:)] || ![data respondsToSelector:@selector(initWithCoder:)]) return;
     
     if([data isKindOfClass:[NSData class]])
     {
@@ -81,12 +84,9 @@ typedef enum : NSUInteger {
 
 + (void)removeWithKey:(NSString *)key
 {
-    
     if(key == nil || key.length == 0) return;
     [WFFileManager deleteWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
 }
-
-
 
 #pragma mark - 文件夹相关
 + (NSString *)getFolder:(NSString *)key
@@ -94,7 +94,7 @@ typedef enum : NSUInteger {
     
     if(key)
     {
-        if([WFAsyncURLCache checkURLCache:key])
+        if([self checkURLCache:key])
         {
             return [self getFolderWithType:WFAsynHttpCacheFolderType_Web];
         }
@@ -102,9 +102,8 @@ typedef enum : NSUInteger {
         {
             return [self getFolderWithType:WFAsynHttpCacheFolderType_Image];
         }
-        
-        
     }
+    
     return [self getFolderWithType:WFAsynHttpCacheFolderType_Default];
 }
 
@@ -119,11 +118,10 @@ typedef enum : NSUInteger {
             return folder;
             
         }
-        case WFAsynHttpCacheFolderType_Web:
+        case WFAsynHttpCacheFolderType_Web: //
         {
             [folder appendString:@"Web"];
             return folder;
-            
         }
             
         default:
@@ -134,5 +132,19 @@ typedef enum : NSUInteger {
             
     }
 }
++ (BOOL)checkURLCache:(NSString *)Key
+{
+    if([Key rangeOfString:kWFWFAsyncURLCacheData_Pre].length > 0)
+    {
+        return YES;
+    }
+    return NO;
+}
+
++ (NSString *)buildURLCacheKey:(NSString *)URLString
+{
+    return [NSString stringWithFormat:@"%@_%@",kWFWFAsyncURLCacheData_Pre, URLString];
+}
+
 
 @end

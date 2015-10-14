@@ -49,6 +49,7 @@
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy;
 
 + (BOOL)isImageRequest:(NSString *)URLString;
++ (BOOL)isWebFileRequest:(NSString *) URLString;
 
 
 
