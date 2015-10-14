@@ -14,60 +14,60 @@
     
 一：引入WFAsyncHttp.h, 并且设置里面的公司名称（最好是英文，中文也没事），此处是做User-agent（不懂百度|google就知道了）用的
   
-  1. GET异步请求
+    1. GET异步请求
+    
+      [WFAsyncHttpManager GET_WithURLString:@"http://gc.ditu.aliyun.com/regeocoding?l=39.938133,116.395739&type=001"
+                                 andHeaders:nil
+                             andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
+                                 andSuccess:^(id responseObject)
+      {
+          [AppDelegate showLog:responseObject];
+          [AppDelegate showAlert:@"WFAsyncHttpManager - GET异步方式 -> 离线成功"];
+      } andFailure:^(NSError *error) {
+          [AppDelegate showLog:@"WFAsyncHttpManager - GET异步方式 -> 离线失败"];
+      }];
   
-    [WFAsyncHttpManager GET_WithURLString:@"http://gc.ditu.aliyun.com/regeocoding?l=39.938133,116.395739&type=001"
-                               andHeaders:nil
-                           andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                               andSuccess:^(id responseObject)
-    {
-        [AppDelegate showLog:responseObject];
-        [AppDelegate showAlert:@"WFAsyncHttpManager - GET异步方式 -> 离线成功"];
-    } andFailure:^(NSError *error) {
-        [AppDelegate showLog:@"WFAsyncHttpManager - GET异步方式 -> 离线失败"];
-    }];
-
-  2. POST异步请求
- 
-    [WFAsyncHttpManager POST_WithURLString:@"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=json%E5%9C%A8%E7%BA%BF%E8%A7%A3%E6%9E%90&rsv_pq=827e6055000126c3&rsv_t=7eef1BgWJhIzUhSdAm%2FO7GzHKx8p3KxecQuAYGRHPE0fih%2FTqSb2L%2FNPLTA&rsv_enter=1&rsv_sug3=4&rsv_sug1=2&sug=json%E5%9C%A8%E7%BA%BF%E8%A7%A3%E6%9E%90&rsv_n=1"
-                                 andParams:nil
-                                andHeaders:nil
-                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject)
-    {
-        [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
-        [AppDelegate showAlert:@"WFAsyncHttpManager - POST异步方式 -> 离线成功"];
-    } andFailure:^(NSError *error) {
-         [AppDelegate showLog:@"WFAsyncHttpManager - POST异步方式 -> 离线失败"];
-    }];
+    2. POST异步请求
+   
+      [WFAsyncHttpManager POST_WithURLString:@"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=json%E5%9C%A8%E7%BA%BF%E8%A7%A3%E6%9E%90&rsv_pq=827e6055000126c3&rsv_t=7eef1BgWJhIzUhSdAm%2FO7GzHKx8p3KxecQuAYGRHPE0fih%2FTqSb2L%2FNPLTA&rsv_enter=1&rsv_sug3=4&rsv_sug1=2&sug=json%E5%9C%A8%E7%BA%BF%E8%A7%A3%E6%9E%90&rsv_n=1"
+                                   andParams:nil
+                                  andHeaders:nil
+                              andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject)
+      {
+          [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+          [AppDelegate showAlert:@"WFAsyncHttpManager - POST异步方式 -> 离线成功"];
+      } andFailure:^(NSError *error) {
+           [AppDelegate showLog:@"WFAsyncHttpManager - POST异步方式 -> 离线失败"];
+      }];
+    
+    3. GET同步请求
+    
+        [WFSyncHttpClient System_GET_WithURLString:@"http://baike.baidu.com/link?url=KeukH7mzl7OU8wxXdSB9AZZffLqntSE_3y8--JjoPrbIVNTu4InEIKxJ8M-PgOiZOFevStVSM21y7uOh0E8RpK"
+                                       andParams:nil
+                                      andHeaders:nil
+                                  andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
+                                      andSuccess:^(id responseObject)
+       {
+          [AppDelegate showLog:responseObject];
+          [AppDelegate showAlert:@"WFSyncHttpClient - GET同步方式 -> 离线成功"];
+      } andFailure:^(NSError *error) {
+          [AppDelegate showLog:@"WFSyncHttpClient - GET异步方式 -> 离线失败"];
+      }];
   
-  3. GET同步请求
-  
-      [WFSyncHttpClient System_GET_WithURLString:@"http://baike.baidu.com/link?url=KeukH7mzl7OU8wxXdSB9AZZffLqntSE_3y8--JjoPrbIVNTu4InEIKxJ8M-PgOiZOFevStVSM21y7uOh0E8RpK"
-                                     andParams:nil
-                                    andHeaders:nil
-                                andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                                    andSuccess:^(id responseObject)
-     {
-        [AppDelegate showLog:responseObject];
-        [AppDelegate showAlert:@"WFSyncHttpClient - GET同步方式 -> 离线成功"];
-    } andFailure:^(NSError *error) {
-        [AppDelegate showLog:@"WFSyncHttpClient - GET异步方式 -> 离线失败"];
-    }];
-
-  4. POST同步请求
-  
-     [WFSyncHttpClient System_POST_WithURLString:@"http://baike.baidu.com/link?url=KeukH7mzl7OU8wxXdSB9AZZffLqntSE_3y8--JjoPrbIVNTu4InEIKxJ8M-PgOiZOFevStVSM21y7uOh0E8RpK" andParams:nil
-                                     andHeaders:nil
-                                 andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                                     andSuccess:^(id responseObject)
-    {
-        [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
-        [AppDelegate showAlert:@"WFSyncHttpClient - POST同步方式 -> 离线成功"];
-        
-    } andFailure:^(NSError *error)
-    {
-        [AppDelegate showLog:@"WFSyncHttpClient - POST同步方式 -> 离线失败"];
-    }];
+    4. POST同步请求
+    
+       [WFSyncHttpClient System_POST_WithURLString:@"http://baike.baidu.com/link?url=KeukH7mzl7OU8wxXdSB9AZZffLqntSE_3y8--JjoPrbIVNTu4InEIKxJ8M-PgOiZOFevStVSM21y7uOh0E8RpK" andParams:nil
+                                       andHeaders:nil
+                                   andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
+                                       andSuccess:^(id responseObject)
+      {
+          [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+          [AppDelegate showAlert:@"WFSyncHttpClient - POST同步方式 -> 离线成功"];
+          
+      } andFailure:^(NSError *error)
+      {
+          [AppDelegate showLog:@"WFSyncHttpClient - POST同步方式 -> 离线失败"];
+      }];
 
 二. 网页缓存功能：只需三步操作就可以了（1-》设置缓存， 2-》加载网页数据， 3-》给webview设置数据），是不是so easy
 
