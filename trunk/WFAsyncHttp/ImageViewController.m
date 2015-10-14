@@ -8,6 +8,7 @@
 
 #import "ImageViewController.h"
 #import "UIImageView+WFImageViewCache.h"
+#import "WFAsynHttpCacheManager.h"
 
 @interface ImageViewController ()
 
@@ -47,8 +48,12 @@
 
 - (void)tapActionRight
 {
+    // *** 删除单张图片缓存
     [self.img removeCache:@"http://d.hiphotos.baidu.com/image/w%3D310/sign=d12bf5db19d5ad6eaaf962ebb1cb39a3/b64543a98226cffc1d2771adbb014a90f603eaa4.jpg"];
     self.img.image = nil;
+    
+    // *** 删除所有图片缓存
+    //  [WFAsynHttpCacheManager removeAllImageCache];
 }
 
 - (void)tapAction

@@ -31,8 +31,8 @@
     self.dataArray = [NSMutableArray arrayWithObjects:
                       @"异步请求 -> Async Request",
                       @"同步请求 -> Sync Request",
-                      @"网页缓存 -> webview Cache",
-                      @"图片缓存 -> Image Cache",
+                      @"网页请求 -> webview request Cache",
+                      @"图片请求 -> Image request Cache",
                       nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];

@@ -71,9 +71,9 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
     dispatch_once(&onceToken, ^{
         if(urlCache == nil) {
             urlCache = [[WFAsyncURLCache alloc] initWithMemoryCapacity:20 * 1024 * 1024
-                                                         diskCapacity:200 * 1024 * 1024
-                                                             diskPath:nil
-                                                            cacheTime:0];
+                                                          diskCapacity:200 * 1024 * 1024
+                                                              diskPath:nil
+                                                             cacheTime:0];
         }
     });
     [WFAsyncURLCache setSharedURLCache:urlCache];

@@ -28,7 +28,7 @@
 + (void)removeAllImageCache;
 
 /**
- *
+ *  remove all web cache (css,js ...)
  */
 + (void)removeAllWebCache;
 
