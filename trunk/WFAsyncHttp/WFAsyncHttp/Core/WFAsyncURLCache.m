@@ -87,7 +87,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
         {
             return [self myCachedResponseForRequest:request];
         }
-        return [self cachedResponseForRequest:request];
+        return [super cachedResponseForRequest:request];
     }
     @catch (NSException *exception) {
         return nil;
