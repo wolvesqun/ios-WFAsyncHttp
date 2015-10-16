@@ -131,7 +131,7 @@
 
 - (void)handleLinkedWithURLString:(NSString *)URLString
 {
-    NSString *temp = [self.delegate webView:self showStartLoadWhenClickWithLinkedURLString:URLString];
+    NSString *temp = [self.delegate webView:self showStartLoadWhenClickWithURLString:URLString];
     if(temp)
     {
         URLString = temp;

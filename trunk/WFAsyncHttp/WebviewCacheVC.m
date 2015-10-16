@@ -59,7 +59,7 @@
     self.webview = [[WFWebView alloc] initWithFrame:self.view.frame];
     self.webview.delegate = self;
     [self.view addSubview:self.webview];
-    [self.webview loadWihtURLString:@"http://wapbaike.baidu.com/view/1088.htm" andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andBaseURL:[NSURL URLWithString:@"http://wapbaike.baidu.com/"]];
+    [self.webview loadWihtURLString:@"http://wapbaike.baidu.com/view/1088.htm" andBaseURL:[NSURL URLWithString:@"http://wapbaike.baidu.com/"]];
     
     
     UIButton *btnback = [UIButton buttonWithType:UIButtonTypeCustom];
