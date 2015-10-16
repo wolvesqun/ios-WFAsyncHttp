@@ -13,6 +13,9 @@
 @protocol WFWebViewDelegate <NSObject>
 
 @optional
+/**
+ *  the method will call when the method which is "- (BOOL)webView:(WFWebView *)webView canHandleLinkedWithURLString:(NSString *)URLString" will return YES;
+ */
 - (BOOL)webView:(WFWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
 - (void)webViewDidStartLoad:(WFWebView *)webView;
 - (void)webViewDidFinishLoad:(WFWebView *)webView;
@@ -56,7 +59,7 @@
 /*** 当前请求地址 ***/
 @property (strong, nonatomic, readonly) NSString *currentRequestURLString;
 
-- (void)loadWihtURLString:(NSString *)URLString andCachePolicy:(WFAsyncCachePolicy)cachePolicy andBaseURL:(NSURL *)baseURL;
+- (void)loadWihtURLString:(NSString *)URLString andBaseURL:(NSURL *)baseURL;
 
 #pragma mark - webview common method
 - (void)reload;

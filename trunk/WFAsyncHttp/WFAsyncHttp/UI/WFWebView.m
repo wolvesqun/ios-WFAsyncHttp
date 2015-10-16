@@ -105,19 +105,20 @@
 }
 
 #pragma mark - start request
-- (void)loadWihtURLString:(NSString *)URLString andCachePolicy:(WFAsyncCachePolicy)cachePolicy andBaseURL:(NSURL *)baseURL
+- (void)loadWihtURLString:(NSString *)URLString andBaseURL:(NSURL *)baseURL
 {
-    [self loadWihtURLString:URLString andCachePolicy:cachePolicy andBaseURL:baseURL andBPush:YES];
+    [self loadWihtURLString:URLString andBaseURL:baseURL andBPush:YES];
 }
 
-- (void)loadWihtURLString:(NSString *)URLString andCachePolicy:(WFAsyncCachePolicy)cachePolicy andBaseURL:(NSURL *)baseURL andBPush:(BOOL)bPush
+- (void)loadWihtURLString:(NSString *)URLString andBaseURL:(NSURL *)baseURL andBPush:(BOOL)bPush
 {
     if(bPush)
     {
         [self.urlStringStack pushWithKey:URLString];
     }
     _currentRequestURLString = URLString;
-    [self.httpClient setCachePolicy:cachePolicy];
+    
+    [self.httpClient setCachePolicy:[self.delegate webView:self cachePolicyWithURLString:URLString]];
     self.baseURL = baseURL;
     [self.httpClient GET_WithURLString:URLString andSuccess:^(id responseObject)
      {
@@ -135,8 +136,8 @@
     {
         URLString = temp;
     }
-    WFAsyncCachePolicy cachePolicy = [self.delegate webView:self cachePolicyWithURLString:URLString];
-    [self loadWihtURLString:URLString andCachePolicy:cachePolicy andBaseURL:self.baseURL];
+    
+    [self loadWihtURLString:URLString andBaseURL:self.baseURL];
 }
 
 #pragma mark - webview common method
@@ -144,8 +145,7 @@
 {
     if(self.currentRequestURLString && self.currentRequestURLString.length > 0)
     {
-        WFAsyncCachePolicy cachePolicy = [self.delegate webView:self cachePolicyWithURLString:self.currentRequestURLString];
-        [self loadWihtURLString:self.currentRequestURLString andCachePolicy:cachePolicy andBaseURL:self.baseURL andBPush:NO];
+        [self loadWihtURLString:self.currentRequestURLString andBaseURL:self.baseURL andBPush:NO];
     }
     
 }
@@ -166,8 +166,7 @@
     if([self canGoBack])
     {
         NSString *URLString = [self.urlStringStack pop];
-        WFAsyncCachePolicy cachePolicy = [self.delegate webView:self cachePolicyWithURLString:URLString];
-        [self loadWihtURLString:URLString andCachePolicy:cachePolicy andBaseURL:self.baseURL andBPush:NO];
+        [self loadWihtURLString:URLString andBaseURL:self.baseURL andBPush:NO];
     }
 }
 
