@@ -10,7 +10,7 @@
 #import "WFAsyncHttp.h"
 
 @class WFWebView;
-@protocol WFWebViewDelegate <UIWebViewDelegate>
+@protocol WFWebViewDelegate <NSObject>
 
 @optional
 /**
