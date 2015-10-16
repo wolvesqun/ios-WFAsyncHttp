@@ -82,6 +82,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
 #pragma mark - 会请求这个
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)request {
     NSString *URLString = request.URL.absoluteString;
+//    NSLog(@"URLString = %@", URLString);
     @try {
         if([WFAsyncHttpUtil isWebFileRequest:URLString] || [WFAsyncHttpUtil isImageRequest:URLString])
         {

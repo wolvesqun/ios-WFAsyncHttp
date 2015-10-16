@@ -38,6 +38,7 @@
 		2CE654511BCE022800D5D61C /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654501BCE022800D5D61C /* SyncViewController.m */; };
 		2CE654551BCE244400D5D61C /* UIImageView+WFImageViewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */; };
 		2CE654591BCE267E00D5D61C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654571BCE267E00D5D61C /* ImageViewController.m */; };
+		2CF19BB11BCF56140032D70E /* WFWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BB01BCF56140032D70E /* WFWebView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WFImageViewCache.m"; sourceTree = "<group>"; };
 		2CE654561BCE267E00D5D61C /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		2CE654571BCE267E00D5D61C /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		2CF19BAF1BCF56140032D70E /* WFWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFWebView.h; sourceTree = "<group>"; };
+		2CF19BB01BCF56140032D70E /* WFWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFWebView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +278,8 @@
 			children = (
 				2CE654531BCE244400D5D61C /* UIImageView+WFImageViewCache.h */,
 				2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */,
+				2CF19BAF1BCF56140032D70E /* WFWebView.h */,
+				2CF19BB01BCF56140032D70E /* WFWebView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C8488581BCBBB9F0087961F /* Base64.m in Sources */,
+				2CF19BB11BCF56140032D70E /* WFWebView.m in Sources */,
 				2CE6544B1BCDFF1800D5D61C /* WebviewCacheVC.m in Sources */,
 				2C8488521BCBBB9F0087961F /* WFAsyncHttpClient.m in Sources */,
 				2CE654511BCE022800D5D61C /* SyncViewController.m in Sources */,
