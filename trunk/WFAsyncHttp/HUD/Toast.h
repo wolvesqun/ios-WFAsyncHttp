@@ -13,12 +13,6 @@
  */
 @interface Toast : NSObject
 
-/**
- *  带文本显示框
- */
-+ (void)show:(NSString *) text;
-
-+ (void)showWithErrCode:(NSInteger)errorCode;
 
 /**
  *  菊花加载中提示
@@ -35,9 +29,6 @@
  */
 + (void)dimissActivityIndicatorViewByMandatory;
 
-/**
- *  从屏幕上方显示
- */
-+(void)showInUp:(NSString *)text;
+
 
 @end
