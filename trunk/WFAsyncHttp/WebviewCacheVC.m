@@ -91,15 +91,15 @@
  *  @param linkedURLString 网页链接地址
  *  @return 返回请求地址
  */
-- (NSString *)webView:(WFWebView *)webView showStartLoadWhenClickWithLinkedURLString:(NSString *)linkedURLString
+- (NSString *)webView:(WFWebView *)webView showStartLoadWhenClickWithURLString:(NSString *)URLString
 {
-    NSRange myrange = [linkedURLString rangeOfString:@"?"];
+    NSRange myrange = [URLString rangeOfString:@"?"];
     if(myrange.length > 0)
     {
-        linkedURLString = [linkedURLString substringToIndex:myrange.location];
+        URLString = [URLString substringToIndex:myrange.location];
     }
 
-    return linkedURLString;
+    return URLString;
 }
 
 /**

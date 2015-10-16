@@ -38,7 +38,7 @@
  *  @param linkedURLString 网页链接地址
  *  @return 返回请求地址
  */
-- (NSString *)webView:(WFWebView *)webView showStartLoadWhenClickWithLinkedURLString:(NSString *)linkedURLString;
+- (NSString *)webView:(WFWebView *)webView showStartLoadWhenClickWithURLString:(NSString *)URLString;
 
 /**
  *  当前请求缓存策略
