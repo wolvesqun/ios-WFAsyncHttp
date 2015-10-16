@@ -202,7 +202,7 @@
     
     if([self.delegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) // 实现
     {
-        return [self.delegate webView:self shouldStartLoadWithRequest:request navigationType:navigationType];
+        return [self.delegate webView:self.webView shouldStartLoadWithRequest:request navigationType:navigationType];
     }
     
     
@@ -213,21 +213,21 @@
 {
     if([self.delegate respondsToSelector:@selector(webViewDidStartLoad:)])
     {
-        [self.delegate webViewDidStartLoad:self];
+        [self.delegate webViewDidStartLoad:self.webView];
     }
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     if([self.delegate respondsToSelector:@selector(webViewDidFinishLoad:)])
     {
-        [self.delegate webViewDidFinishLoad:self];
+        [self.delegate webViewDidFinishLoad:self.webView];
     }
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if([self.delegate respondsToSelector:@selector(webView:didFailLoadWithError:)])
     {
-        [self.delegate webView:self didFailLoadWithError:error];
+        [self.delegate webView:self.webView didFailLoadWithError:error];
     }
 }
 

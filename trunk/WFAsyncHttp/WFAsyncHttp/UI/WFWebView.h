@@ -10,16 +10,16 @@
 #import "WFAsyncHttp.h"
 
 @class WFWebView;
-@protocol WFWebViewDelegate <NSObject>
+@protocol WFWebViewDelegate <UIWebViewDelegate>
 
 @optional
 /**
  *  the method will call when the method which is "- (BOOL)webView:(WFWebView *)webView canHandleLinkedWithURLString:(NSString *)URLString" will return YES;
  */
-- (BOOL)webView:(WFWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
-- (void)webViewDidStartLoad:(WFWebView *)webView;
-- (void)webViewDidFinishLoad:(WFWebView *)webView;
-- (void)webView:(WFWebView *)webView didFailLoadWithError:(NSError *)error;
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+- (void)webViewDidStartLoad:(UIWebView *)webView;
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
 
 #warning 以下不实现将报错
 @required
