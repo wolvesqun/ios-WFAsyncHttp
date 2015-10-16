@@ -106,27 +106,29 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
     // *** 图片缓存 - 》image cache
     if([WFAsyncHttpCacheManager isExistWithKey:URLString])
     {
-        NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:URLString];
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
-                                                            MIMEType:[self getMIMETypeImg:request]
-                                               expectedContentLength:((NSData *)cacheData).length
-                                                    textEncodingName:nil];
-        NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:cacheData];
-        return cachedResponse;
-    }
-    
-    // *** 网页文件缓存
-    else if([WFAsyncHttpCacheManager isExistWithKey:[WFAsyncHttpCacheManager buildURLCacheKey:URLString]])
-    {
-        WFAsyncURLCacheData *cacheData = [WFAsyncHttpCacheManager getWithKey:[WFAsyncHttpCacheManager buildURLCacheKey:URLString]];
-        NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
-                                                            MIMEType:cacheData.MIMEType
-                                               expectedContentLength:cacheData.data.length
-                                                    textEncodingName:cacheData.textEncodingName];
-        NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:cacheData.data];
-        
-        
-        return cachedResponse;
+        if([WFAsyncHttpUtil isImageRequest:URLString])
+        {
+            NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:URLString];
+            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
+                                                                MIMEType:[self getMIMETypeImg:request]
+                                                   expectedContentLength:((NSData *)cacheData).length
+                                                        textEncodingName:nil];
+            NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:cacheData];
+            return cachedResponse;
+        }
+        // *** 网页文件缓存
+        else
+        {
+            WFAsyncURLCacheData *cacheData = [WFAsyncHttpCacheManager getWithKey:URLString];
+            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
+                                                                MIMEType:cacheData.MIMEType
+                                                   expectedContentLength:cacheData.data.length
+                                                        textEncodingName:cacheData.textEncodingName];
+            NSCachedURLResponse *cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:cacheData.data];
+            
+            
+            return cachedResponse;
+        }
         
     }
     // *** 无缓存
@@ -156,7 +158,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
                          cacheData.MIMEType = response.MIMEType;
                          cacheData.textEncodingName = response.textEncodingName;
                          cacheData.data = data;
-                         [WFAsyncHttpCacheManager saveWithData:cacheData andKey:[WFAsyncHttpCacheManager buildURLCacheKey:URLString]];
+                         [WFAsyncHttpCacheManager saveWithData:cacheData andKey:URLString];
                      }
                      
                      cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];

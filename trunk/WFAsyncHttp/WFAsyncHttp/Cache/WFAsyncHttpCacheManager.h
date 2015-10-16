@@ -41,7 +41,4 @@
  */
 + (BOOL)isExistWithKey:(NSString *)key;
 
-+ (BOOL)checkURLCache:(NSString *)Key;
-
-+ (NSString *)buildURLCacheKey:(NSString *)URLString;
 @end

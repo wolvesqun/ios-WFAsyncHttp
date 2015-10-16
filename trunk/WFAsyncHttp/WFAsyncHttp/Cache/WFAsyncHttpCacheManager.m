@@ -93,7 +93,7 @@ typedef enum : NSUInteger {
     
     if(key)
     {
-        if([self checkURLCache:key])
+        if([WFAsyncHttpUtil isWebFileRequest:key])
         {
             return [self getFolderWithType:WFAsynHttpCacheFolderType_Web];
         }
@@ -131,18 +131,6 @@ typedef enum : NSUInteger {
             
     }
 }
-+ (BOOL)checkURLCache:(NSString *)Key
-{
-    if([Key rangeOfString:kWFWFAsyncURLCacheData_Pre].length > 0)
-    {
-        return YES;
-    }
-    return NO;
-}
 
-+ (NSString *)buildURLCacheKey:(NSString *)URLString
-{
-    return [NSString stringWithFormat:@"%@_%@",kWFWFAsyncURLCacheData_Pre, URLString];
-}
 
 @end
