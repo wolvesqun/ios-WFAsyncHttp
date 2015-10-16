@@ -62,6 +62,16 @@
         [AppDelegate showLog:@"WFAsyncHttpManager - GET异步方式 -> 离线失败"];
     }];
     
+    // 2
+    [WFAsyncHttpClient System_GET_WithURLString:@"http://www.baidu.com"
+                                 andCachePolicy:WFAsyncCachePolicyType_Default
+                                     andSuccess:^(id responseObject)
+    {
+        
+    } andFailure:^(NSError *error) {
+        
+    }];
+    
 //    [WFAsyncHttpManager GET_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?password=p1"
 //                               andHeaders:@{@"uu":@"**"}
 //                           andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
