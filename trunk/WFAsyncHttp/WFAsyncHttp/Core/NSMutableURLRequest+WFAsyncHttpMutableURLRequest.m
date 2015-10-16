@@ -19,7 +19,7 @@
     }
     if([headers objectForKey:@"User-Agent"] == nil)
     {
-//        [headers setObject:[WFAsyncHttpUtil getDefaultUserAgent] forKey:@"User-Agent"];
+        [headers setObject:[WFAsyncHttpUtil getDefaultUserAgent] forKey:@"User-Agent"];
     }
     for (NSString *key in headers.allKeys) {
         NSString *value = [headers objectForKey:key];
