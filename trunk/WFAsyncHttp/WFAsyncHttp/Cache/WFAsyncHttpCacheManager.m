@@ -1,8 +1,8 @@
 //
-//  WFAsynHttpCacheManager.m
+//  WFAsyncHttpCacheManager.m
 //  WFAsyncHttp
 //
-//  Created by mba on 15-10-12.
+//  Created by mba on 15-10-16.
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
 
@@ -16,14 +16,13 @@ typedef enum : NSUInteger {
     WFAsynHttpCacheFolderType_Web,
 } WFAsynHttpCacheFolderType;
 
-#import "WFAsynHttpCacheManager.h"
+#import "WFAsyncHttpCacheManager.h"
 #import "WFFileManager.h"
 #import "Base64.h"
 #import "WFAsyncHttpUtil.h"
 #import "WFAsyncURLCache.h"
 
-@implementation WFAsynHttpCacheManager
-
+@implementation WFAsyncHttpCacheManager
 #pragma mark - 添加 | 获取 | 判断
 + (void)saveWithData:(id)data andKey:(NSString *)key
 {
@@ -145,6 +144,5 @@ typedef enum : NSUInteger {
 {
     return [NSString stringWithFormat:@"%@_%@",kWFWFAsyncURLCacheData_Pre, URLString];
 }
-
 
 @end

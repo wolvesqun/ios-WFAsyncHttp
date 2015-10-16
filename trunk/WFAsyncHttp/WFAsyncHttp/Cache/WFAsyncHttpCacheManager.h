@@ -1,15 +1,14 @@
 //
-//  WFAsynHttpCacheManager.h
+//  WFAsyncHttpCacheManager.h
 //  WFAsyncHttp
 //
-//  Created by mba on 15-10-12.
+//  Created by mba on 15-10-16.
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface WFAsynHttpCacheManager : NSObject
-
+@interface WFAsyncHttpCacheManager : NSObject
 /**
  *  save data with a key
  */
@@ -45,5 +44,4 @@
 + (BOOL)checkURLCache:(NSString *)Key;
 
 + (NSString *)buildURLCacheKey:(NSString *)URLString;
-
 @end

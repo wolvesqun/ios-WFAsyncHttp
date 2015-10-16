@@ -1,22 +1,16 @@
 //
-//  ViewController.m
+//  SettingViewcontroller.m
 //  WFAsyncHttp
 //
-//  Created by mba on 15-10-9.
+//  Created by mba on 15-10-16.
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "WFAsyncHttp.h"
-#import "AsyncViewController.h"
-#import "SyncViewController.h"
-#import "WebviewCacheVC.h"
-#import "ImageViewController.h"
 #import "SettingViewcontroller.h"
+#import "WFAsyncHttp.h"
+#import "AppDelegate.h"
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
-
-@property (strong, nonatomic) UIWebView *webview;
+@interface SettingViewcontroller ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -24,30 +18,24 @@
 
 @end
 
-@implementation ViewController
+@implementation SettingViewcontroller
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self _initNav];
-
     self.dataArray = [NSMutableArray arrayWithObjects:
-                      @"异步请求 -> Async Request",
-                      @"同步请求 -> Sync Request",
-                      @"网页请求 -> webview request Cache",
-                      @"图片请求 -> Image request Cache",
+                      @"remove all cache | 删除所有缓存",
+                      @"remove Image cache | 删除所有图片缓存",
+                      @"remove web cache (js,css) | 删除所有css,js ...缓存",
+//                      @"remove al",
                       nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-}
-
-- (void)_initNav
-{
-    UIBarButtonItem *btnRight = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStyleDone target:self action:@selector(pushSettingVC)];
-    self.navigationItem.rightBarButtonItem = btnRight;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -71,31 +59,32 @@
 {
     if(indexPath.row == 0)
     {
-        [self.navigationController pushViewController:[AsyncViewController new] animated:YES];
+        [WFAsyncHttpCacheManager removeAllCache];
     }
     else if (indexPath.row == 1)
     {
-        [self.navigationController pushViewController:[SyncViewController new] animated:YES];
+        [WFAsyncHttpCacheManager removeAllImageCache];
     }
     else if (indexPath.row == 2)
     {
-        [self.navigationController pushViewController:[WebviewCacheVC new] animated:YES];
+        [WFAsyncHttpCacheManager removeAllWebCache];
     }
-    else if (indexPath.row == 3)
-    {
-        [self.navigationController pushViewController:[ImageViewController new] animated:YES];
-    }
+    [AppDelegate showAlert:@"delete cache success"];
 }
-
-- (void)pushSettingVC
-{
-    [self.navigationController pushViewController:[SettingViewcontroller new] animated:YES];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

@@ -8,7 +8,7 @@
 
 #import "ImageViewController.h"
 #import "UIImageView+WFImageViewCache.h"
-#import "WFAsynHttpCacheManager.h"
+#import "WFAsyncHttpCacheManager.h"
 
 @interface ImageViewController ()
 

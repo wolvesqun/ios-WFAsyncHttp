@@ -19,7 +19,6 @@
 
 - (NSString *)pop;
 
-
 - (BOOL)isEmpty;
 
 @end

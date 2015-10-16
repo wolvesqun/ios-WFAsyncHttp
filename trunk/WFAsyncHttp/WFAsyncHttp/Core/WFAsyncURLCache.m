@@ -16,7 +16,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
 #import "WFAsyncURLCache.h"
 #import "WFAsyncHttpUtil.h"
 #import "WFAsyncHttp.h"
-#import "WFAsynHttpCacheManager.h"
+#import "WFAsyncHttpCacheManager.h"
 
 
 @interface WFAsyncURLCacheData : NSObject<NSCoding>
@@ -104,9 +104,9 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
     NSString *URLString = request.URL.absoluteString;
 //    NSLog(@"URLString = %@", URLString);
     // *** 图片缓存 - 》image cache
-    if([WFAsynHttpCacheManager isExistWithKey:URLString])
+    if([WFAsyncHttpCacheManager isExistWithKey:URLString])
     {
-        NSData *cacheData = [WFAsynHttpCacheManager getWithKey:URLString];
+        NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:URLString];
         NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
                                                             MIMEType:[self getMIMETypeImg:request]
                                                expectedContentLength:((NSData *)cacheData).length
@@ -116,9 +116,9 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
     }
     
     // *** 网页文件缓存
-    else if([WFAsynHttpCacheManager isExistWithKey:[WFAsynHttpCacheManager buildURLCacheKey:URLString]])
+    else if([WFAsyncHttpCacheManager isExistWithKey:[WFAsyncHttpCacheManager buildURLCacheKey:URLString]])
     {
-        WFAsyncURLCacheData *cacheData = [WFAsynHttpCacheManager getWithKey:[WFAsynHttpCacheManager buildURLCacheKey:URLString]];
+        WFAsyncURLCacheData *cacheData = [WFAsyncHttpCacheManager getWithKey:[WFAsyncHttpCacheManager buildURLCacheKey:URLString]];
         NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
                                                             MIMEType:cacheData.MIMEType
                                                expectedContentLength:cacheData.data.length
@@ -148,7 +148,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
                      
                      if([WFAsyncHttpUtil isImageRequest:URLString])
                      {
-                         [WFAsynHttpCacheManager saveWithData:data andKey:URLString];
+                         [WFAsyncHttpCacheManager saveWithData:data andKey:URLString];
                      }
                      else
                      {
@@ -156,7 +156,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
                          cacheData.MIMEType = response.MIMEType;
                          cacheData.textEncodingName = response.textEncodingName;
                          cacheData.data = data;
-                         [WFAsynHttpCacheManager saveWithData:cacheData andKey:[WFAsynHttpCacheManager buildURLCacheKey:URLString]];
+                         [WFAsyncHttpCacheManager saveWithData:cacheData andKey:[WFAsyncHttpCacheManager buildURLCacheKey:URLString]];
                      }
                      
                      cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];

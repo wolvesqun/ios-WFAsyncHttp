@@ -9,7 +9,7 @@
 #import "WFAsyncHttpClient.h"
 #import "WFAsyncHttpUtil.h"
 #import "NSMutableURLRequest+WFAsyncHttpMutableURLRequest.h"
-#import "WFAsynHttpCacheManager.h"
+#import "WFAsyncHttpCacheManager.h"
 
 
 @implementation WFAsyncHttpClient

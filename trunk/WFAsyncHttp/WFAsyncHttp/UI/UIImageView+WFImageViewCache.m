@@ -8,7 +8,7 @@
 
 #import "UIImageView+WFImageViewCache.h"
 #import "WFAsyncHttpClient.h"
-#import "WFAsynHttpCacheManager.h"
+#import "WFAsyncHttpCacheManager.h"
 
 @implementation UIImageView (WFImageViewCache)
 
@@ -47,7 +47,7 @@
 
 - (void)removeCache:(NSString *)imgURL
 {
-    [WFAsynHttpCacheManager removeWithKey:imgURL];
+    [WFAsyncHttpCacheManager removeWithKey:imgURL];
 }
 
 @end

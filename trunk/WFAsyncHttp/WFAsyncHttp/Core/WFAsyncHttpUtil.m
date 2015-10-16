@@ -8,7 +8,7 @@
 
 #import "WFAsyncHttpUtil.h"
 #import "WFAsyncHttp.h"
-#import "WFAsynHttpCacheManager.h"
+#import "WFAsyncHttpCacheManager.h"
 
 @implementation WFAsyncHttpUtil
 
@@ -90,7 +90,7 @@
         // *** save data
         if(cachePolicy != WFAsyncCachePolicyType_Default)
         {
-            [WFAsynHttpCacheManager saveWithData:data andKey:key];
+            [WFAsyncHttpCacheManager saveWithData:data andKey:key];
         }
         [self handleDataSuccess:data andSuccess:success];
     }
@@ -146,10 +146,10 @@
 
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success
 {
-    BOOL b = [WFAsynHttpCacheManager isExistWithKey:key];
+    BOOL b = [WFAsyncHttpCacheManager isExistWithKey:key];
     if(b && key && key.length > 0)
     {
-        NSData *cacheData = [WFAsynHttpCacheManager getWithKey:key];
+        NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:key];
         [self handleDataSuccess:cacheData andSuccess:success];
     }
     return b;
