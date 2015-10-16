@@ -79,7 +79,7 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
     [WFAsyncURLCache setSharedURLCache:urlCache];
 }
 
-#pragma mark - 会请求这个
+#pragma mark - All the request will be concentrated the method 
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)request {
     NSString *URLString = request.URL.absoluteString;
 //    NSLog(@"URLString = %@", URLString);

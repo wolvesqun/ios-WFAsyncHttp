@@ -40,6 +40,7 @@
 		2CF19BB11BCF56140032D70E /* WFWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BB01BCF56140032D70E /* WFWebView.m */; };
 		2CF19BE61BD0B5D20032D70E /* SettingViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */; };
 		2CF19BE91BD0B7930032D70E /* WFAsyncHttpCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BE81BD0B7930032D70E /* WFAsyncHttpCacheManager.m */; };
+		2CF19BF01BD0E7A50032D70E /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BEF1BD0E7A50032D70E /* Toast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewcontroller.m; sourceTree = "<group>"; };
 		2CF19BE71BD0B7930032D70E /* WFAsyncHttpCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpCacheManager.h; sourceTree = "<group>"; };
 		2CF19BE81BD0B7930032D70E /* WFAsyncHttpCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncHttpCacheManager.m; sourceTree = "<group>"; };
+		2CF19BEE1BD0E7A50032D70E /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		2CF19BEF1BD0E7A50032D70E /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,7 @@
 				2CE654571BCE267E00D5D61C /* ImageViewController.m */,
 				2CF19BE41BD0B5D20032D70E /* SettingViewcontroller.h */,
 				2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */,
+				2CF19BED1BD0E7A50032D70E /* HUD */,
 				2C8488331BCBBB9F0087961F /* WFAsyncHttp */,
 				2C8488161BCBBB700087961F /* Images.xcassets */,
 				2C8488051BCBBB700087961F /* Supporting Files */,
@@ -289,6 +293,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		2CF19BED1BD0E7A50032D70E /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				2CF19BEE1BD0E7A50032D70E /* Toast.h */,
+				2CF19BEF1BD0E7A50032D70E /* Toast.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -386,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF19BF01BD0E7A50032D70E /* Toast.m in Sources */,
 				2C8488581BCBBB9F0087961F /* Base64.m in Sources */,
 				2CF19BB11BCF56140032D70E /* WFWebView.m in Sources */,
 				2CE6544B1BCDFF1800D5D61C /* WebviewCacheVC.m in Sources */,

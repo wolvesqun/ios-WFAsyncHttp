@@ -17,36 +17,23 @@
  *  the method will call when the method which is "- (BOOL)webView:(WFWebView *)webView canHandleLinkedWithURLString:(NSString *)URLString" will return YES;
  */
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+/**
+ *  装载网页数据start
+ */
 - (void)webViewDidStartLoad:(UIWebView *)webView;
 - (void)webViewDidFinishLoad:(UIWebView *)webView;
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
 
-#warning 以下不实现将报错
+- (void)webViewDidStartLoadData:(WFWebView *)myWebview;
+
 @required
-/**
- *  是否要处理此网页链接请求
- *  
- *  @param URLString 网页链接
- *
- *  @return YES -》自已处理 | NO -》交由框架处理
- */
-- (BOOL)webView:(WFWebView *)webView canHandleLinkedWithURLString:(NSString *)URLString;
-
-/**
- *  根据给定点击网页链接地址进行修改再发起请求（如何不实现就默认网页原链接）
- *
- *  @param linkedURLString 网页链接地址
- *  @return 返回请求地址
- */
-- (NSString *)webView:(WFWebView *)webView showStartLoadWhenClickWithURLString:(NSString *)URLString;
-
 /**
  *  当前请求缓存策略
  *  
  *  @param URLString 请求地址
  *  @return 返回缓存策略 （默认 WFAsyncCachePolicyType_Default 不提供 ）
  */
-- (WFAsyncCachePolicy)webView:(WFWebView *)webView cachePolicyWithURLString:(NSString *)URLString;
+- (WFAsyncCachePolicy)webView:(WFWebView *)myWebview cachePolicyWithURLString:(NSString *)URLString;
 
 @end
 
@@ -59,7 +46,15 @@
 /*** 当前请求地址 ***/
 @property (strong, nonatomic, readonly) NSString *currentRequestURLString;
 
-- (void)loadWihtURLString:(NSString *)URLString andBaseURL:(NSURL *)baseURL;
+/*** call when call [self.webView loadHTMLString:... baseURL:self.baseURL]; ***/
+@property (strong, nonatomic) NSURL *baseURL;
+
+/**
+ *  请求网页数据（注意只有走这个请求才会缓存网页，如果走UIwebview自身请求，则不缓存）
+ *
+ *  @param URLString 请求地址
+ */
+- (void)loadWihtURLString:(NSString *)URLString;
 
 #pragma mark - webview common method
 - (void)reload;

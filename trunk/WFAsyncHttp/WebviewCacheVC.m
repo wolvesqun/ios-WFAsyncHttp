@@ -9,6 +9,7 @@
 #import "WebviewCacheVC.h"
 #import "WFAsyncHttp.h"
 #import "WFWebView.h"
+#import "Toast.h"
 
 @interface WebviewCacheVC ()<WFWebViewDelegate>
 
@@ -59,7 +60,9 @@
     self.webview = [[WFWebView alloc] initWithFrame:self.view.frame];
     self.webview.delegate = self;
     [self.view addSubview:self.webview];
-    [self.webview loadWihtURLString:@"http://wapbaike.baidu.com/view/1088.htm" andBaseURL:[NSURL URLWithString:@"http://wapbaike.baidu.com/"]];
+    self.webview.baseURL = [NSURL URLWithString:@"http://wapbaike.baidu.com/"];
+    
+    [self.webview loadWihtURLString:@"http://wapbaike.baidu.com/view/1088.htm"];
     
     
     UIButton *btnback = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,37 +72,10 @@
     btnback.frame = CGRectMake(10, 100, 100, 30);
     [self.view addSubview:btnback];
 }
-/**
- *  是否要处理此网页链接请求
- *
- *  @param URLString 网页链接
- *
- *  @return YES -》自已处理 | NO -》交由框架处理
- */
-- (BOOL)webView:(WFWebView *)webView canHandleLinkedWithURLString:(NSString *)URLString
-{
-    if([URLString rangeOfString:@"http://wapbaike.baidu.com"].length > 0)
-    {
-        return NO;
-    }
-    return YES;
-}
 
-/**
- *  根据给定点击网页链接地址进行修改再发起请求（如何不实现就默认网页原链接）
- *
- *  @param linkedURLString 网页链接地址
- *  @return 返回请求地址
- */
-- (NSString *)webView:(WFWebView *)webView showStartLoadWhenClickWithURLString:(NSString *)URLString
+- (void)webViewDidStartLoadData:(WFWebView *)myWebview
 {
-    NSRange myrange = [URLString rangeOfString:@"?"];
-    if(myrange.length > 0)
-    {
-        URLString = [URLString substringToIndex:myrange.location];
-    }
-
-    return URLString;
+    [Toast showActivityIndicatorView];
 }
 
 /**
@@ -115,6 +91,29 @@
         return WFAsyncCachePolicyType_ReturnCache_DontLoad;
     }
     return WFAsyncCachePolicyType_Default;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *URLString = request.URL.absoluteString;
+    if([URLString rangeOfString:@"http://wapbaike.baidu.com"].length > 0 && navigationType == UIWebViewNavigationTypeLinkClicked &&
+       ![WFAsyncHttpUtil isImageRequest:URLString])
+    {
+        [self.webview loadWihtURLString:request.URL.absoluteString];
+        return NO;
+    }
+    [Toast showActivityIndicatorView];
+    return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [Toast dimissActivityIndicatorViewByMandatory];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [Toast dimissActivityIndicatorViewByMandatory];
 }
 
 - (void)back

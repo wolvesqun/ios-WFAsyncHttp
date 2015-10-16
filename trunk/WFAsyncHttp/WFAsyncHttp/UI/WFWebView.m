@@ -8,6 +8,7 @@
 
 #import "WFWebView.h"
 #import "WFAsyncHttp.h"
+#import "WFAsyncHttpUtil.h"
 
 // ****************************************************************************************************************************
 @interface WFWebViewURLStringStack : NSObject
@@ -81,8 +82,6 @@
 
 @property (strong, nonatomic) WFWebViewURLStringStack *urlStringStack;
 
-@property (strong, nonatomic) NSURL *baseURL;
-
 @end
 
 
@@ -104,13 +103,18 @@
 }
 
 #pragma mark - start request
-- (void)loadWihtURLString:(NSString *)URLString andBaseURL:(NSURL *)baseURL
+- (void)loadWihtURLString:(NSString *)URLString
 {
-    [self loadWihtURLString:URLString andBaseURL:baseURL andBPush:YES];
+    [self loadWihtURLString:URLString andBPush:YES];
 }
 
-- (void)loadWihtURLString:(NSString *)URLString andBaseURL:(NSURL *)baseURL andBPush:(BOOL)bPush
+- (void)loadWihtURLString:(NSString *)URLString andBPush:(BOOL)bPush
 {
+    if([self.delegate respondsToSelector:@selector(webViewDidStartLoadData:)])
+    {
+        [self.delegate webViewDidStartLoadData:self];
+    }
+    
     if(bPush)
     {
         [self.urlStringStack pushWithKey:URLString];
@@ -118,7 +122,6 @@
     _currentRequestURLString = URLString;
     
     [self.httpClient setCachePolicy:[self.delegate webView:self cachePolicyWithURLString:URLString]];
-    self.baseURL = baseURL;
     [self.httpClient GET_WithURLString:URLString andSuccess:^(id responseObject)
      {
          [self.webView loadHTMLString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] baseURL:self.baseURL];
@@ -128,23 +131,12 @@
    
 }
 
-- (void)handleLinkedWithURLString:(NSString *)URLString
-{
-    NSString *temp = [self.delegate webView:self showStartLoadWhenClickWithURLString:URLString];
-    if(temp)
-    {
-        URLString = temp;
-    }
-    
-    [self loadWihtURLString:URLString andBaseURL:self.baseURL];
-}
-
 #pragma mark - webview common method
 - (void)reload
 {
     if(self.currentRequestURLString && self.currentRequestURLString.length > 0)
     {
-        [self loadWihtURLString:self.currentRequestURLString andBaseURL:self.baseURL andBPush:NO];
+        [self loadWihtURLString:self.currentRequestURLString andBPush:NO];
     }
     
 }
@@ -165,7 +157,7 @@
     if([self canGoBack])
     {
         NSString *URLString = [self.urlStringStack pop];
-        [self loadWihtURLString:URLString andBaseURL:self.baseURL andBPush:NO];
+        [self loadWihtURLString:URLString andBPush:NO];
     }
 }
 
@@ -192,19 +184,10 @@
 #pragma mark - 网页回调代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSString *URLString = request.URL.absoluteString;
-    if(![self.delegate webView:self canHandleLinkedWithURLString:URLString] && navigationType == UIWebViewNavigationTypeLinkClicked)
-    {
-        [self handleLinkedWithURLString:URLString];
-        return NO;
-    }
-    
     if([self.delegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) // 实现
     {
         return [self.delegate webView:self.webView shouldStartLoadWithRequest:request navigationType:navigationType];
     }
-    
-    
     return YES;
 }
 
