@@ -20,7 +20,7 @@
                             andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 
-+ (NSData *)getURLParamWithDict:(NSDictionary *)dict;
+//+ (NSData *)getURLParamWithDict:(NSDictionary *)dict;
 
 + (NSDictionary *)getUserAgentWithValue:(NSString *)value;
 
@@ -30,13 +30,6 @@
 + (NSString *)getDefaultUserAgent;
 
 #pragma mark - 处理请求结果
-+ (void)handleRequestResultWithKey:(NSString *)key
-                           andData:(NSData *)data
-                    andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                          andError:(NSError *)error
-                        andFailure:(WFFailureAsyncHttpDataCompletion)failure;
-
 + (void)handleRequestResultWithKey:(NSString *)key
                            andData:(NSData *)data
                     andCachePolicy:(WFAsyncCachePolicy)cachePolicy

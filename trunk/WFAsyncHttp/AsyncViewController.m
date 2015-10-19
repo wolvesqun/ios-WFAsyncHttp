@@ -54,7 +54,7 @@
     [WFAsyncHttpManager GET_WithURLString:@"http://gc.ditu.aliyun.com/regeocoding?l=39.938133,116.395739&type=001"
                                andHeaders:nil
                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                               andSuccess:^(id responseObject)
+                               andSuccess:^(id responseObject, BOOL cache)
     {
         [AppDelegate showLog:responseObject];
         [AppDelegate showAlert:@"WFAsyncHttpManager - GET异步方式 -> 离线成功"];
@@ -65,7 +65,7 @@
     // 2
     [WFAsyncHttpClient System_GET_WithURLString:@"http://www.baidu.com"
                                  andCachePolicy:WFAsyncCachePolicyType_Default
-                                     andSuccess:^(id responseObject)
+                                     andSuccess:^(id responseObject, BOOL cache)
     {
         
     } andFailure:^(NSError *error) {
@@ -90,7 +90,7 @@
     [WFAsyncHttpManager POST_WithURLString:@"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=json%E5%9C%A8%E7%BA%BF%E8%A7%A3%E6%9E%90&rsv_pq=827e6055000126c3&rsv_t=7eef1BgWJhIzUhSdAm%2FO7GzHKx8p3KxecQuAYGRHPE0fih%2FTqSb2L%2FNPLTA&rsv_enter=1&rsv_sug3=4&rsv_sug1=2&sug=json%E5%9C%A8%E7%BA%BF%E8%A7%A3%E6%9E%90&rsv_n=1"
                                  andParams:nil
                                 andHeaders:nil
-                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject)
+                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad andSuccess:^(id responseObject, BOOL cache)
     {
         [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
         [AppDelegate showAlert:@"WFAsyncHttpManager - POST异步方式 -> 离线成功"];

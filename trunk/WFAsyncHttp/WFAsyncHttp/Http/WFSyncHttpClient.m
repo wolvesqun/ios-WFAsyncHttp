@@ -39,12 +39,14 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
     
-    [WFAsyncHttpUtil handleRequestResultWithKey:URLString
-                                        andData:data
-                                 andCachePolicy:cachePolicy
-                                     andSuccess:success
-                                       andError:error
-                                     andFailure:failure];
+    if(error)
+    {
+        [WFAsyncHttpUtil handleRequestResultWithError:error andFailure:failure];
+    }
+    else
+    {
+        [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
+    }
 }
 
 

@@ -131,9 +131,9 @@
     WFAsyncHttpClient *client = [[self shareInstance] getHttpClient];
     [client addHttpHeaderWihtDict:headers];
     [client setCachePolicy:cachePolicy];
-    [client GET_WithURLString:URLString andSuccess:^(id responseObject)
+    [client GET_WithURLString:URLString andSuccess:^(id responseObject, BOOL cache)
      {
-         if(successBlock) successBlock(responseObject);
+         if(successBlock) successBlock(responseObject, cache);
          [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
          
      } andFailure:^(NSError *error) {
@@ -162,8 +162,8 @@
     WFAsyncHttpClient *client = [[self shareInstance] getHttpClient];
     [client addHttpHeaderWihtDict:headers];
     [client setCachePolicy:cachePolicy];
-    [client POST_WithURLString:URLString andParams:params andSuccess:^(id responseObject) {
-        if(successBlock) successBlock(responseObject);
+    [client POST_WithURLString:URLString andParams:params andSuccess:^(id responseObject, BOOL cache) {
+        if(successBlock) successBlock(responseObject, cache);
         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
     } andFailure:^(NSError *error) {
         if(failureBlock) failureBlock(error);

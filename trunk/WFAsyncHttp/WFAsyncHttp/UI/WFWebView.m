@@ -122,7 +122,7 @@
     _currentRequestURLString = URLString;
     
     [self.httpClient setCachePolicy:[self.delegate webView:self cachePolicyWithURLString:URLString]];
-    [self.httpClient GET_WithURLString:URLString andSuccess:^(id responseObject)
+    [self.httpClient GET_WithURLString:URLString andSuccess:^(id responseObject, BOOL cache)
      {
          [self.webView loadHTMLString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] baseURL:self.baseURL];
      } andFailure:^(NSError *error) {

@@ -39,12 +39,14 @@
     // *** start
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         [WFAsyncHttpUtil handleRequestResultWithKey:URLString
-                                             andData:data
-                                      andCachePolicy:cachePolicy
-                                          andSuccess:success
-                                            andError:connectionError
-                                          andFailure:failure];
+         if(connectionError)
+         {
+             [WFAsyncHttpUtil handleRequestResultWithError:connectionError andFailure:failure];
+         }
+         else
+         {
+             [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
+         }
      }];
 }
 
@@ -113,7 +115,14 @@
     // *** start
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success andError:connectionError andFailure:failure];
+         if(connectionError)
+         {
+             [WFAsyncHttpUtil handleRequestResultWithError:connectionError andFailure:failure];
+         }
+         else
+         {
+             [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
+         }
      }];
 }
 

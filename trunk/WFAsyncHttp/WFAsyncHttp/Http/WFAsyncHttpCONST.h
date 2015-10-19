@@ -13,7 +13,7 @@
 #define kWFHttpRequestType_DELETE @"DELETE"
 
 
-typedef void(^WFSuccessAsyncHttpDataCompletion)(id responseObject);
+typedef void(^WFSuccessAsyncHttpDataCompletion)(id responseObject, BOOL cache);
 typedef void(^WFPercentAsyncHttpDataCompletion)(float percent);
 typedef void(^WFFailureAsyncHttpDataCompletion)(NSError *error);
 

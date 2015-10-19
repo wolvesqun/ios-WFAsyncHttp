@@ -74,54 +74,28 @@
 }
 
 #pragma mark - 请求结果处理
-+ (void)handleRequestResultWithKey:(NSString *)key
-                           andData:(NSData *)data
-                    andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                          andError:(NSError *)error
-                        andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    if(error)
-    {
-        if(failure) failure(error);
-    }
-    else
-    {
-        // *** save data
-        if(cachePolicy != WFAsyncCachePolicyType_Default)
-        {
-            [WFAsyncHttpCacheManager saveWithData:data andKey:key];
-        }
-        [self handleDataSuccess:data andSuccess:success];
-    }
-}
 // - request success
 + (void)handleRequestResultWithKey:(NSString *)key
                            andData:(NSData *)data
                     andCachePolicy:(WFAsyncCachePolicy)cachePolicy
                         andSuccess:(WFSuccessAsyncHttpDataCompletion)success
 {
-    [self handleRequestResultWithKey:key
-                             andData:data
-                      andCachePolicy:cachePolicy
-                          andSuccess:success
-                            andError:nil
-                          andFailure:nil];
+    // *** save data
+    if(cachePolicy != WFAsyncCachePolicyType_Default)
+    {
+        [WFAsyncHttpCacheManager saveWithData:data andKey:key];
+    }
+    [self handleDataSuccess:data andSuccess:success andCache:NO];
 }
 // - request error
 + (void)handleRequestResultWithError:(NSError *)error
                           andFailure:(WFFailureAsyncHttpDataCompletion)failure
 {
-    [self handleRequestResultWithKey:nil
-                             andData:nil
-                      andCachePolicy:WFAsyncCachePolicyType_Default
-                          andSuccess:nil
-                            andError:error
-                          andFailure:failure];
+    if(failure) failure(error);
 }
 
 
-+ (void)handleDataSuccess:(NSData *)data andSuccess:(WFSuccessAsyncHttpDataCompletion)success
++ (void)handleDataSuccess:(NSData *)data andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCache:(BOOL)cache
 {
     if(success)
     {
@@ -129,11 +103,11 @@
         id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if(error == nil)
         {
-            success(jsonObject);
+            success(jsonObject, cache);
         }
         else
         {
-            success(data);
+            success(data, cache);
         }
     }
 }
@@ -150,7 +124,7 @@
     if(b && key && key.length > 0)
     {
         NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:key];
-        [self handleDataSuccess:cacheData andSuccess:success];
+        [self handleDataSuccess:cacheData andSuccess:success andCache:YES];
     }
     return b;
 }

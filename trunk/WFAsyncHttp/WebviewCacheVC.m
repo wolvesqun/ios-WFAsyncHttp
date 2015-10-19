@@ -10,6 +10,7 @@
 #import "WFAsyncHttp.h"
 #import "WFWebView.h"
 #import "Toast.h"
+#import "AppDelegate.h"
 
 @interface WebviewCacheVC ()<WFWebViewDelegate>
 
@@ -43,7 +44,7 @@
     [self.view addSubview:webview];
     [WFAsyncHttpManager GET_WithURLString:@"https://www.baidu.com/" andHeaders:nil
                            andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                               andSuccess:^(id responseObject)
+                               andSuccess:^(id responseObject, BOOL cache)
      {
          
          [webview loadData:responseObject MIMEType:nil textEncodingName:nil baseURL:[NSURL URLWithString:@"https://www.baidu.com/"]];
@@ -118,7 +119,15 @@
 
 - (void)back
 {
-    [self.webview goBack];
+    if([self.webview canGoBack])
+    {
+        [self.webview goBack];
+    }
+    else
+    {
+        [AppDelegate showAlert:@"无法回退了， "];
+    }
+    
 }
 
 //- (void)forward

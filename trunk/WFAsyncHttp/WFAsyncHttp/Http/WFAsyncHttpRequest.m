@@ -168,7 +168,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
     [WFAsyncHttpUtil handleRequestResultWithKey:connection.originalRequest.URL.absoluteString
                                         andData:self.tempDownloadData
                                  andCachePolicy:self.cachePolicy

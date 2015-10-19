@@ -32,7 +32,7 @@
     [WFAsyncHttpClient System_GET_WithURLString:imgURL
                                      andHeaders:nil
                                  andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                                     andSuccess:^(id responseObject)
+                                     andSuccess:^(id responseObject, BOOL cache)
      {
          UIImage *img = [[UIImage alloc] initWithData:responseObject];
          dispatch_async(dispatch_get_main_queue(), ^{

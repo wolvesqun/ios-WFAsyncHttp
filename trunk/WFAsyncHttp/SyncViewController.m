@@ -49,7 +49,7 @@
                                      andParams:nil
                                     andHeaders:nil
                                 andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                                    andSuccess:^(id responseObject)
+                                    andSuccess:^(id responseObject, BOOL cache)
      {
         [AppDelegate showLog:responseObject];
         [AppDelegate showAlert:@"WFSyncHttpClient - GET同步方式 -> 离线成功"];
@@ -64,7 +64,7 @@
     [WFSyncHttpClient System_POST_WithURLString:@"http://baike.baidu.com/link?url=KeukH7mzl7OU8wxXdSB9AZZffLqntSE_3y8--JjoPrbIVNTu4InEIKxJ8M-PgOiZOFevStVSM21y7uOh0E8RpK" andParams:nil
                                      andHeaders:nil
                                  andCachePolicy:WFAsyncCachePolicyType_ReturnCache_DontLoad
-                                     andSuccess:^(id responseObject)
+                                     andSuccess:^(id responseObject, BOOL cache)
     {
         [AppDelegate showLog:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
         [AppDelegate showAlert:@"WFSyncHttpClient - POST同步方式 -> 离线成功"];
