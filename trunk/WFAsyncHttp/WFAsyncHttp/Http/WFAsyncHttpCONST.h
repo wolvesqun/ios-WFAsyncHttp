@@ -12,7 +12,11 @@
 #define kWFHttpRequestType_GET @"GET"
 #define kWFHttpRequestType_DELETE @"DELETE"
 
-
+/**
+ *  
+ *  @param responseObject 返回的结果数据
+ *  @param cache  （当前返回的数据来源-》缓存 | 网络）
+ */
 typedef void(^WFSuccessAsyncHttpDataCompletion)(id responseObject, BOOL cache);
 typedef void(^WFPercentAsyncHttpDataCompletion)(float percent);
 typedef void(^WFFailureAsyncHttpDataCompletion)(NSError *error);

@@ -20,7 +20,7 @@
                             andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
 
-//+ (NSData *)getURLParamWithDict:(NSDictionary *)dict;
++ (NSData *)getURLParamWithDict:(NSDictionary *)dict;
 
 + (NSDictionary *)getUserAgentWithValue:(NSString *)value;
 
