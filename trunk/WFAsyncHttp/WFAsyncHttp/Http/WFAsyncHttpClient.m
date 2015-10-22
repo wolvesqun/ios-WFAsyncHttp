@@ -31,6 +31,10 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
                                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                             timeoutInterval:10];
+    if(headers == nil)
+    {
+        headers = [NSDictionary dictionary];
+    }
     
     [request setHTTPMethod:httpMethod];
     [request addHttpHeaderWithRequest:[NSMutableDictionary dictionaryWithDictionary:headers]];
