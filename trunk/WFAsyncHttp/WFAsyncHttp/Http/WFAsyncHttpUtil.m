@@ -81,7 +81,7 @@
                         andSuccess:(WFSuccessAsyncHttpDataCompletion)success
 {
     // *** save data
-    if(cachePolicy != WFAsyncCachePolicyType_Default)
+    if(cachePolicy != WFAsyncCachePolicyType_Default && data)
     {
         [WFAsyncHttpCacheManager saveWithData:data andKey:key];
     }
