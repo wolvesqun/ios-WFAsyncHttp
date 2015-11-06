@@ -26,22 +26,21 @@
     ViewController *vc = [ViewController new];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     
-    // *** get异步
-    // 1.设置请求路径
-    NSURL *URL=[NSURL URLWithString:@"http://192.168.2.33:8080/TestServer/login"];//不需要传递参数
     
-    //    2.创建请求对象
-    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:URL];//默认为get请求
-    request.timeoutInterval=5.0;//设置请求超时为5秒
-    request.HTTPMethod=@"POST";//设置请求方法
+    NSString *kye = @"什么";
+    kye = [kye stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  
     
-    //设置请求体
-    NSString *param=[NSString stringWithFormat:@"username=%@&pwd=%@",@"uu",@"pp"]; // 不能为中文
-    //把拼接后的字符串转换为data，设置请求体
-    request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
     
-    //    3.发送请求
-    NSData  *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    [WFAsyncHttpManager POST_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?pass=passd" andParams:@{@"LoginFormusername":@"hz_wljyc",@"LoginFormpassword":@"admin"}
+                            andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:^(id responseObject, BOOL cache)
+    {
+        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", str);
+    } andFailure:^(NSError *error) {
+        
+    }];
+    
     
     return YES;
 }

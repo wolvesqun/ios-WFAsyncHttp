@@ -22,8 +22,14 @@
         [headers setObject:[WFAsyncHttpUtil getDefaultUserAgent] forKey:@"User-Agent"];
     }
     for (NSString *key in headers.allKeys) {
+        
         NSString *value = [headers objectForKey:key];
-        [self setValue:value forHTTPHeaderField:key];
+        
+        
+        NSString *decodeKey = [key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *decodeValue = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [self setValue:[decodeValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forHTTPHeaderField:[decodeKey stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
     
     

@@ -30,7 +30,9 @@
         [str appendString:@"&"];
         NSString *value = [dict objectForKey:key];
         value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [str appendFormat:@"%@=%@", [key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], value];
+        
+        NSString *decodeKey = [key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [str appendFormat:@"%@=%@", [decodeKey stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
     if(str.length > 0)
     {
@@ -182,6 +184,17 @@
         return YES;
     }
     return NO;
+}
+
++ (NSString *)encodeUTF_8:(NSString *)source
+{
+    if(source == nil) return source;
+    return [source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
++ (NSString *)decodeUTF_8:(NSString *)source
+{
+    if(source == nil) return source;
+    return [source stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

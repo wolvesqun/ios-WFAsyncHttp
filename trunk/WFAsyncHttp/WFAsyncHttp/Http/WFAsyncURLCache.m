@@ -6,13 +6,6 @@
 //  Copyright (c) 2015年 wolf. All rights reserved.
 //
 
-/*** 图片MIMEType ***/
-NSString *const kMIMETypeImgJPEG = @"image/jpeg";
-NSString *const kMIMETypeImgGIF = @"image/gif";
-NSString *const kMIMETypeImgPNG = @"image/png";
-NSString *const kMIMETypeImgTIFF = @"image/tiff";
-NSString *const KMIMETypeImgBMP = @"image/bmp";
-
 #import "WFAsyncURLCache.h"
 #import "WFAsyncHttpUtil.h"
 #import "WFAsyncHttp.h"
@@ -178,17 +171,17 @@ NSString *const KMIMETypeImgBMP = @"image/bmp";
 #pragma mark - 获取图片MIMEType
 - (NSString *)getMIMETypeImg:(NSURLRequest *)request {
     NSRange pngRange = [[request URL].absoluteString rangeOfString:@".png"];
-    if(pngRange.length > 0) return kMIMETypeImgPNG;
+    if(pngRange.length > 0) return @"image/png";
     
     NSRange gifRange = [[request URL].absoluteString rangeOfString:@".gif"];
-    if(gifRange.length > 0) return kMIMETypeImgGIF;
+    if(gifRange.length > 0) return @"image/gif";
     
     NSRange jpgRange = [[request URL].absoluteString rangeOfString:@".jpg"];
     NSRange jpegRange = [[request URL].absoluteString rangeOfString:@".jpeg"];
-    if(jpgRange.length > 0 || jpegRange.length > 0) return kMIMETypeImgJPEG;
+    if(jpgRange.length > 0 || jpegRange.length > 0) return @"image/jpeg";
     
     NSRange bmpRange = [[request URL].absoluteString rangeOfString:@".bmp"];
-    if(bmpRange.length > 0) return KMIMETypeImgBMP;
+    if(bmpRange.length > 0) return @"image/bmp";
     
     return nil;
 }

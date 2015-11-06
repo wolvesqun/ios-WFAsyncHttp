@@ -44,6 +44,8 @@
 + (BOOL)isImageRequest:(NSString *)URLString;
 + (BOOL)isWebFileRequest:(NSString *) URLString;
 
++ (NSString *)encodeUTF_8:(NSString *)source;
++ (NSString *)decodeUTF_8:(NSString *)source;
 
 
 @end
