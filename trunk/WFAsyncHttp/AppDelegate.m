@@ -27,19 +27,19 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     
     
-    NSString *kye = @"什么";
-    kye = [kye stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-  
-    
-    
-    [WFAsyncHttpManager POST_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?pass=passd" andParams:@{@"LoginFormusername":@"hz_wljyc",@"LoginFormpassword":@"admin"}
-                            andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:^(id responseObject, BOOL cache)
-    {
-        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", str);
-    } andFailure:^(NSError *error) {
-        
-    }];
+//    NSString *kye = @"什么";
+//    kye = [kye stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//  
+//    
+//    
+//    [WFAsyncHttpManager POST_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?pass=passd" andParams:@{@"LoginFormusername":@"hz_wljyc",@"LoginFormpassword":@"admin"}
+//                            andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:^(id responseObject, BOOL cache)
+//    {
+//        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@", str);
+//    } andFailure:^(NSError *error) {
+//        
+//    }];
     
     
     return YES;
