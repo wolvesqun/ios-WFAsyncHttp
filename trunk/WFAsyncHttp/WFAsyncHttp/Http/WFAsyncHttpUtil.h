@@ -40,6 +40,7 @@
 
 #pragma mark - 处理缓存
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy;
++ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy andDefaultCache:(id)defaultCache;
 
 + (BOOL)isImageRequest:(NSString *)URLString;
 + (BOOL)isWebFileRequest:(NSString *) URLString;

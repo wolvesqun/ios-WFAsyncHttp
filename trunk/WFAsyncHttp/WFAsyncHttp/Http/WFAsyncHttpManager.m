@@ -121,7 +121,27 @@
 }
 
 #pragma mark - GET 请求
-
++ (void)GET_WithURLString:(NSString *)URLString
+          andDefaultCache:(id)defaultCache
+               andHeaders:(NSDictionary *)headers
+           andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+               andSuccess:(WFSuccessAsyncHttpDataCompletion)successBlock
+               andFailure:(WFFailureAsyncHttpDataCompletion)failureBlock
+{
+    WFAsyncHttpClient *client = [[self shareInstance] getHttpClient];
+    [client setDefaultCache:defaultCache];
+    [client addHttpHeaderWihtDict:headers];
+    [client setCachePolicy:cachePolicy];
+    [client GET_WithURLString:URLString andSuccess:^(id responseObject, BOOL cache)
+     {
+         if(successBlock) successBlock(responseObject, cache);
+         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
+         
+     } andFailure:^(NSError *error) {
+         if(failureBlock) failureBlock(error);
+         [[WFAsyncHttpManager shareInstance] releaseHttpClient:client];
+     }];
+}
 + (void)GET_WithURLString:(NSString *)URLString
                andHeaders:(NSDictionary *)headers
            andCachePolicy:(WFAsyncCachePolicy)cachePolicy

@@ -160,6 +160,52 @@
     return NO;
 }
 
++ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy andDefaultCache:(id)defaultCache
+{
+    switch (cachePolicy) {
+        case WFAsyncCachePolicyType_ReturnCache_DidLoad:
+        {
+            BOOL isFinish = [WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success];
+            if(!isFinish && defaultCache)
+            {
+                if(success) success(defaultCache, YES);
+            }
+            break;
+        }
+        case WFAsyncCachePolicyType_ReturnCache_DontLoad:
+        {
+            if([WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success])
+            {
+                return YES;
+            }
+            else
+            {
+                if(defaultCache)
+                {
+                    if(success){
+                       success(defaultCache, YES);
+                        return YES;
+                    }
+                    
+                }
+            }
+            
+            
+            break;
+        }
+        case WFAsyncCachePolicyType_Reload_IgnoringLocalCache:
+        {
+            
+            break;
+        }
+            
+            
+        default:
+            break;
+    }
+    return NO;
+}
+
 + (BOOL)isImageRequest:(NSString *)URLString
 {
     NSRange pngRange = [URLString rangeOfString:@".png"];

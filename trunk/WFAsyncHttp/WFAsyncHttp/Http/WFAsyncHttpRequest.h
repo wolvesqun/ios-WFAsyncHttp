@@ -52,6 +52,9 @@
  */
 - (void)setCachePolicy:(WFAsyncCachePolicy)cachePolicy;
 
+// - 设置默认缓存 （当第一次加载缓存时没有缓存时又想有缓存可以设置）
+- (void)setDefaultCache:(id)defaultCache;
+
 - (void)cancel;
 
 

@@ -34,6 +34,13 @@
                       andSuccess:(WFSuccessAsyncHttpDataCompletion)success
                       andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
++ (void)System_GET_WithURLString:(NSString *)URLString
+                 andDefaultCache:(id)defaultCache
+                      andHeaders:(NSDictionary *)headers
+                  andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+                      andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+                      andFailure:(WFFailureAsyncHttpDataCompletion)failure;
+
 #pragma mark - POST请求
 /**
  *  POST请求系统自带网络请求 -》带缓存

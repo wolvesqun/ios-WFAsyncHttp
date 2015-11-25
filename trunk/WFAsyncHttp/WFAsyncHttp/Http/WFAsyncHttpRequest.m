@@ -32,6 +32,9 @@
 /*** 缓存策略 ***/
 @property (assign, nonatomic) WFAsyncCachePolicy cachePolicy;
 
+/*** 默认缓存 ***/
+@property (strong, nonatomic) id defaultCache;
+
 
 @end
 
@@ -50,7 +53,7 @@
     self.success = success;
     self.failure = failure;
     
-    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:self.cachePolicy]) return;
+    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:self.cachePolicy andDefaultCache:self.defaultCache]) return;
     
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
@@ -137,6 +140,10 @@
     _cachePolicy = cachePolicy;
 }
 
+- (void)setDefaultCache:(id)defaultCache
+{
+    _defaultCache = defaultCache;
+}
 
 #pragma mark - 取消请求
 - (void)cancel
@@ -147,6 +154,7 @@
     self.connection = nil;
     self.cachePolicy = WFAsyncCachePolicyType_Default;
     [self.httpHeaders removeAllObjects];
+    self.defaultCache = nil;
 }
 
 #pragma mark - NSURLConnection Delegate

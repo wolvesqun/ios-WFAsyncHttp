@@ -85,6 +85,7 @@
     {
         [self.navigationController pushViewController:[ImageViewController new] animated:YES];
     }
+    // http://apis.baidu.com/tngou/drug/list?id=0&page=1&rows=20&appkey=c565603b40c205fab6078493cb16864d
 }
 
 - (void)pushSettingVC
