@@ -133,31 +133,7 @@
 
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy
 {
-    switch (cachePolicy) {
-        case WFAsyncCachePolicyType_ReturnCache_DidLoad:
-        {
-            [WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success];
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_DontLoad:
-        {
-            if([WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success])
-            {
-                return YES;
-            }
-            break;
-        }
-        case WFAsyncCachePolicyType_Reload_IgnoringLocalCache:
-        {
-            
-            break;
-        }
-            
-            
-        default:
-            break;
-    }
-    return NO;
+    return [self handleCacheWithKey:key andSuccess:success andCachePolicy:cachePolicy andDefaultCache:nil];
 }
 
 + (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy andDefaultCache:(id)defaultCache
@@ -174,6 +150,11 @@
         }
         case WFAsyncCachePolicyType_ReturnCache_DontLoad:
         {
+            [WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success];
+            return YES;
+        }
+        case WFAsyncCachePolicyType_ReturnCache_ElseLoad:
+        {
             if([WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success])
             {
                 return YES;
@@ -183,7 +164,7 @@
                 if(defaultCache)
                 {
                     if(success){
-                       success(defaultCache, YES);
+                        success(defaultCache, YES);
                         return YES;
                     }
                     
