@@ -12,7 +12,7 @@
 @implementation WFCacheManage
 + (NSString *)getBaseFolder
 {
-    return @"kWFWFCacheManaget_Config";
+    return @"kWFWFCacheManaget_Folder";
 }
 
 + (void)saveCacheWithKey:(NSString *)key andData:(id)data
