@@ -10,17 +10,19 @@
 
 #define kWFWFAsyncURLCacheData_Pre @"WFAsyncURLCacheData"
 
-typedef enum : NSUInteger {
-    WFAsynHttpCacheFolderType_Default,
-    WFAsynHttpCacheFolderType_Image,
-    WFAsynHttpCacheFolderType_Web,
-} WFAsynHttpCacheFolderType;
+
 
 #import "WFAsyncHttpCacheManager.h"
 #import "WFFileManager.h"
 #import "Base64.h"
 #import "WFAsyncHttpUtil.h"
 #import "WFAsyncURLCache.h"
+
+typedef enum : NSUInteger {
+    WFAsynHttpCacheFolderType_Default,
+    WFAsynHttpCacheFolderType_Image,
+    WFAsynHttpCacheFolderType_Web,
+} WFAsynHttpCacheFolderType;
 
 @implementation WFAsyncHttpCacheManager
 #pragma mark - 添加 | 获取 | 判断
