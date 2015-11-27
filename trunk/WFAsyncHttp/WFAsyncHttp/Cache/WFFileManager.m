@@ -17,6 +17,7 @@
 
 #import "WFFileManager.h"
 #include "sys/stat.h"
+#import "Base64.h"
 
 #define FILE_MANAGER [NSFileManager defaultManager]
 
@@ -104,12 +105,32 @@
 #pragma mark - 保存数据 -》有文件夹
 + (void)saveWithType:(WFFilePathType)type andFolder:(NSString *)folder andData:(id)data andKey:(NSString *)key
 {
-    [NSKeyedArchiver archiveRootObject:data toFile:[self filePathWithType:type andFolder:folder andKey:key]];
+    if(![data respondsToSelector:@selector(encodeWithCoder:)] || ![data respondsToSelector:@selector(initWithCoder:)])
+    {
+        return;
+    }
+    if([data isKindOfClass:[NSData class]])
+    {
+        [NSKeyedArchiver archiveRootObject:[Base64 encodeData:data] toFile:[self filePathWithType:type andFolder:folder andKey:key]];
+    }
+    else
+    {
+        [NSKeyedArchiver archiveRootObject:data toFile:[self filePathWithType:type andFolder:folder andKey:key]];
+    }
+    
 }
 
 #pragma mark - 获取数据 -> 从文件夹获取数据
 + (id)getWithType:(WFFilePathType)type andFolder:(NSString *)folder andKey:(NSString *)key {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self filePathWithType:type andFolder:folder andKey:key]];
+    id data = [NSKeyedUnarchiver unarchiveObjectWithFile:[self filePathWithType:type andFolder:folder andKey:key]];
+    if(data && [data isKindOfClass:[NSData class]])
+    {
+        return [Base64 decodeData:data];
+    }
+    else
+    {
+        return data;
+    }
 }
 
 #pragma mark - 构建文件夹、文件路径 -> folderName不为空则创建，为空则创建

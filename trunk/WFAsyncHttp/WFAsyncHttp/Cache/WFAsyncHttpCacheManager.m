@@ -27,30 +27,14 @@ typedef enum : NSUInteger {
 + (void)saveWithData:(id)data andKey:(NSString *)key
 {
     if(data == nil || key == nil || key.length == 0) return;
-    if(![data respondsToSelector:@selector(encodeWithCoder:)] || ![data respondsToSelector:@selector(initWithCoder:)]) return;
-    
-    if([data isKindOfClass:[NSData class]])
-    {
-        [WFFileManager saveWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andData:[Base64 encodeData:data] andKey:key];
-    }
-    else
-    {
-        [WFFileManager saveWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andData:data andKey:key];
-    }
+    [WFFileManager saveWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andData:data andKey:key];
     
 }
 
 + (NSData *)getWithKey:(NSString *)key
 {
     id data = [WFFileManager getWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
-    if([data isKindOfClass:[NSData class]])
-    {
-        return [Base64 decodeData:data];
-    }
-    else
-    {
-        return data;
-    }
+    return data;
 }
 + (BOOL)isExistWithKey:(NSString *)key
 {
