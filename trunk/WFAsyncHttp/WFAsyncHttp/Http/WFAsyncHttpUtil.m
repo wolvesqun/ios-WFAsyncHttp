@@ -52,140 +52,30 @@
 /**
  * userAgent	iPhone Simulator;iPhone OS 8.0
  */
-+ (NSString *)getDefaultUserAgent {
-    // *** 获取系统版本号
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Version = [infoDic objectForKey:@"CFBundleVersion"];//Version
-    NSString *app_Build = [infoDic objectForKey:@"CFBundleShortVersionString"];//Build
-    
-    // *** 设置信息
-    NSString *model = [UIDevice currentDevice].model;
-    NSString *systemName = [UIDevice currentDevice].systemName;
-    NSString *systemVertion = [UIDevice currentDevice].systemVersion;
-    NSString *iphoneInfo = [NSString stringWithFormat:@"%@;%@ %@",model, systemName, systemVertion];
-    
-    // *** 获取appname信息
-    NSString *app_Name = [infoDic objectForKey:@"CFBundleDisplayName"];
-    if(app_Name == nil)
-    {
-        app_Name = @"app_Name";
-    }
-    NSString *userAgent = [NSString stringWithFormat:@"%@-%@-APP/%@(%@;Build/%@)",  kWFWFAsyncHttp_CompanyName , app_Name, app_Build, iphoneInfo , app_Version];
-    
-    return [userAgent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
-#pragma mark - 请求结果处理
-// - request success
-+ (void)handleRequestResultWithKey:(NSString *)key
-                           andData:(NSData *)data
-                    andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-{
-    // *** save data
-    if(cachePolicy != WFAsyncCachePolicyType_Default && data)
-    {
-        [WFAsyncHttpCacheManager saveWithData:data andKey:key];
-    }
-    [self handleDataSuccess:data andSuccess:success andCache:NO];
-}
-// - request error
-+ (void)handleRequestResultWithError:(NSError *)error
-                          andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    if(failure) failure(error);
-}
+//+ (NSString *)getDefaultUserAgent {
+//    // *** 获取系统版本号
+//    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+//    NSString *app_Version = [infoDic objectForKey:@"CFBundleVersion"];//Version
+//    NSString *app_Build = [infoDic objectForKey:@"CFBundleShortVersionString"];//Build
+//    
+//    // *** 设置信息
+//    NSString *model = [UIDevice currentDevice].model;
+//    NSString *systemName = [UIDevice currentDevice].systemName;
+//    NSString *systemVertion = [UIDevice currentDevice].systemVersion;
+//    NSString *iphoneInfo = [NSString stringWithFormat:@"%@;%@ %@",model, systemName, systemVertion];
+//    
+//    // *** 获取appname信息
+//    NSString *app_Name = [infoDic objectForKey:@"CFBundleDisplayName"];
+//    if(app_Name == nil)
+//    {
+//        app_Name = @"app_Name";
+//    }
+//    NSString *userAgent = [NSString stringWithFormat:@"%@-%@-APP/%@(%@;Build/%@)",  kWFWFAsyncHttp_CompanyName , app_Name, app_Build, iphoneInfo , app_Version];
+//    
+//    return [userAgent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//}
 
 
-+ (void)handleDataSuccess:(NSData *)data andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCache:(BOOL)cache
-{
-    if(success)
-    {
-        NSError *error = nil;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        if(error == nil)
-        {
-            success(jsonObject, cache);
-        }
-        else
-        {
-            success(data, cache);
-        }
-    }
-}
-
-+ (void)handleDataFailure:(NSError *)error andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    if(failure) failure(error);
-}
-
-
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-{
-    BOOL b = [WFAsyncHttpCacheManager isExistWithKey:key];
-    if(b && key && key.length > 0)
-    {
-        NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:key];
-        [self handleDataSuccess:cacheData andSuccess:success andCache:YES];
-    }
-    return b;
-}
-
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-{
-    return [self handleCacheWithKey:key andSuccess:success andCachePolicy:cachePolicy andDefaultCache:nil];
-}
-
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy andDefaultCache:(id)defaultCache
-{
-    switch (cachePolicy) {
-        case WFAsyncCachePolicyType_ReturnCache_DidLoad:
-        {
-            BOOL isFinish = [WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success];
-            if(!isFinish && defaultCache)
-            {
-                if(success) success(defaultCache, YES);
-            }
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_DontLoad:
-        {
-            [WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success];
-            return YES;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_ElseLoad:
-        {
-            if([WFAsyncHttpUtil handleCacheWithKey:key andSuccess:success])
-            {
-                return YES;
-            }
-            else
-            {
-                if(defaultCache)
-                {
-                    if(success){
-                        success(defaultCache, YES);
-                        return YES;
-                    }
-                    
-                }
-            }
-            
-            
-            break;
-        }
-        case WFAsyncCachePolicyType_Reload_IgnoringLocalCache:
-        {
-            
-            break;
-        }
-            
-            
-        default:
-            break;
-    }
-    return NO;
-}
 
 + (BOOL)isImageRequest:(NSString *)URLString
 {

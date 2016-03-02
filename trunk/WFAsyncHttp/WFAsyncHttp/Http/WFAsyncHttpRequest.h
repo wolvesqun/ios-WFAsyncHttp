@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "WFAsyncHttpCONST.h"
+#import "WFBaseRequest.h"
 
-@interface WFAsyncHttpRequest : NSObject
+@interface WFAsyncHttpRequest : WFBaseRequest
 
 /**
  * get请求

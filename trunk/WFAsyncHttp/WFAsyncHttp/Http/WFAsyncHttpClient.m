@@ -27,7 +27,7 @@
     // *** 传入参数无效
     if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
     
-    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy andDefaultCache:defaultCache]) return;
+    if([WFAsyncHttpClient handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy andDefaultCache:defaultCache]) return;
     
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
@@ -47,11 +47,11 @@
      {
          if(connectionError)
          {
-             [WFAsyncHttpUtil handleRequestResultWithError:connectionError andFailure:failure];
+             [WFAsyncHttpClient handleRequestResultWithError:connectionError andFailure:failure];
          }
          else
          {
-             [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
+             [WFAsyncHttpClient handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
          }
      }];
 }
@@ -135,21 +135,57 @@
     // *** 传入参数无效
     if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
     
-    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
+    if([WFAsyncHttpClient handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
     
     // *** start
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
          if(connectionError)
          {
-             [WFAsyncHttpUtil handleRequestResultWithError:connectionError andFailure:failure];
+             [WFAsyncHttpClient handleRequestResultWithError:connectionError andFailure:failure];
          }
          else
          {
-             [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
+             [WFAsyncHttpClient handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
          }
      }];
 }
 
+#pragma mark - 文件上传
++ (void)uploadTaskUsingSessionWithURLString:(NSString *)URLString
+                                   andParam:(NSDictionary *)params
+                                 andSuccess:(void(^)(id responseObject))success
+                                 andFailure:(void(^)(NSError *error))failure
+{
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSData *data = [WFAsyncHttpUtil getURLParamWithDict:params];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request
+                                                               fromData:data
+                                                      completionHandler:
+                                          ^(NSData *data, NSURLResponse *response, NSError *error)
+    {
+        if(error)
+        {
+            if(failure) failure(error);
+        }
+        else
+        {
+            id tempData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if(tempData)
+            {
+                if(success) success(tempData);
+            }
+            else
+            {
+                if(success) success(data);
+            }
+        }
+    }];
+    
+    [uploadTask resume];
+}
 
 @end

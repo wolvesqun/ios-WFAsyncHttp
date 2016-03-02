@@ -8,13 +8,13 @@
 
 #import "WebviewCacheVC.h"
 #import "WFAsyncHttp.h"
-#import "WFWebView.h"
+//#import "WFWebView.h"
 #import "Toast.h"
 #import "AppDelegate.h"
 
-@interface WebviewCacheVC ()<WFWebViewDelegate>
+@interface WebviewCacheVC ()
 
-@property (strong, nonatomic) WFWebView *webview;
+//@property (strong, nonatomic) WFWebView *webview;
 
 @end
 

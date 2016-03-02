@@ -10,7 +10,7 @@
 #import "WFAsyncHttp.h"
 #import "AsyncViewController.h"
 #import "SyncViewController.h"
-#import "WebviewCacheVC.h"
+//#import "WebviewCacheVC.h"
 #import "ImageViewController.h"
 #import "SettingViewcontroller.h"
 
@@ -35,7 +35,7 @@
                       @"异步请求 -> Async Request",
                       @"同步请求 -> Sync Request",
                       @"网页请求 -> webview request Cache",
-                      @"图片请求 -> Image request Cache",
+//                      @"图片请求 -> Image request Cache",
                       nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
@@ -79,7 +79,7 @@
     }
     else if (indexPath.row == 2)
     {
-        [self.navigationController pushViewController:[WebviewCacheVC new] animated:YES];
+//        [self.navigationController pushViewController:[WebviewCacheVC new] animated:YES];
     }
     else if (indexPath.row == 3)
     {
@@ -93,6 +93,10 @@
     [self.navigationController pushViewController:[SettingViewcontroller new] animated:YES];
 }
 
+- (void)test
+{
+    NSURLSession
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

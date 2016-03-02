@@ -25,7 +25,7 @@
     // *** 传入参数无效
     if([WFAsyncHttpUtil handlerParamErrorWithURLString:URLString andSuccess:success andFailure:failure]) return;
     
-    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
+    if([self handleCacheWithKey:URLString andSuccess:success andCachePolicy:cachePolicy]) return;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
                                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
@@ -46,11 +46,11 @@
     
     if(error)
     {
-        [WFAsyncHttpUtil handleRequestResultWithError:error andFailure:failure];
+        [self handleRequestResultWithError:error andFailure:failure];
     }
     else
     {
-        [WFAsyncHttpUtil handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
+        [self handleRequestResultWithKey:URLString andData:data andCachePolicy:cachePolicy andSuccess:success];
     }
 }
 

@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "WFAsyncHttpCONST.h"
+#import "WFBaseRequest.h"
 
 /**
  *  同步请求
  */
-@interface WFSyncHttpClient : NSObject
+@interface WFSyncHttpClient : WFBaseRequest
 
 #pragma mark - GET请求
 + (void)System_GET_WithURLString:(NSString *)URLString

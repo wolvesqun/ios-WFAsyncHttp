@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C32C4731C852C160030B759 /* WFWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C32C4711C852C160030B759 /* WFWebView.m */; };
+		2C32C4761C852E1D0030B759 /* WFBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C32C4751C852E1D0030B759 /* WFBaseRequest.m */; };
 		2C8487FF1BCBBB700087961F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8487FE1BCBBB700087961F /* Foundation.framework */; };
 		2C8488011BCBBB700087961F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488001BCBBB700087961F /* CoreGraphics.framework */; };
 		2C8488031BCBBB700087961F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488021BCBBB700087961F /* UIKit.framework */; };
@@ -24,10 +26,8 @@
 		2C84884F1BCBBB9F0087961F /* WFFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8488381BCBBB9F0087961F /* WFFileManager.m */; };
 		2C8488581BCBBB9F0087961F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84884C1BCBBB9F0087961F /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2CDB6BA71C0852A10002ED43 /* WFCacheManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB6BA61C0852A10002ED43 /* WFCacheManage.m */; };
-		2CE6544B1BCDFF1800D5D61C /* WebviewCacheVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6544A1BCDFF1800D5D61C /* WebviewCacheVC.m */; };
 		2CE6544E1BCE021C00D5D61C /* AsyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6544D1BCE021C00D5D61C /* AsyncViewController.m */; };
 		2CE654511BCE022800D5D61C /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654501BCE022800D5D61C /* SyncViewController.m */; };
-		2CE654551BCE244400D5D61C /* UIImageView+WFImageViewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */; };
 		2CE654591BCE267E00D5D61C /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE654571BCE267E00D5D61C /* ImageViewController.m */; };
 		2CF0160D1BD0F84E000C026B /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF015FC1BD0F84E000C026B /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m */; };
 		2CF0160E1BD0F84E000C026B /* WFAsyncHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF015FE1BD0F84E000C026B /* WFAsyncHttp.m */; };
@@ -38,7 +38,6 @@
 		2CF016131BD0F84E000C026B /* WFAsyncHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF016081BD0F84E000C026B /* WFAsyncHttpUtil.m */; };
 		2CF016141BD0F84E000C026B /* WFAsyncURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0160A1BD0F84E000C026B /* WFAsyncURLCache.m */; };
 		2CF016151BD0F84E000C026B /* WFSyncHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0160C1BD0F84E000C026B /* WFSyncHttpClient.m */; };
-		2CF19BB11BCF56140032D70E /* WFWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BB01BCF56140032D70E /* WFWebView.m */; };
 		2CF19BE61BD0B5D20032D70E /* SettingViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */; };
 		2CF19BE91BD0B7930032D70E /* WFAsyncHttpCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BE81BD0B7930032D70E /* WFAsyncHttpCacheManager.m */; };
 		2CF19BF01BD0E7A50032D70E /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BEF1BD0E7A50032D70E /* Toast.m */; };
@@ -55,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C32C4701C852C160030B759 /* WFWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFWebView.h; sourceTree = "<group>"; };
+		2C32C4711C852C160030B759 /* WFWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFWebView.m; sourceTree = "<group>"; };
+		2C32C4741C852E1D0030B759 /* WFBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFBaseRequest.h; sourceTree = "<group>"; };
+		2C32C4751C852E1D0030B759 /* WFBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFBaseRequest.m; sourceTree = "<group>"; };
 		2C8487FB1BCBBB700087961F /* WFAsyncHttp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFAsyncHttp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8487FE1BCBBB700087961F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C8488001BCBBB700087961F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,14 +84,10 @@
 		2C84884D1BCBBB9F0087961F /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
 		2CDB6BA51C0852A10002ED43 /* WFCacheManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCacheManage.h; sourceTree = "<group>"; };
 		2CDB6BA61C0852A10002ED43 /* WFCacheManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCacheManage.m; sourceTree = "<group>"; };
-		2CE654491BCDFF1800D5D61C /* WebviewCacheVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebviewCacheVC.h; sourceTree = "<group>"; };
-		2CE6544A1BCDFF1800D5D61C /* WebviewCacheVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebviewCacheVC.m; sourceTree = "<group>"; };
 		2CE6544C1BCE021C00D5D61C /* AsyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncViewController.h; sourceTree = "<group>"; };
 		2CE6544D1BCE021C00D5D61C /* AsyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncViewController.m; sourceTree = "<group>"; };
 		2CE6544F1BCE022800D5D61C /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
 		2CE654501BCE022800D5D61C /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
-		2CE654531BCE244400D5D61C /* UIImageView+WFImageViewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WFImageViewCache.h"; sourceTree = "<group>"; };
-		2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WFImageViewCache.m"; sourceTree = "<group>"; };
 		2CE654561BCE267E00D5D61C /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		2CE654571BCE267E00D5D61C /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		2CF015FB1BD0F84E000C026B /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+WFAsyncHttpMutableURLRequest.h"; sourceTree = "<group>"; };
@@ -109,8 +108,6 @@
 		2CF0160A1BD0F84E000C026B /* WFAsyncURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAsyncURLCache.m; sourceTree = "<group>"; };
 		2CF0160B1BD0F84E000C026B /* WFSyncHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSyncHttpClient.h; sourceTree = "<group>"; };
 		2CF0160C1BD0F84E000C026B /* WFSyncHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSyncHttpClient.m; sourceTree = "<group>"; };
-		2CF19BAF1BCF56140032D70E /* WFWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFWebView.h; sourceTree = "<group>"; };
-		2CF19BB01BCF56140032D70E /* WFWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFWebView.m; sourceTree = "<group>"; };
 		2CF19BE41BD0B5D20032D70E /* SettingViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewcontroller.h; sourceTree = "<group>"; };
 		2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewcontroller.m; sourceTree = "<group>"; };
 		2CF19BE71BD0B7930032D70E /* WFAsyncHttpCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAsyncHttpCacheManager.h; sourceTree = "<group>"; };
@@ -181,8 +178,6 @@
 				2C8488101BCBBB700087961F /* Main.storyboard */,
 				2C8488131BCBBB700087961F /* ViewController.h */,
 				2C8488141BCBBB700087961F /* ViewController.m */,
-				2CE654491BCDFF1800D5D61C /* WebviewCacheVC.h */,
-				2CE6544A1BCDFF1800D5D61C /* WebviewCacheVC.m */,
 				2CE6544C1BCE021C00D5D61C /* AsyncViewController.h */,
 				2CE6544D1BCE021C00D5D61C /* AsyncViewController.m */,
 				2CE6544F1BCE022800D5D61C /* SyncViewController.h */,
@@ -265,10 +260,8 @@
 		2CE654521BCE21DA00D5D61C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2CE654531BCE244400D5D61C /* UIImageView+WFImageViewCache.h */,
-				2CE654541BCE244400D5D61C /* UIImageView+WFImageViewCache.m */,
-				2CF19BAF1BCF56140032D70E /* WFWebView.h */,
-				2CF19BB01BCF56140032D70E /* WFWebView.m */,
+				2C32C4701C852C160030B759 /* WFWebView.h */,
+				2C32C4711C852C160030B759 /* WFWebView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -290,6 +283,8 @@
 				2CF016061BD0F84E000C026B /* WFAsyncHttpRequest.m */,
 				2CF016071BD0F84E000C026B /* WFAsyncHttpUtil.h */,
 				2CF016081BD0F84E000C026B /* WFAsyncHttpUtil.m */,
+				2C32C4741C852E1D0030B759 /* WFBaseRequest.h */,
+				2C32C4751C852E1D0030B759 /* WFBaseRequest.m */,
 				2CF016091BD0F84E000C026B /* WFAsyncURLCache.h */,
 				2CF0160A1BD0F84E000C026B /* WFAsyncURLCache.m */,
 				2CF0160B1BD0F84E000C026B /* WFSyncHttpClient.h */,
@@ -405,14 +400,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF0160D1BD0F84E000C026B /* NSMutableURLRequest+WFAsyncHttpMutableURLRequest.m in Sources */,
+				2C32C4761C852E1D0030B759 /* WFBaseRequest.m in Sources */,
 				2CF016111BD0F84E000C026B /* WFAsyncHttpManager.m in Sources */,
 				2CF19BF01BD0E7A50032D70E /* Toast.m in Sources */,
 				2CF016121BD0F84E000C026B /* WFAsyncHttpRequest.m in Sources */,
 				2CF016101BD0F84E000C026B /* WFAsyncHttpCONST.m in Sources */,
 				2C8488581BCBBB9F0087961F /* Base64.m in Sources */,
 				2CF016151BD0F84E000C026B /* WFSyncHttpClient.m in Sources */,
-				2CF19BB11BCF56140032D70E /* WFWebView.m in Sources */,
-				2CE6544B1BCDFF1800D5D61C /* WebviewCacheVC.m in Sources */,
+				2C32C4731C852C160030B759 /* WFWebView.m in Sources */,
 				2CE654511BCE022800D5D61C /* SyncViewController.m in Sources */,
 				2CF19BE61BD0B5D20032D70E /* SettingViewcontroller.m in Sources */,
 				2CF0160E1BD0F84E000C026B /* WFAsyncHttp.m in Sources */,
@@ -427,7 +422,6 @@
 				2C84884F1BCBBB9F0087961F /* WFFileManager.m in Sources */,
 				2C84880B1BCBBB700087961F /* main.m in Sources */,
 				2CF0160F1BD0F84E000C026B /* WFAsyncHttpClient.m in Sources */,
-				2CE654551BCE244400D5D61C /* UIImageView+WFImageViewCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

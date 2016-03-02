@@ -27,20 +27,13 @@
 /**
  *  获取默认user-agent
  */
-+ (NSString *)getDefaultUserAgent;
+//+ (NSString *)getDefaultUserAgent;
 
-#pragma mark - 处理请求结果
-+ (void)handleRequestResultWithKey:(NSString *)key
-                           andData:(NSData *)data
-                    andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success;
 
-+ (void)handleRequestResultWithError:(NSError *)error
-                          andFailure:(WFFailureAsyncHttpDataCompletion)failure;
 
-#pragma mark - 处理缓存
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy;
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy andDefaultCache:(id)defaultCache;
+//+ (BOOL)isExistCacheWithKey:(NSString *)key;
+//
+//+ (void)saveCache
 
 + (BOOL)isImageRequest:(NSString *)URLString;
 + (BOOL)isWebFileRequest:(NSString *) URLString;

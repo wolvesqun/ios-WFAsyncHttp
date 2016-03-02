@@ -53,7 +53,7 @@
     self.success = success;
     self.failure = failure;
     
-    if([WFAsyncHttpUtil handleCacheWithKey:URLString andSuccess:success andCachePolicy:self.cachePolicy andDefaultCache:self.defaultCache]) return;
+    if([WFAsyncHttpRequest handleCacheWithKey:URLString andSuccess:success andCachePolicy:self.cachePolicy andDefaultCache:self.defaultCache]) return;
     
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
@@ -176,7 +176,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [WFAsyncHttpUtil handleRequestResultWithKey:connection.originalRequest.URL.absoluteString
+    [WFAsyncHttpRequest handleRequestResultWithKey:connection.originalRequest.URL.absoluteString
                                         andData:self.tempDownloadData
                                  andCachePolicy:self.cachePolicy
                                      andSuccess:self.success];
@@ -186,7 +186,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
-    [WFAsyncHttpUtil handleRequestResultWithError:error andFailure:self.failure];
+    [WFAsyncHttpRequest handleRequestResultWithError:error andFailure:self.failure];
     [self cancel];
 }
 
