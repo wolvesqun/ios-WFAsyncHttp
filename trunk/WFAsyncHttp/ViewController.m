@@ -13,6 +13,7 @@
 //#import "WebviewCacheVC.h"
 //#import "ImageViewController.h"
 #import "SettingViewcontroller.h"
+#import "ListViewController.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -33,6 +34,7 @@
 
     self.dataArray = [NSMutableArray arrayWithObjects:
                       @"异步请求 -> Async Request",
+                      @"列表数据缓存例子",
 //                      @"同步请求 -> Sync Request",
 //                      @"网页请求 -> webview request Cache",
 //                      @"图片请求 -> Image request Cache",
@@ -75,6 +77,7 @@
     }
     else if (indexPath.row == 1)
     {
+        [self.navigationController pushViewController:[ListViewController new] animated:YES];
 //        [self.navigationController pushViewController:[SyncViewController new] animated:YES];
     }
     else if (indexPath.row == 2)

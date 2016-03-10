@@ -48,21 +48,21 @@
 // - 根据策略是否要返回缓存
 + (BOOL)canReturnStoryageCacheWithCachePolicy:(WFStorageCachePolicy)cachePolicy
 {
-    if(cachePolicy != WFStorageCachePolicyType_Default ||
-       cachePolicy != WFStorageCachePolicyType_ReturnCacheOrNil_DidLoad )
+    if(cachePolicy == WFStorageCachePolicyType_Default ||
+       cachePolicy == WFStorageCachePolicyType_ReturnCacheOrNil_DidLoad )
     {
-        return YES;
+        return NO;
     }
-    return NO;
+    return YES;
 }
 + (BOOL)canReturnMemcacheCacheWithCachePolicy:(WFMemCachePolicy)cachePolicy
 {
-    if(cachePolicy != WFMemCachePolicyType_Default ||
-       cachePolicy != WFMemCachePolicyType_ReturnCacheOrNil_DidLoad )
+    if(cachePolicy == WFMemCachePolicyType_Default ||
+       cachePolicy == WFMemCachePolicyType_ReturnCacheOrNil_DidLoad )
     {
-        return YES;
+        return NO;
     }
-    return NO;
+    return YES;
 }
 
 // - 根据策略是否要继续请求
