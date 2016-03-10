@@ -27,7 +27,7 @@
               WFMemCachePolicyType_Reload_IgnoringLocalCache,   // *** 忽略内存缓存并加载 （使用在更新缓存）
           };
     
-一：引入WFAsyncHttp.h, 并且设置里面的公司名称（最好是英文，中文也没事），此处是做User-agent（不懂百度|google就知道了）用的
+一：引入WFAsyncHttp.h
   
     1. GET异步请求
     
