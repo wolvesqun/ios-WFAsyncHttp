@@ -15,6 +15,7 @@
 
 #pragma mark - 上传数据
 + (void)uploadDataWithURLString:(NSString *)URLString
+                      andHeader:(NSDictionary *)header
                        andParam:(NSDictionary *)param
                    andUserAgent:(NSString *)userAgent
                      andSuccess:(void(^)(NSData *data, NSURLResponse *response))success
@@ -22,6 +23,7 @@
 
 #pragma mark - 上传文件
 + (void)uploadFileWithURLString:(NSString *)URLString
+                      andHeader:(NSDictionary *)header
                     andFromFile:(NSURL *)fromFile
                    andUserAgent:(NSString *)userAgent
                      andSuccess:(void(^)(NSData *data, NSURLResponse *response))success
