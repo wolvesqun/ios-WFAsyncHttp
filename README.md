@@ -16,14 +16,11 @@
               WFStorageCachePolicyType_Reload_IgnoringLocalCache,   // *** 忽略本地缓存并加载 （使用在更新缓存）
           };
 
-          #pragma mark - 内存缓存策略 - 获取缓存的顺序是 ：内存缓存 -》本地缓存
+          #pragma mark - 内存缓存策略
           typedef NS_ENUM(NSUInteger,WFMemCachePolicy)
           {
               WFMemCachePolicyType_Default,                     // *** 不提供缓存
-              WFMemCachePolicyType_ReturnCache_ElseLoad,        // *** 如果内存有缓存||本地有缓存则返回缓存不加载网络，否则加载网络数据并且缓存数据
-              WFMemCachePolicyType_ReturnCache_DontLoad,        // *** 如果内存有缓存||本地有缓存则返回缓存并且不加载网络
-              WFMemCachePolicyType_ReturnCache_DidLoad,         // *** 如果内存有缓存||本地有缓存则返回缓存并且都加载网络
-              WFMemCachePolicyType_ReturnCacheOrNil_DidLoad,    // *** 如果内存有缓存||本地有缓存则返回缓存,没有缓存就返回空的,并且都加载网络
+              WFMemCachePolicyType_ReturnCache_ElseLoad,        // *** 如果内存有缓存缓存不加载网络，否则加载网络数据并且缓存数据
               WFMemCachePolicyType_Reload_IgnoringLocalCache,   // *** 忽略内存缓存并加载 （使用在更新缓存）
           };
     
