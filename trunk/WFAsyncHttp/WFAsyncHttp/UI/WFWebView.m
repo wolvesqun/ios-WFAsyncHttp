@@ -8,7 +8,7 @@
 
 #import "WFWebView.h"
 #import "WFAsyncHttp.h"
-#import "WFAsyncHttpUtil.h"
+#import "WFWebUtil.h"
 
 
 @implementation WFWebViewURLStringStack

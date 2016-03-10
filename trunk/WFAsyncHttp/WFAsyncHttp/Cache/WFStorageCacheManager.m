@@ -1,21 +1,16 @@
 //
-//  WFAsyncHttpCacheManager.m
+//  WFStorageCacheManager.m
 //  WFAsyncHttp
 //
-//  Created by mba on 15-10-16.
-//  Copyright (c) 2015年 wolf. All rights reserved.
+//  Created by mba on 16/3/9.
+//  Copyright © 2016年 wolf. All rights reserved.
 //
+#define kWFAsynHttpCache_Folder    @"kWFAsynHttpCache_Folder" // *** 缓存文件包
 
-#define kWFAsynHttpCache_Folder             @"kWFAsynHttpCache_Folder" // *** 缓存文件包
-
-#define kWFWFAsyncURLCacheData_Pre @"WFAsyncURLCacheData"
-
-
-
-#import "WFAsyncHttpCacheManager.h"
+#import "WFStorageCacheManager.h"
 #import "WFFileManager.h"
 #import "Base64.h"
-#import "WFAsyncHttpUtil.h"
+#import "WFWebUtil.h"
 #import "WFAsyncURLCache.h"
 
 typedef enum : NSUInteger {
@@ -24,7 +19,7 @@ typedef enum : NSUInteger {
     WFAsynHttpCacheFolderType_Web,
 } WFAsynHttpCacheFolderType;
 
-@implementation WFAsyncHttpCacheManager
+@implementation WFStorageCacheManager
 #pragma mark - 添加 | 获取 | 判断
 + (void)saveWithData:(id)data andKey:(NSString *)key
 {
@@ -79,11 +74,11 @@ typedef enum : NSUInteger {
     
     if(key)
     {
-        if([WFAsyncHttpUtil isWebFileRequest:key])
+        if([WFWebUtil isWebFileRequest:key])
         {
             return [self getFolderWithType:WFAsynHttpCacheFolderType_Web];
         }
-        else if([WFAsyncHttpUtil isImageRequest:key])
+        else if([WFWebUtil isImageRequest:key])
         {
             return [self getFolderWithType:WFAsynHttpCacheFolderType_Image];
         }
@@ -117,6 +112,5 @@ typedef enum : NSUInteger {
             
     }
 }
-
 
 @end

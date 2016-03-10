@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "WFAsyncHttp.h"
 #import "ViewController.h"
+#import <objc/runtime.h>
+
 
 @implementation AppDelegate
 
@@ -22,30 +24,21 @@
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     
-    
     ViewController *vc = [ViewController new];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     
-  
-    NSDictionary *dict = @{
-                           @"LoginFormusername":@"u1[]",
-                           @"LoginForm[password]":@"p1"
-                           };
+    NSString *str1 = @"fadf";
+    NSString *str2 = @"wolvesqujn";
     
+    size_t size1 = class_getInstanceSize(str1.class);
+    size_t size2 = class_getInstanceSize(str2.class);
     
-    [WFAsyncHttpManager POST_WithURLString:@"http://www.dev.mbalib.com/appwiki/test2?pass=passd[]" andParams:dict
-                            andCachePolicy:WFAsyncCachePolicyType_Default andSuccess:^(id responseObject, BOOL cache)
-    {
-        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", str);
-    } andFailure:^(NSError *error) {
-        
-    }];
-    
+
     
     return YES;
 }
-							
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

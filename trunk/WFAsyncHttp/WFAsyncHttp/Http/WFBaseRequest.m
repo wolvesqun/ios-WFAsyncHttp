@@ -2,125 +2,78 @@
 //  WFBaseRequest.m
 //  WFAsyncHttp
 //
-//  Created by mba on 16/3/1.
-//  Copyright © 2016年 wolf. All rights reserved.
+//  Created by mba on 15/3/1.
+//  Copyright © 2015年 wolf. All rights reserved.
 //
 
 #import "WFBaseRequest.h"
-#import "WFAsyncHttpCacheManager.h"
+#import "WFWebUtil.h"
+#import "NSMutableURLRequest+WFExtensionHttp.h"
 
 @implementation WFBaseRequest
 
-#pragma mark - 请求结果处理
-// - request success
-+ (void)handleRequestResultWithKey:(NSString *)key
-                           andData:(NSData *)data
-                    andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-                        andSuccess:(WFSuccessAsyncHttpDataCompletion)success
+
+#pragma mark - 请求数据
++ (void)requestDataWithURLString:(NSString *)URLString
+                       andParams:(NSDictionary *)params
+                       andHeader:(NSDictionary *)header
+                    andUserAgent:(NSString *)userAgent
+                   andHttpMethod:(NSString *)httpMethod
+                      andSuccess:(void(^)(NSData *data, NSURLResponse *response))success
+                      andFailure:(void(^)(NSError * error))failure
 {
-    // *** save data
-    if(cachePolicy != WFAsyncCachePolicyType_Default && data)
+    
+    if(success == nil || failure == nil )
     {
-        [WFAsyncHttpCacheManager saveWithData:data andKey:key];
+        @throw [NSException exceptionWithName:@"参数为空"
+                                       reason:[NSString stringWithFormat:@"WFBaseRequest里回调的block为空，你还还没实现, 请求地址 %@", URLString]
+                                     userInfo:nil];
     }
-    [self handleDataSuccess:data andSuccess:success andCache:NO];
-}
-// - request error
-+ (void)handleRequestResultWithError:(NSError *)error
-                          andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    if(failure) failure(error);
-}
-
-
-+ (void)handleDataSuccess:(NSData *)data andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCache:(BOOL)cache
-{
-    if(success)
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLString]
+                                                                cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                            timeoutInterval:10];
+    [request setHTTPMethod:httpMethod];
+    [request addParamWithDict:params];
+    [request addHttpHeader:header];
+    [request addUserAgent:userAgent];
+    
+    if([UIDevice currentDevice].systemVersion.doubleValue >= 7.0)
     {
-        NSError *error = nil;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        if(error == nil)
-        {
-            success(jsonObject, cache);
-        }
-        else
-        {
-            success(data, cache);
-        }
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                    completionHandler:^(NSData * _Nullable data,
+                                                                        NSURLResponse * _Nullable response,
+                                                                        NSError * _Nullable error)
+                                          {
+                                              if(error)
+                                              {
+                                                    failure(error);
+                                              }
+                                              else
+                                              {
+                                                    success(data, response);
+                                              }
+                                          }];
+        [dataTask resume];
     }
-}
-
-+ (void)handleDataFailure:(NSError *)error andFailure:(WFFailureAsyncHttpDataCompletion)failure
-{
-    if(failure) failure(error);
-}
-
-
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-{
-    BOOL b = [WFAsyncHttpCacheManager isExistWithKey:key];
-    if(b && key && key.length > 0)
+    else
     {
-        NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:key];
-        [self handleDataSuccess:cacheData andSuccess:success andCache:YES];
+        // *** start
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+         {
+             if(connectionError)
+             {
+                 failure(connectionError);
+             }
+             else
+             {
+                 success(data, response);
+             }
+         }];
     }
-    return b;
 }
 
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy
-{
-    return [self handleCacheWithKey:key andSuccess:success andCachePolicy:cachePolicy andDefaultCache:nil];
-}
 
-+ (BOOL)handleCacheWithKey:(NSString *)key andSuccess:(WFSuccessAsyncHttpDataCompletion)success andCachePolicy:(WFAsyncCachePolicy)cachePolicy andDefaultCache:(id)defaultCache
-{
-    switch (cachePolicy) {
-        case WFAsyncCachePolicyType_ReturnCache_DidLoad:
-        {
-            BOOL isFinish = [self handleCacheWithKey:key andSuccess:success];
-            if(!isFinish && defaultCache)
-            {
-                if(success) success(defaultCache, YES);
-            }
-            break;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_DontLoad:
-        {
-            [self handleCacheWithKey:key andSuccess:success];
-            return YES;
-        }
-        case WFAsyncCachePolicyType_ReturnCache_ElseLoad:
-        {
-            if([self handleCacheWithKey:key andSuccess:success])
-            {
-                return YES;
-            }
-            else
-            {
-                if(defaultCache)
-                {
-                    if(success){
-                        success(defaultCache, YES);
-                        return YES;
-                    }
-                    
-                }
-            }
-            
-            
-            break;
-        }
-        case WFAsyncCachePolicyType_Reload_IgnoringLocalCache:
-        {
-            
-            break;
-        }
-            
-            
-        default:
-            break;
-    }
-    return NO;
-}
 
 @end

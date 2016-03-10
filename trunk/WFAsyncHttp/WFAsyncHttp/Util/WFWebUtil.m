@@ -1,20 +1,18 @@
 //
-//  WFAsyncHttpUtil.m
+//  WFWebUtil.m
 //  WFAsyncHttp
 //
-//  Created by mba on 15-10-10.
-//  Copyright (c) 2015年 wolf. All rights reserved.
+//  Created by mba on 16/3/9.
+//  Copyright © 2016年 wolf. All rights reserved.
 //
 
-#import "WFAsyncHttpUtil.h"
-#import "WFAsyncHttp.h"
-#import "WFAsyncHttpCacheManager.h"
+#import "WFWebUtil.h"
 
-@implementation WFAsyncHttpUtil
+@implementation WFWebUtil
 
 + (BOOL)handlerParamErrorWithURLString:(NSString *)URLString
-                            andSuccess:(WFSuccessAsyncHttpDataCompletion)success
-                            andFailure:(WFFailureAsyncHttpDataCompletion)failure
+                            andSuccess:(BLock_WFRequestDataSuccessCompletion)success
+                            andFailure:(BLock_WFRequestDataFailureCompletion)failure
 {
     if(success == nil || failure == nil || URLString == nil || URLString.length == 0) {
         NSLog(@"======================= request param is error =======================");
@@ -23,7 +21,7 @@
     return NO;
 }
 
-+ (NSData *)getURLParamWithDict:(NSDictionary *)dict
++ (NSData *)convertToDataWithDict:(NSDictionary *)dict
 {
     NSMutableString *str = [[NSMutableString alloc] init];
     for (NSString *key in [dict allKeys]) {
@@ -43,11 +41,6 @@
     return data;
 }
 
-+ (NSDictionary *)getUserAgentWithValue:(NSString *)value
-{
-    if(value == nil || value.length == 0) return nil;
-    return [NSDictionary dictionaryWithObjectsAndKeys:value,@"User-Agent", nil];
-}
 
 /**
  * userAgent	iPhone Simulator;iPhone OS 8.0
@@ -57,13 +50,13 @@
 //    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
 //    NSString *app_Version = [infoDic objectForKey:@"CFBundleVersion"];//Version
 //    NSString *app_Build = [infoDic objectForKey:@"CFBundleShortVersionString"];//Build
-//    
+//
 //    // *** 设置信息
 //    NSString *model = [UIDevice currentDevice].model;
 //    NSString *systemName = [UIDevice currentDevice].systemName;
 //    NSString *systemVertion = [UIDevice currentDevice].systemVersion;
 //    NSString *iphoneInfo = [NSString stringWithFormat:@"%@;%@ %@",model, systemName, systemVertion];
-//    
+//
 //    // *** 获取appname信息
 //    NSString *app_Name = [infoDic objectForKey:@"CFBundleDisplayName"];
 //    if(app_Name == nil)
@@ -71,7 +64,7 @@
 //        app_Name = @"app_Name";
 //    }
 //    NSString *userAgent = [NSString stringWithFormat:@"%@-%@-APP/%@(%@;Build/%@)",  kWFWFAsyncHttp_CompanyName , app_Name, app_Build, iphoneInfo , app_Version];
-//    
+//
 //    return [userAgent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //}
 
@@ -115,7 +108,3 @@
 }
 
 @end
-
-
-
-

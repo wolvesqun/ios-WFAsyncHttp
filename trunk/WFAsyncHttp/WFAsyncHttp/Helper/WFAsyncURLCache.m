@@ -7,9 +7,9 @@
 //
 
 #import "WFAsyncURLCache.h"
-#import "WFAsyncHttpUtil.h"
+#import "WFWebUtil.h"
 #import "WFAsyncHttp.h"
-#import "WFAsyncHttpCacheManager.h"
+#import "WFStorageCacheManager.h"
 
 
 @interface WFAsyncURLCacheData : NSObject<NSCoding>
@@ -77,7 +77,7 @@
     NSString *URLString = request.URL.absoluteString;
 //    NSLog(@"URLString = %@", URLString);
     @try {
-        if([WFAsyncHttpUtil isWebFileRequest:URLString] || [WFAsyncHttpUtil isImageRequest:URLString])
+        if([WFWebUtil isWebFileRequest:URLString] || [WFWebUtil isImageRequest:URLString])
         {
             return [self myCachedResponseForRequest:request];
         }
@@ -97,11 +97,11 @@
     NSString *URLString = request.URL.absoluteString;
 //    NSLog(@"URLString = %@", URLString);
     // *** 图片缓存 - 》image cache
-    if([WFAsyncHttpCacheManager isExistWithKey:URLString])
+    if([WFStorageCacheManager isExistWithKey:URLString])
     {
-        if([WFAsyncHttpUtil isImageRequest:URLString])
+        if([WFWebUtil isImageRequest:URLString])
         {
-            NSData *cacheData = [WFAsyncHttpCacheManager getWithKey:URLString];
+            NSData *cacheData = [WFStorageCacheManager getWithKey:URLString];
             NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
                                                                 MIMEType:[self getMIMETypeImg:request]
                                                    expectedContentLength:((NSData *)cacheData).length
@@ -112,7 +112,7 @@
         // *** 网页文件缓存
         else
         {
-            WFAsyncURLCacheData *cacheData = [WFAsyncHttpCacheManager getWithKey:URLString];
+            WFAsyncURLCacheData *cacheData = [WFStorageCacheManager getWithKey:URLString];
             NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
                                                                 MIMEType:cacheData.MIMEType
                                                    expectedContentLength:cacheData.data.length
@@ -141,9 +141,9 @@
                      
                      // *** 数据持久化
                      
-                     if([WFAsyncHttpUtil isImageRequest:URLString])
+                     if([WFWebUtil isImageRequest:URLString])
                      {
-                         [WFAsyncHttpCacheManager saveWithData:data andKey:URLString];
+                         [WFStorageCacheManager saveWithData:data andKey:URLString];
                      }
                      else
                      {
@@ -151,7 +151,7 @@
                          cacheData.MIMEType = response.MIMEType;
                          cacheData.textEncodingName = response.textEncodingName;
                          cacheData.data = data;
-                         [WFAsyncHttpCacheManager saveWithData:cacheData andKey:URLString];
+                         [WFStorageCacheManager saveWithData:cacheData andKey:URLString];
                      }
                      
                      cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];

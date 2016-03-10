@@ -8,10 +8,10 @@
 
 #import "ViewController.h"
 #import "WFAsyncHttp.h"
-#import "AsyncViewController.h"
-#import "SyncViewController.h"
+#import "AsyncHttpViewController.h"
+//#import "SyncViewController.h"
 //#import "WebviewCacheVC.h"
-#import "ImageViewController.h"
+//#import "ImageViewController.h"
 #import "SettingViewcontroller.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -33,8 +33,8 @@
 
     self.dataArray = [NSMutableArray arrayWithObjects:
                       @"异步请求 -> Async Request",
-                      @"同步请求 -> Sync Request",
-                      @"网页请求 -> webview request Cache",
+//                      @"同步请求 -> Sync Request",
+//                      @"网页请求 -> webview request Cache",
 //                      @"图片请求 -> Image request Cache",
                       nil];
     
@@ -71,11 +71,11 @@
 {
     if(indexPath.row == 0)
     {
-        [self.navigationController pushViewController:[AsyncViewController new] animated:YES];
+        [self.navigationController pushViewController:[AsyncHttpViewController new] animated:YES];
     }
     else if (indexPath.row == 1)
     {
-        [self.navigationController pushViewController:[SyncViewController new] animated:YES];
+//        [self.navigationController pushViewController:[SyncViewController new] animated:YES];
     }
     else if (indexPath.row == 2)
     {
@@ -83,7 +83,7 @@
     }
     else if (indexPath.row == 3)
     {
-        [self.navigationController pushViewController:[ImageViewController new] animated:YES];
+//        [self.navigationController pushViewController:[ImageViewController new] animated:YES];
     }
     // http://apis.baidu.com/tngou/drug/list?id=0&page=1&rows=20&appkey=c565603b40c205fab6078493cb16864d
 }
@@ -95,7 +95,7 @@
 
 - (void)test
 {
-    NSURLSession
+    
 }
 
 - (void)didReceiveMemoryWarning {
