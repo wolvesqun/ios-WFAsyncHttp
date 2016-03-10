@@ -13,6 +13,8 @@
 
 @interface ListViewController ()
 
+@property (strong, nonatomic) NSDate *startDate;
+
 @property (assign, nonatomic) BOOL bHeaderLoading;
 
 @property (strong, nonatomic) NSMutableArray *dtArray;
@@ -75,15 +77,15 @@
 {
     [self setUserEnable:NO];
     
- 
-    NSString *URLString = [NSString stringWithFormat:@"http://ipadnews.caijing.com.cn/api/1.0/articles.php?columnid=886&page=%d&pagesize=10&action=articlelist&bundleId=cn.com.caijing.ipaddigimag&platform=iOS9.200000&appVer=3.54&network=wifi",(int)(self.dtArray.count + 10)/10];
+    self.startDate = [NSDate date];
+    NSString *URLString = [NSString stringWithFormat:@"http://www.mbalib.com/appwiki/article?num=10&offset=%d",(int)self.dtArray.count];
 
     
     [WFRequestManager GET_UsingMemCache_WithURLString:URLString
                                             andHeader:nil
                                          andUserAgent:nil
                                         andExpireTime:60
-                                       andCachePolicy:self.dtArray.count == 0 ? WFMemCachePolicyType_ReturnCache_ElseLoad : WFMemCachePolicyType_Default
+                                       andCachePolicy:self.bHeaderLoading ? WFMemCachePolicyType_ReturnCache_DidLoad : WFMemCachePolicyType_Default
                                            andSuccess:^id(id responseDate, NSURLResponse *response, BOOL isCache)
     {
         NSArray *tempArray = responseDate;
@@ -113,13 +115,14 @@
     
     // *** 3. 更新UI
     // [tableview reloadData]
+    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
     if(self.bHeaderLoading)
     {
-        NSLog(@"========= 下拉刷新 获取了 %d 条数据, 现在共有 %d 数据", (int)dataArray.count, (int)self.dtArray.count);
+        NSLog(@"========= 下拉刷新 获取了 %2d 条数据, 现在共有 %2d 数据, 耗时 %f", (int)dataArray.count, (int)self.dtArray.count, time);
     }
     else
     {
-        NSLog(@"========= 上拉加载了 %d 条数据, 现在共有 %d 数据", (int)dataArray.count, (int)self.dtArray.count);
+        NSLog(@"========= 上拉加载了 %2d 条数据, 现在共有 %2d 数据,     耗时 %f", (int)dataArray.count, (int)self.dtArray.count, time);
     }
     
     

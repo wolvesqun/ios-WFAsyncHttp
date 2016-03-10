@@ -11,11 +11,11 @@
 
 @interface ArticleBean : NSObject
 
-@property (strong, nonatomic) NSString *articleUrl;
+//@property (strong, nonatomic) NSString *url;
 
 @property (strong, nonatomic) NSString *title;
 
-@property (strong, nonatomic) NSString *author;
+@property (strong, nonatomic) NSString *content;
 
 + (id)beanWithDict:(NSDictionary *)dict;
 
