@@ -187,30 +187,31 @@
 + (void)GET_UsingMemCache_WithURLString:(NSString *)URLString
                               andHeader:(NSDictionary *)header
                            andUserAgent:(NSString *)userAgent
+                       andStoragePolicy:(WFStorageCachePolicy)storagePolicy
                           andExpireTime:(NSTimeInterval)expireTime
-                         andCachePolicy:(WFMemCachePolicy)cachePolicy
+                      andMemCachePolicy:(WFMemCachePolicy)memcachePolicy
                              andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
                              andFailure:(BLock_WFRequestDataFailureCompletion)failure
 {
     id cacheData = [WFMemcacheManager getCacheWithKey:URLString];
-    if(cacheData && [WFCachePolicyHelper canReturnMemcacheCacheWithCachePolicy:cachePolicy])
+    if(cacheData && [WFCachePolicyHelper canReturnMemcacheCacheWithCachePolicy:memcachePolicy])
     {
         [self Memory_getFinishedHandlerDataWithData:cacheData andResponse:nil andSuccess:success andCache:YES];
-        if(![WFCachePolicyHelper canLoadWithMemCachePolicy:cachePolicy]) return;
+        if(![WFCachePolicyHelper canLoadWithMemCachePolicy:memcachePolicy]) return;
     }
     
-    WFStorageCachePolicy policy = [WFCachePolicyHelper getStoryPolicyWithMemCachePolicy:cachePolicy];
     [self GET_UsingStorageCache_WithURLString:URLString
                                     andHeader:header
                                  andUserAgent:userAgent
-                               andCachePolicy:policy andSuccess:^(id responseDate, NSURLResponse *response, BOOL isCache)
+                               andCachePolicy:storagePolicy
+                                   andSuccess:^(id responseDate, NSURLResponse *response, BOOL isCache)
      {
          [self Memory_handlerRequestFinishWithKey:URLString
                                           andData:responseDate
                                       andResponse:response
                                          andCache:isCache
                                     andExpireTime:expireTime
-                                andMemCachePolicy:policy
+                                andMemCachePolicy:memcachePolicy
                                        andSuccess:success];
      } andFailure:failure];
 }
@@ -229,6 +230,7 @@
                                andHeader:(NSDictionary *)header
                             andUserAgent:(NSString *)userAgent
                                 andParam:(NSDictionary *)param
+                        andStoragePolicy:(WFStorageCachePolicy)storagePolicy
                            andExpireTime:(NSTimeInterval)expireTime
                           andCachePolicy:(WFMemCachePolicy)cachePolicy
                               andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
@@ -241,12 +243,12 @@
         if(![WFCachePolicyHelper canLoadWithMemCachePolicy:cachePolicy]) return;
     }
     
-    WFStorageCachePolicy policy = [WFCachePolicyHelper getStoryPolicyWithMemCachePolicy:cachePolicy];
+   
     [self POST_UsingStorageCache_WithURLString:URLString
                                      andHeader:header
                                   andUserAgent:userAgent
                                       andParam:param
-                                andCachePolicy:policy
+                                andCachePolicy:storagePolicy
                                     andSuccess:^(id responseDate, NSURLResponse *response, BOOL isCache)
      {
          [self Memory_handlerRequestFinishWithKey:URLString
@@ -254,7 +256,7 @@
                                       andResponse:response
                                          andCache:isCache
                                     andExpireTime:expireTime
-                                andMemCachePolicy:policy
+                                andMemCachePolicy:cachePolicy
                                        andSuccess:success];
      } andFailure:failure];
 }
@@ -265,7 +267,7 @@
                                andResponse:(NSURLResponse *)response
                                   andCache:(BOOL)isCache
                              andExpireTime:(NSTimeInterval)expireTime
-                         andMemCachePolicy:(WFStorageCachePolicy)cachePolicy
+                         andMemCachePolicy:(WFMemCachePolicy)cachePolicy
                                 andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
 {
     

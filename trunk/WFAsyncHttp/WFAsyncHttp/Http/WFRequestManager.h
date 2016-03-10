@@ -73,8 +73,9 @@
 + (void)GET_UsingMemCache_WithURLString:(NSString *)URLString
                               andHeader:(NSDictionary *)header
                            andUserAgent:(NSString *)userAgent
+                       andStoragePolicy:(WFStorageCachePolicy)storagePolicy
                           andExpireTime:(NSTimeInterval)expireTime
-                         andCachePolicy:(WFMemCachePolicy)cachePolicy
+                      andMemCachePolicy:(WFMemCachePolicy)memcachePolicy
                              andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
                              andFailure:(BLock_WFRequestDataFailureCompletion)failure;
 
@@ -92,6 +93,7 @@
                                andHeader:(NSDictionary *)header
                             andUserAgent:(NSString *)userAgent
                                 andParam:(NSDictionary *)param
+                        andStoragePolicy:(WFStorageCachePolicy)storagePolicy
                            andExpireTime:(NSTimeInterval)expireTime
                           andCachePolicy:(WFMemCachePolicy)cachePolicy
                               andSuccess:(BLock_WFHandlerDataSuccessCompletion)success

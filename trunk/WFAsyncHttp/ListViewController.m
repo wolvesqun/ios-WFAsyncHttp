@@ -79,13 +79,12 @@
     
     self.startDate = [NSDate date];
     NSString *URLString = [NSString stringWithFormat:@"http://www.mbalib.com/appwiki/article?num=10&offset=%d",(int)self.dtArray.count];
-
-    
     [WFRequestManager GET_UsingMemCache_WithURLString:URLString
                                             andHeader:nil
                                          andUserAgent:nil
+                                     andStoragePolicy:self.bHeaderLoading ? WFStorageCachePolicyType_ReturnCache_DidLoad : WFStorageCachePolicyType_Default
                                         andExpireTime:60
-                                       andCachePolicy:self.bHeaderLoading ? WFMemCachePolicyType_ReturnCache_DidLoad : WFMemCachePolicyType_Default
+                                    andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
                                            andSuccess:^id(id responseDate, NSURLResponse *response, BOOL isCache)
     {
         NSArray *tempArray = responseDate;
@@ -96,10 +95,12 @@
         
         [self requestFinishSuccess:dataArray];
         return nil;
-    } andFailure:^(NSError *error)
-     {
-         [self requestFinishError:error];
+
+    } andFailure:^(NSError *error) {
+        [self requestFinishError:error];
     }];
+    
+    
 }
 
 - (void)requestFinishSuccess:(NSMutableArray *)dataArray
