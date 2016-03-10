@@ -77,28 +77,41 @@
 {
     [self setUserEnable:NO];
     
+    int offet = (int)self.dtArray.count;
+    if(self.bHeaderLoading)
+    {
+        offet = 0;
+    }
+    
     self.startDate = [NSDate date];
-    NSString *URLString = [NSString stringWithFormat:@"http://www.mbalib.com/appwiki/article?num=10&offset=%d",(int)self.dtArray.count];
+    NSString *URLString = [NSString stringWithFormat:@"http://www.mbalib.com/appwiki/article?num=10&offset=%d",offet];
     [WFRequestManager GET_UsingMemCache_WithURLString:URLString
                                             andHeader:nil
                                          andUserAgent:nil
                                      andStoragePolicy:self.bHeaderLoading ? WFStorageCachePolicyType_ReturnCache_DidLoad : WFStorageCachePolicyType_Default
-                                        andExpireTime:60
+                                        andExpireTime:60 * 1000
                                     andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
                                            andSuccess:^id(id responseDate, NSURLResponse *response, BOOL isCache)
     {
+        
         NSMutableArray *dataArray = nil;
-        if(![response isKindOfClass:[NSMutableArray class]])
+        if(isCache)
         {
-            NSArray *tempArray = responseDate;
-            dataArray = [NSMutableArray arrayWithCapacity:tempArray.count];
-            for (NSDictionary *dict in tempArray) {
-                [dataArray addObject:[ArticleBean beanWithDict:dict]];
+            dataArray = responseDate;
+        }
+        else
+        {
+            if(![response isKindOfClass:[NSMutableArray class]])
+            {
+                NSArray *tempArray = responseDate;
+                dataArray = [NSMutableArray arrayWithCapacity:tempArray.count];
+                for (NSDictionary *dict in tempArray) {
+                    [dataArray addObject:[ArticleBean beanWithDict:dict]];
+                }
             }
         }
         
-        
-        [self requestFinishSuccess:dataArray];
+        [self requestFinishSuccess:dataArray andCache:isCache];
         return dataArray;
 
     } andFailure:^(NSError *error) {
@@ -108,7 +121,7 @@
     
 }
 
-- (void)requestFinishSuccess:(NSMutableArray *)dataArray
+- (void)requestFinishSuccess:(NSMutableArray *)dataArray andCache:(BOOL)isCache
 {
     // *** 1. 判断
     if(self.bHeaderLoading)
@@ -137,6 +150,7 @@
     
     // *** 5. 开启交互
     [self setUserEnable:YES];
+    
 }
 
 - (void)requestFinishError:(NSError *)error

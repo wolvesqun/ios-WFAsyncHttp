@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
 #import <mach/mach.h>
+#import <CommonCrypto/CommonDigest.h>
 
 @interface WFMemcacheManager ()
 
@@ -50,8 +51,9 @@
 #pragma mark - 
 - (void)saveWithData:(id)data andKey:(NSString *)key andExpiredTime:(NSTimeInterval)expiredTime
 {
-    if(data != nil && key != nil && [self.storageDict objectForKey:key] == nil)
+    if(data != nil && key != nil)
     {
+     
         [self.storageDict setObject:data forKey:key];
         if(expiredTime > 0) // 时间失效就清除缓存
         {
@@ -63,8 +65,12 @@
 
 - (id)_getCacheWithKey:(NSString *)key
 {
-    if(key) return [self.storageDict objectForKey:key];
-    return nil;
+    id obj = nil;
+    if(key)
+    {
+        obj = [self.storageDict objectForKey:key];
+    }
+    return obj;
 }
 
 - (void)deleteWithKey:(NSString *)key
@@ -74,6 +80,24 @@
         [self.storageDict removeObjectForKey:key];
     }
 }
+//+ (NSString *)md5Encode:(NSString*)input
+//{
+//    const char* cStr = [input UTF8String];
+//    unsigned char result[CC_MD5_DIGEST_LENGTH];
+//    CC_MD5(cStr, strlen(cStr), result);
+//    
+//    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
+//    for (NSInteger i=0; i<CC_MD5_DIGEST_LENGTH; i++) {
+//        [ret appendFormat:@"%02x", result[i]];
+//    }
+//    
+//    return ret;
+//}
+//
+//- (NSString *)getEncodeKey:(NSString *)key
+//{
+//    return [WFMemcacheManager md5Encode:key];
+//}
 
 - (double)usedMemory
 {
