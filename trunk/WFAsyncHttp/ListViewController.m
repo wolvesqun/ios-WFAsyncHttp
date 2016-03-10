@@ -87,14 +87,19 @@
                                     andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
                                            andSuccess:^id(id responseDate, NSURLResponse *response, BOOL isCache)
     {
-        NSArray *tempArray = responseDate;
-        NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:tempArray.count];
-        for (NSDictionary *dict in tempArray) {
-            [dataArray addObject:[ArticleBean beanWithDict:dict]];
+        NSMutableArray *dataArray = nil;
+        if(![response isKindOfClass:[NSMutableArray class]])
+        {
+            NSArray *tempArray = responseDate;
+            dataArray = [NSMutableArray arrayWithCapacity:tempArray.count];
+            for (NSDictionary *dict in tempArray) {
+                [dataArray addObject:[ArticleBean beanWithDict:dict]];
+            }
         }
         
+        
         [self requestFinishSuccess:dataArray];
-        return nil;
+        return dataArray;
 
     } andFailure:^(NSError *error) {
         [self requestFinishError:error];

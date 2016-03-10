@@ -209,7 +209,6 @@
          [self Memory_handlerRequestFinishWithKey:URLString
                                           andData:responseDate
                                       andResponse:response
-                                         andCache:isCache
                                     andExpireTime:expireTime
                                 andMemCachePolicy:memcachePolicy
                                        andSuccess:success];
@@ -254,7 +253,6 @@
          [self Memory_handlerRequestFinishWithKey:URLString
                                           andData:responseDate
                                       andResponse:response
-                                         andCache:isCache
                                     andExpireTime:expireTime
                                 andMemCachePolicy:cachePolicy
                                        andSuccess:success];
@@ -265,14 +263,13 @@
 + (void)Memory_handlerRequestFinishWithKey:(NSString *)key
                                    andData:(id)data
                                andResponse:(NSURLResponse *)response
-                                  andCache:(BOOL)isCache
                              andExpireTime:(NSTimeInterval)expireTime
                          andMemCachePolicy:(WFMemCachePolicy)cachePolicy
                                 andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
 {
     
     
-    id myData = [self Memory_getFinishedHandlerDataWithData:data andResponse:response andSuccess:success andCache:isCache];
+    id myData = [self Memory_getFinishedHandlerDataWithData:data andResponse:response andSuccess:success andCache:NO];
     
     if(cachePolicy != WFMemCachePolicyType_Default && data)
     {
