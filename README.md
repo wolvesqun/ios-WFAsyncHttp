@@ -140,7 +140,7 @@
         [self requestFinishError:error];
     }];
   
-四：文件上传
+四：文件上传 （WFUploadTaskManager.h）
     
     #pragma mark - 上传数据
     + (void)uploadDataWithURLString:(NSString *)URLString
