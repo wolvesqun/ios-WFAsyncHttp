@@ -23,6 +23,14 @@
               WFMemCachePolicyType_ReturnCache_ElseLoad,        // *** 如果内存有缓存缓存不加载网络，否则加载网络数据并且缓存数据
               WFMemCachePolicyType_Reload_IgnoringLocalCache,   // *** 忽略内存缓存并加载 （使用在更新缓存）
           };
+      3. 数据来源类型
+        
+        typedef NS_ENUM(NSUInteger,WFDataFromType)
+        {
+            WFDataFromType_LocalCache,      // *** 本地缓存
+            WFDataFromType_Memcache,        // *** 内存数据
+            WFDataFromType_Net,             // *** 网络请求回来的数据
+        };
     
 一：引入WFAsyncHttp.h
   
