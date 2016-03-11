@@ -12,13 +12,22 @@
 #define kWFHttpRequestType_GET      @"GET"
 
 
+#pragma mark - 数据来源
+typedef NS_ENUM(NSUInteger,WFDataFromType)
+{
+    WFDataFromType_LocalCache,      // *** 本地缓存
+    WFDataFromType_Memcache,        // *** 内存数据
+    WFDataFromType_Net,             // *** 网络请求回来的数据
+};
+
+
 /**
  *  
  *  @param responseDate 返回的结果数据,如果是json数据，框架会自动转换成NSDictionary 或着 NSArray
- *  @param cache  （当前返回的数据来源-》缓存 | 网络）
+ *  @param fromType  （当前返回的数据来源-》缓存(本地缓存，内存缓存) | 网络）
  */
-typedef void(^BLock_WFRequestDataSuccessCompletion)(id responseDate, NSURLResponse *response, BOOL isCache);
-typedef   id(^BLock_WFHandlerDataSuccessCompletion)(id responseDate, NSURLResponse *response, BOOL isCache);
+typedef void(^BLock_WFRequestDataSuccessCompletion)(id responseDate, NSURLResponse *response, WFDataFromType fromType);
+typedef   id(^BLock_WFHandlerDataSuccessCompletion)(id responseDate, NSURLResponse *response, WFDataFromType fromType);
 typedef void(^BLock_WFRequestDataPrecentCompletion)(float percent);
 typedef void(^BLock_WFRequestDataFailureCompletion)(NSError *error);
 

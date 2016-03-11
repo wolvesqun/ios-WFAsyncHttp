@@ -26,30 +26,28 @@
     self.view.userInteractionEnabled = NO;
     static int index = 1;
     self.startDate = [NSDate date];
-//    [WFRequestManager GET_UsingMemCache_WithURLString:@"http://imgsrc.baidu.com/baike/pic/item/b13fd4808a7d68eb9123d9a7.jpg"
-//                                            andHeader:nil
-//                                         andUserAgent:nil
-//                                        andExpireTime:10 // 设置内存缓存时间10秒
-//                                       andCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
-//                                           andSuccess:^id(id responseData, NSURLResponse *response, BOOL isCache)
-//     {
-//        
-//         
-//         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
-//         
-//         dispatch_async(dispatch_get_main_queue(), ^{
-//             NSString *timeText = [NSString stringWithFormat:@"用时 ：%f",time];
-//             
-//             NSLog(@"======== 第%2d次请求用时： %@",index,  timeText);
-//             index ++;
-//             
-//             self.view.userInteractionEnabled = YES;
-//         });
-//         
-//         return responseData; // 返回要缓存的数据, 如果是json数据，请处理后的数据返回来
-//    } andFailure:^(NSError *error) {
-//        
-//    }];
+    [WFRequestManager GET_UsingMemCache_WithURLString:@"http://imgsrc.baidu.com/baike/pic/item/b13fd4808a7d68eb9123d9a7.jpg"
+                                            andHeader:nil
+                                         andUserAgent:nil
+                                     andStoragePolicy:WFStorageCachePolicyType_Default
+                                        andExpireTime:10 // 设置内存缓存时间10秒
+                                    andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
+                                           andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)
+    {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
+        
+        NSString *timeText = [NSString stringWithFormat:@"用时 ：%f",time];
+        
+        NSLog(@"======== 第%2d次请求用时： %@",index,  timeText);
+        index ++;
+        
+        self.view.userInteractionEnabled = YES;
+        
+        return responseDate; // 返回要缓存的数据, 如果是json数据，请处理后的数据返回来
+
+    } andFailure:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - post 请求

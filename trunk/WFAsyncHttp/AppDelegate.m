@@ -27,12 +27,7 @@
     ViewController *vc = [ViewController new];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     
-    NSString *str1 = @"fadf";
-    NSString *str2 = @"wolvesqujn";
-    
-    size_t size1 = class_getInstanceSize(str1.class);
-    size_t size2 = class_getInstanceSize(str2.class);
-    
+
 
     
     return YES;

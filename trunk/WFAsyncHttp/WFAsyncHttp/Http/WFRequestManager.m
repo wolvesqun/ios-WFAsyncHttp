@@ -42,7 +42,7 @@
     if(b && [WFCachePolicyHelper canReturnStoryageCacheWithCachePolicy:cachePolicy])
     {
         NSData *cacheData = [WFStorageCacheManager getWithKey:URLString];
-        [self Storage_finishRequestWithData:cacheData andResponse:nil andSuccess:success andCache:YES];
+        [self Storage_finishRequestWithData:cacheData andResponse:nil andSuccess:success andFromType:WFDataFromType_LocalCache];
         
         if(![WFCachePolicyHelper canLoadWithStorageCachePolicy:cachePolicy]) return;
     }
@@ -87,7 +87,7 @@
     if(b && [WFCachePolicyHelper canReturnStoryageCacheWithCachePolicy:cachePolicy])
     {
         NSData *cacheData = [WFStorageCacheManager getWithKey:URLString];
-        [self Storage_finishRequestWithData:cacheData andResponse:nil andSuccess:success andCache:YES];
+        [self Storage_finishRequestWithData:cacheData andResponse:nil andSuccess:success andFromType:WFDataFromType_LocalCache];
         
         if(![WFCachePolicyHelper canLoadWithStorageCachePolicy:cachePolicy]) return;
     }
@@ -122,7 +122,7 @@
     {
         [WFStorageCacheManager saveWithData:data andKey:key];
     }
-    [self Storage_finishRequestWithData:data andResponse:response andSuccess:success andCache:NO];
+    [self Storage_finishRequestWithData:data andResponse:response andSuccess:success andFromType:WFDataFromType_Net];
 }
 
 
@@ -149,18 +149,18 @@
 // - 结束请求并返回json数据（如果是json数据）
 + (void)Storage_finishRequestWithData:(NSData *)data
                           andResponse:(NSURLResponse *)response
-                           andSuccess:(BLock_WFRequestDataSuccessCompletion)success andCache:(BOOL)isCache
+                           andSuccess:(BLock_WFRequestDataSuccessCompletion)success andFromType:(WFDataFromType)fromType
 {
     if(success)
     {
         id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         if(jsonObject != nil)
         {
-            success(jsonObject, response, isCache);
+            success(jsonObject, response, fromType);
         }
         else
         {
-            success(data, nil, isCache);
+            success(data, nil, fromType);
         }
     }
 }
@@ -196,7 +196,7 @@
     id cacheData = [WFMemcacheManager getCacheWithKey:URLString];
     if(cacheData && [WFCachePolicyHelper canReturnMemcacheCacheWithCachePolicy:memcachePolicy])
     {
-        [self Memory_getFinishedHandlerDataWithData:cacheData andResponse:nil andSuccess:success andCache:YES];
+        [self Memory_getFinishedHandlerDataWithData:cacheData andResponse:nil andSuccess:success andFromType:WFDataFromType_Memcache];
         if(![WFCachePolicyHelper canLoadWithMemCachePolicy:memcachePolicy]) return;
     }
     
@@ -204,10 +204,11 @@
                                     andHeader:header
                                  andUserAgent:userAgent
                                andCachePolicy:storagePolicy
-                                   andSuccess:^(id responseDate, NSURLResponse *response, BOOL isCache)
+                                   andSuccess:^(id responseDate, NSURLResponse *response, WFDataFromType fromType)
      {
          [self Memory_handlerRequestFinishWithKey:URLString
                                           andData:responseDate
+                                      andFromType:fromType
                                       andResponse:response
                                     andExpireTime:expireTime
                                 andMemCachePolicy:memcachePolicy
@@ -238,7 +239,7 @@
     id cacheData = [WFMemcacheManager getCacheWithKey:URLString];
     if(cacheData && [WFCachePolicyHelper canReturnMemcacheCacheWithCachePolicy:cachePolicy])
     {
-        [self Memory_getFinishedHandlerDataWithData:cacheData andResponse:nil andSuccess:success andCache:YES];
+        [self Memory_getFinishedHandlerDataWithData:cacheData andResponse:nil andSuccess:success andFromType:WFDataFromType_Memcache];
         if(![WFCachePolicyHelper canLoadWithMemCachePolicy:cachePolicy]) return;
     }
     
@@ -248,10 +249,11 @@
                                   andUserAgent:userAgent
                                       andParam:param
                                 andCachePolicy:storagePolicy
-                                    andSuccess:^(id responseDate, NSURLResponse *response, BOOL isCache)
+                                    andSuccess:^(id responseDate, NSURLResponse *response, WFDataFromType fromType)
      {
          [self Memory_handlerRequestFinishWithKey:URLString
                                           andData:responseDate
+                                      andFromType:fromType
                                       andResponse:response
                                     andExpireTime:expireTime
                                 andMemCachePolicy:cachePolicy
@@ -262,6 +264,7 @@
 
 + (void)Memory_handlerRequestFinishWithKey:(NSString *)key
                                    andData:(id)data
+                               andFromType:(WFDataFromType)fromType
                                andResponse:(NSURLResponse *)response
                              andExpireTime:(NSTimeInterval)expireTime
                          andMemCachePolicy:(WFMemCachePolicy)cachePolicy
@@ -269,7 +272,7 @@
 {
     
     
-    id myData = [self Memory_getFinishedHandlerDataWithData:data andResponse:response andSuccess:success andCache:NO];
+    id myData = [self Memory_getFinishedHandlerDataWithData:data andResponse:response andSuccess:success andFromType:fromType];
     
     if(cachePolicy != WFMemCachePolicyType_Default && data)
     {
@@ -281,9 +284,9 @@
 + (id)Memory_getFinishedHandlerDataWithData:(id)data
                                 andResponse:(NSURLResponse *)response
                                  andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
-                                   andCache:(BOOL)isCache
+                                andFromType:(WFDataFromType)fromType
 {
-    return success(data, response, isCache);
+    return success(data, response, fromType);
 }
 
 

@@ -89,17 +89,12 @@
                                             andHeader:nil
                                          andUserAgent:nil
                                      andStoragePolicy:self.bHeaderLoading ? WFStorageCachePolicyType_ReturnCache_DidLoad : WFStorageCachePolicyType_Default
-                                        andExpireTime:60 * 1000
+                                        andExpireTime:60 // 内存缓存时间 60 秒
                                     andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
-                                           andSuccess:^id(id responseDate, NSURLResponse *response, BOOL isCache)
+                                           andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)
     {
-        
         NSMutableArray *dataArray = nil;
-        if(isCache)
-        {
-            dataArray = responseDate;
-        }
-        else
+        if(fromType == WFDataFromType_LocalCache || fromType == WFDataFromType_Net)
         {
             if(![response isKindOfClass:[NSMutableArray class]])
             {
@@ -110,10 +105,14 @@
                 }
             }
         }
+        else
+        {
+            dataArray = responseDate;
+        }
+       
         
-        [self requestFinishSuccess:dataArray andCache:isCache];
-        return dataArray;
-
+        [self requestFinishSuccess:dataArray andFromType:fromType];
+        return dataArray; // 返回的数据就是框架要缓存到内存的数据
     } andFailure:^(NSError *error) {
         [self requestFinishError:error];
     }];
@@ -121,7 +120,7 @@
     
 }
 
-- (void)requestFinishSuccess:(NSMutableArray *)dataArray andCache:(BOOL)isCache
+- (void)requestFinishSuccess:(NSMutableArray *)dataArray andFromType:(WFDataFromType)fromType
 {
     // *** 1. 判断
     if(self.bHeaderLoading)
@@ -135,21 +134,37 @@
     // *** 3. 更新UI
     // [tableview reloadData]
     NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.startDate];
-    if(self.bHeaderLoading)
+    NSString *dataType = nil;
+    if(fromType == WFDataFromType_LocalCache)
     {
-        NSLog(@"========= 下拉刷新 获取了 %2d 条数据, 现在共有 %2d 数据, 耗时 %f", (int)dataArray.count, (int)self.dtArray.count, time);
+        dataType = @"本地缓存";
+    }
+    else if (fromType == WFDataFromType_Net)
+    {
+        dataType = @"网络   ";
     }
     else
     {
-        NSLog(@"========= 上拉加载了 %2d 条数据, 现在共有 %2d 数据,     耗时 %f", (int)dataArray.count, (int)self.dtArray.count, time);
+        dataType = @"内存   ";
+    }
+    if(self.bHeaderLoading)
+    {
+        NSLog(@"========= 下拉刷新 获取了 %2d 条(%@数据), 现在共有 %2d 数据, 耗时 %f", (int)dataArray.count, dataType, (int)self.dtArray.count, time);
+    }
+    else
+    {
+        NSLog(@"********* 上拉加载 获取了 %2d 条(%@数据), 现在共有 %2d 数据, 耗时 %f", (int)dataArray.count, dataType,(int)self.dtArray.count, time);
     }
     
+    if(fromType == WFDataFromType_Net || fromType == WFDataFromType_Memcache)
+    {
+        // *** 4. 结束刷新
+        //  [刷新控件 endRefresh]
+        
+        // *** 5. 开启交互
+        [self setUserEnable:YES];
+    }
     
-    // *** 4. 结束刷新
-    //  [刷新控件 endRefresh]
-    
-    // *** 5. 开启交互
-    [self setUserEnable:YES];
     
 }
 
