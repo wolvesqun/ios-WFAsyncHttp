@@ -139,8 +139,26 @@
     } andFailure:^(NSError *error) {
         [self requestFinishError:error];
     }];
+  
+四：文件上传
     
-四：性能测试
+    #pragma mark - 上传数据
+    + (void)uploadDataWithURLString:(NSString *)URLString
+                          andHeader:(NSDictionary *)header
+                           andParam:(NSDictionary *)param
+                       andUserAgent:(NSString *)userAgent
+                         andSuccess:(void(^)(NSData *data, NSURLResponse *response))success
+                         andFailure:(void(^)(NSError * error))failure;
+    
+    #pragma mark - 上传文件
+    + (void)uploadFileWithURLString:(NSString *)URLString
+                          andHeader:(NSDictionary *)header
+                        andFromFile:(NSURL *)fromFile
+                       andUserAgent:(NSString *)userAgent
+                         andSuccess:(void(^)(NSData *data, NSURLResponse *response))success
+                         andFailure:(void(^)(NSError * error))failure;
+    
+五：性能测试
 
           2016-03-10 14:21:49.724 WFAsyncHttp[29786:1571275] ======== 第 1次请求用时： 用时 ：0.035650
           2016-03-10 14:21:51.457 WFAsyncHttp[29786:1571275] ======== 第 2次请求用时： 用时 ：0.000020
