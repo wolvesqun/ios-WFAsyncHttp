@@ -96,8 +96,42 @@
     } andFailure:^(NSError *error) {
         
     }];
+  
+三：列表数据请求例子
+  
+    [WFRequestManager GET_UsingMemCache_WithURLString:URLString
+                                            andHeader:nil
+                                         andUserAgent:nil
+                                     andStoragePolicy:self.bHeaderLoading ? WFStorageCachePolicyType_ReturnCache_DidLoad : WFStorageCachePolicyType_Default
+                                        andExpireTime:60 // 内存缓存时间 60 秒
+                                    andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
+                                           andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)
+    {
+        NSMutableArray *dataArray = nil;
+        if(fromType == WFDataFromType_LocalCache || fromType == WFDataFromType_Net)
+        {
+            if(![response isKindOfClass:[NSMutableArray class]])
+            {
+                NSArray *tempArray = responseDate;
+                dataArray = [NSMutableArray arrayWithCapacity:tempArray.count];
+                for (NSDictionary *dict in tempArray) {
+                    [dataArray addObject:[ArticleBean beanWithDict:dict]];
+                }
+            }
+        }
+        else
+        {
+            dataArray = responseDate;
+        }
+       
+        
+        [self requestFinishSuccess:dataArray andFromType:fromType];
+        return dataArray; // 返回的数据就是框架要缓存到内存的数据
+    } andFailure:^(NSError *error) {
+        [self requestFinishError:error];
+    }];
     
-三：性能测试
+四：性能测试
 
           2016-03-10 14:21:49.724 WFAsyncHttp[29786:1571275] ======== 第 1次请求用时： 用时 ：0.035650
           2016-03-10 14:21:51.457 WFAsyncHttp[29786:1571275] ======== 第 2次请求用时： 用时 ：0.000020
