@@ -18,6 +18,9 @@
 + (void)saveWithData:(id)data andKey:(NSString *)key;
 
 + (id)getWithKey:(NSString *)key;
++ (float)getAllWebCacheSize;
++ (float)getAllImageCacheSize;
++ (float)getAllDefaultCacheSize;
 
 /**
  *  remove all cache

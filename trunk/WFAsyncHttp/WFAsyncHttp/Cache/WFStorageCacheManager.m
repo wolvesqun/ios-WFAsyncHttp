@@ -33,6 +33,22 @@ typedef enum : NSUInteger {
     id data = [WFFileManager getWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
     return data;
 }
++ (float)getAllWebCacheSize
+{
+    NSString *folderPath = [self getFolderWithType:WFAsynHttpCacheFolderType_Web];
+    return [WFFileManager getFileArraySizeWithType:WFFilePathTypeDocument andFolder:folderPath];
+}
++ (float)getAllImageCacheSize
+{
+    NSString *folderPath = [self getFolderWithType:WFAsynHttpCacheFolderType_Image];
+    return [WFFileManager getFileArraySizeWithType:WFFilePathTypeDocument andFolder:folderPath];
+}
++ (float)getAllDefaultCacheSize
+{
+    NSString *folderPath = [self getFolderWithType:WFAsynHttpCacheFolderType_Default];
+    return [WFFileManager getFileArraySizeWithType:WFFilePathTypeDocument andFolder:folderPath];
+}
+
 + (BOOL)isExistWithKey:(NSString *)key
 {
     if(key == nil || key.length == 0) return NO;
