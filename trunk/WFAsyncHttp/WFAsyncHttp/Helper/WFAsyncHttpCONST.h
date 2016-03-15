@@ -15,6 +15,7 @@
 #pragma mark - 数据来源
 typedef NS_ENUM(NSUInteger,WFDataFromType)
 {
+    WFDataFromType_Default,         // *** 没有缓存
     WFDataFromType_LocalCache,      // *** 本地缓存
     WFDataFromType_Memcache,        // *** 内存数据
     WFDataFromType_Net,             // *** 网络请求回来的数据

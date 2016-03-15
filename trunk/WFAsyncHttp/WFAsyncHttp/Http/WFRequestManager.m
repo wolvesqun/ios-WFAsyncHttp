@@ -91,6 +91,10 @@
         
         if(![WFCachePolicyHelper canLoadWithStorageCachePolicy:cachePolicy]) return;
     }
+    else if (cachePolicy == WFStorageCachePolicyType_ReturnCacheOrNil_DidLoad)
+    {
+        if(success) success(nil, nil, WFDataFromType_Default);
+    }
     
     [WFBaseRequest requestDataWithURLString:URLString
                                   andParams:param
@@ -153,15 +157,16 @@
 {
     if(success)
     {
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        if(jsonObject != nil)
+        if(data)
         {
-            success(jsonObject, response, fromType);
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if(jsonObject != nil)
+            {
+                success(jsonObject, response, fromType);
+                return;
+            }
         }
-        else
-        {
-            success(data, nil, fromType);
-        }
+        success(data, nil, fromType);
     }
 }
 

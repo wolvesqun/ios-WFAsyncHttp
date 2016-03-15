@@ -42,5 +42,5 @@ typedef enum : NSUInteger {
 + (id)getWithType:(WFFilePathType)type andFolder:(NSString *)folder andKey:(NSString *)key;
 + (float)getFileArraySizeWithType:(WFFilePathType)type andFolder:(NSString *)folder;
 
-+ (BOOL)isExistWityType:(WFFilePathType)type andFolder:(NSString *)folder andKey:(NSString *)key;
++ (BOOL)isExistWithType:(WFFilePathType)type andFolder:(NSString *)folder andKey:(NSString *)key;
 @end

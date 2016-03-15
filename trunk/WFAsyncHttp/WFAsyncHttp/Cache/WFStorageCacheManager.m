@@ -52,7 +52,7 @@ typedef enum : NSUInteger {
 + (BOOL)isExistWithKey:(NSString *)key
 {
     if(key == nil || key.length == 0) return NO;
-    return [WFFileManager isExistWityType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
+    return [WFFileManager isExistWithType:WFFilePathTypeDocument andFolder:[self getFolder:key] andKey:key];
 }
 
 

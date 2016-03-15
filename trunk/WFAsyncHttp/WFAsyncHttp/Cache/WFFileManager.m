@@ -205,7 +205,7 @@
 /**
  *  是否存在这个文件
  */
-+ (BOOL)isExistWityType:(WFFilePathType)type andFolder:(NSString *)folder andKey:(NSString *)key
++ (BOOL)isExistWithType:(WFFilePathType)type andFolder:(NSString *)folder andKey:(NSString *)key
 {
     NSString *filePath = [self filePathWithType:type andFolder:folder andKey:key];
     if([FILE_MANAGER fileExistsAtPath:filePath]) {
