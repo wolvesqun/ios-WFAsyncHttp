@@ -28,7 +28,6 @@
     {
         [self.dataArray addObject:key];
     }
-    
 }
 
 - (NSString *)pop
@@ -56,64 +55,87 @@
 
 @end
 
-// ****************************************************************************************************************************
-
+#pragma mark *********************************  WFWebView  **************************************************
 @interface WFWebView ()<UIWebViewDelegate>
 
-/*** http请求 ***/
-@property (strong, nonatomic) WFAsyncHttpClient *httpClient;
-
-@property (assign, nonatomic) WFAsyncCachePolicy cachePolicy;
+@property (assign, nonatomic) WFMemCachePolicy mCachePolicy;
+@property (assign, nonatomic) WFStorageCachePolicy sCachePolicy;
 
 @end
 
 
 @implementation WFWebView
 
+#pragma mark -
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame])
     {
-        self.urlStringStack = [WFWebViewURLStringStack new];
-        self.httpClient = [[WFAsyncHttpClient alloc] init];
+        _urlStringStack = [WFWebViewURLStringStack new];
     }
     return self;
 }
 
-#pragma mark - start request
-- (void)requestWihtURLString:(NSString *)URLString baseURL:(NSURL *)baseURL andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+#pragma mark - request
+- (void)requestWihtURLString:(NSString *)URLString
+                     baseURL:(NSURL *)baseURL
+       andStorageCachePolicy:(WFStorageCachePolicy)sCachePolicy
+           andMemCachePolicy:(WFMemCachePolicy)mCachePolicy
 {
     _currentRequestURLString = URLString;
     [self.urlStringStack pushWithKey:URLString];
-    self.baseURL = baseURL;
-    self.cachePolicy = cachePolicy;
-    [self requestWihtURLString:URLString andCachePolicy:cachePolicy];
+    _baseURL = baseURL;
+    self.sCachePolicy = sCachePolicy;
+    self.mCachePolicy = mCachePolicy;
+    
+    [self requestWihtURLString:URLString];
 }
 
-- (void)requestWihtURLString:(NSString *)URLString andCachePolicy:(WFAsyncCachePolicy)cachePolicy
+- (void)requestWihtURLString:(NSString *)URLString
 {
-    if(self.requestStartBlock)
+   
+    if(self.BLock_requestStart)
     {
-        self.requestStartBlock();
+        self.BLock_requestStart();
     }
-    [self.httpClient setCachePolicy:cachePolicy];
-    [self.httpClient GET_WithURLString:URLString andSuccess:^(id responseObject, BOOL cache)
+    [WFRequestManager GET_UsingMemCache_WithURLString:URLString
+                                            andHeader:nil
+                                         andUserAgent:nil
+                                     andStoragePolicy:self.sCachePolicy
+                                        andExpireTime:self.expireTime
+                                    andMemCachePolicy:self.mCachePolicy
+                                           andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)
+    {
+        NSString *htmlString = nil;
+        if(fromType == WFDataFromType_Memcache)
+        {
+            htmlString = responseDate;
+            
+        }
+        else
+        {
+            htmlString = [[NSString alloc] initWithData:responseDate encoding:NSUTF8StringEncoding];
+        }
+        [self loadHTMLString:htmlString
+                     baseURL:self.baseURL];
+        
+        return htmlString;
+    } andFailure:^(NSError *error)
      {
-         [self loadHTMLString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] baseURL:self.baseURL];
-     } andFailure:^(NSError *error) {
          if([self.delegate respondsToSelector:@selector(webView:didFailLoadWithError:)])
          {
              [self.delegate webView:self didFailLoadWithError:error];
          }
-     }];
+    }];
+    
 }
 
 
-
+#pragma mark -
 - (void)reload
 {
     if(self.currentRequestURLString == nil || [self.currentRequestURLString rangeOfString:@"http:"].length == 0) return;
-    [self requestWihtURLString:self.currentRequestURLString andCachePolicy:self.cachePolicy];
+    [self requestWihtURLString:self.currentRequestURLString];
 }
 
 - (BOOL)canGoBack
@@ -125,12 +147,20 @@
 {
     NSString *URLString = [self.urlStringStack pop];
     _currentRequestURLString = URLString;
-    [self requestWihtURLString:URLString andCachePolicy:self.cachePolicy];
+    [self requestWihtURLString:URLString];
 }
 
+#pragma mark -
 - (void)destoryAll
 {
     [self.urlStringStack.dataArray removeAllObjects];
+}
+- (void)replacingURLStackWithURLString:(NSString *)URLString andIndex:(NSInteger)index
+{
+    if(self.urlStringStack.dataArray.count - 1 <= index)
+    {
+        [self.urlStringStack.dataArray replaceObjectAtIndex:index withObject:URLString];
+    }
 }
 
 @end

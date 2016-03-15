@@ -28,6 +28,8 @@
 		2C4B5D1C1C916B9D006BE1A3 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5D131C916B9D006BE1A3 /* NSObject+MJCoding.m */; };
 		2C4B5D1D1C916B9D006BE1A3 /* NSObject+MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5D151C916B9D006BE1A3 /* NSObject+MJIvar.m */; };
 		2C4B5D1E1C916B9D006BE1A3 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5D171C916B9D006BE1A3 /* NSObject+MJKeyValue.m */; };
+		2C4B5D721C965BAB006BE1A3 /* WFWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5D711C965BAB006BE1A3 /* WFWebView.m */; };
+		2C4B5D761C97A2DB006BE1A3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5D751C97A2DB006BE1A3 /* WebViewController.m */; };
 		2C8487FF1BCBBB700087961F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8487FE1BCBBB700087961F /* Foundation.framework */; };
 		2C8488011BCBBB700087961F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488001BCBBB700087961F /* CoreGraphics.framework */; };
 		2C8488031BCBBB700087961F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8488021BCBBB700087961F /* UIKit.framework */; };
@@ -102,6 +104,10 @@
 		2C4B5D151C916B9D006BE1A3 /* NSObject+MJIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJIvar.m"; sourceTree = "<group>"; };
 		2C4B5D161C916B9D006BE1A3 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
 		2C4B5D171C916B9D006BE1A3 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		2C4B5D701C965BAB006BE1A3 /* WFWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFWebView.h; sourceTree = "<group>"; };
+		2C4B5D711C965BAB006BE1A3 /* WFWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFWebView.m; sourceTree = "<group>"; };
+		2C4B5D741C97A2DB006BE1A3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		2C4B5D751C97A2DB006BE1A3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		2C8487FB1BCBBB700087961F /* WFAsyncHttp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFAsyncHttp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8487FE1BCBBB700087961F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C8488001BCBBB700087961F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -220,6 +226,15 @@
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
+		2C4B5D731C97A2B0006BE1A3 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				2C4B5D741C97A2DB006BE1A3 /* WebViewController.h */,
+				2C4B5D751C97A2DB006BE1A3 /* WebViewController.m */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
 		2C8487F21BCBBB700087961F = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +276,7 @@
 				2C8488141BCBBB700087961F /* ViewController.m */,
 				2C4B5CF91C90FF12006BE1A3 /* AsyncHttpViewController.h */,
 				2C4B5CFA1C90FF12006BE1A3 /* AsyncHttpViewController.m */,
+				2C4B5D731C97A2B0006BE1A3 /* Web */,
 				2C4B5D011C916ABA006BE1A3 /* ListViewController.h */,
 				2C4B5D021C916ABA006BE1A3 /* ListViewController.m */,
 				2C4B5CFB1C90FF12006BE1A3 /* AsyncHttpViewController.xib */,
@@ -344,6 +360,8 @@
 		2CE654521BCE21DA00D5D61C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2C4B5D701C965BAB006BE1A3 /* WFWebView.h */,
+				2C4B5D711C965BAB006BE1A3 /* WFWebView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -471,12 +489,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C32C4761C852E1D0030B759 /* WFBaseRequest.m in Sources */,
+				2C4B5D761C97A2DB006BE1A3 /* WebViewController.m in Sources */,
 				2C4B5CEE1C8FF1E1006BE1A3 /* WFMemcacheManager.m in Sources */,
 				2C4B5D071C916B10006BE1A3 /* ArticleBean.m in Sources */,
 				2C4B5CE81C8FBA5C006BE1A3 /* NSMutableURLRequest+WFExtensionHttp.m in Sources */,
 				2CF19BF01BD0E7A50032D70E /* Toast.m in Sources */,
 				2C4B5CE11C8FB859006BE1A3 /* WFWebUtil.m in Sources */,
 				2C4B5CD61C8FB610006BE1A3 /* WFRequestManager.m in Sources */,
+				2C4B5D721C965BAB006BE1A3 /* WFWebView.m in Sources */,
 				2C8488581BCBBB9F0087961F /* Base64.m in Sources */,
 				2C4B5CE41C8FB915006BE1A3 /* WFAsyncURLCache.m in Sources */,
 				2C4B5D191C916B9D006BE1A3 /* MJFoundation.m in Sources */,
