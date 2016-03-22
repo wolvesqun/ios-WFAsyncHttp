@@ -15,7 +15,7 @@
 // - 根据策略是否要返回缓存
 + (BOOL)canReturnStoryageCacheWithCachePolicy:(WFStorageCachePolicy)cachePolicy
 {
-    if(cachePolicy == WFStorageCachePolicyType_Default)
+    if(cachePolicy == WFStorageCachePolicyType_Default || cachePolicy == WFStorageCachePolicyType_Reload_IgnoringLocalCache)
     {
         return NO;
     }
