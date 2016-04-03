@@ -88,7 +88,7 @@
     [WFRequestManager GET_UsingMemCache_WithURLString:URLString
                                             andHeader:nil
                                          andUserAgent:nil
-                                     andStoragePolicy:self.bHeaderLoading ? WFStorageCachePolicyType_ReturnCache_DidLoad : WFStorageCachePolicyType_Default
+                                     andStorePolicy:self.bHeaderLoading ? WFStoreCachePolicyType_ReturnCache_DidLoad : WFStoreCachePolicyType_Default
                                         andExpireTime:60 // 内存缓存时间 60 秒
                                     andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
                                            andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)

@@ -59,7 +59,7 @@
 @interface WFWebView ()<UIWebViewDelegate>
 
 @property (assign, nonatomic) WFMemCachePolicy mCachePolicy;
-@property (assign, nonatomic) WFStorageCachePolicy sCachePolicy;
+@property (assign, nonatomic) WFStoreCachePolicy sCachePolicy;
 
 @end
 
@@ -79,7 +79,7 @@
 #pragma mark - request
 - (void)requestWihtURLString:(NSString *)URLString
                      baseURL:(NSURL *)baseURL
-       andStorageCachePolicy:(WFStorageCachePolicy)sCachePolicy
+       andStoreCachePolicy:(WFStoreCachePolicy)sCachePolicy
            andMemCachePolicy:(WFMemCachePolicy)mCachePolicy
 {
     _currentRequestURLString = URLString;
@@ -101,7 +101,7 @@
     [WFRequestManager GET_UsingMemCache_WithURLString:URLString
                                             andHeader:nil
                                          andUserAgent:nil
-                                     andStoragePolicy:self.sCachePolicy
+                                     andStorePolicy:self.sCachePolicy
                                         andExpireTime:self.expireTime
                                     andMemCachePolicy:self.mCachePolicy
                                            andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)

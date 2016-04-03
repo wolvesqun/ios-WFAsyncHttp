@@ -92,7 +92,7 @@
     [Toast showActivityIndicatorView];
     [self.webview requestWihtURLString:URLString
                                baseURL:self.baseURL
-                 andStorageCachePolicy:WFStorageCachePolicyType_ReturnCache_ElseLoad // 本地缓存策略
+                 andStoreCachePolicy:WFStoreCachePolicyType_ReturnCache_ElseLoad // 本地缓存策略
                      andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad]; // 内存缓存策略
 }
 

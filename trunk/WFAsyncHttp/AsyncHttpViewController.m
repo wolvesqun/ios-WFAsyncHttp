@@ -29,7 +29,7 @@
     [WFRequestManager GET_UsingMemCache_WithURLString:@"http://imgsrc.baidu.com/baike/pic/item/b13fd4808a7d68eb9123d9a7.jpg"
                                             andHeader:nil
                                          andUserAgent:nil
-                                     andStoragePolicy:WFStorageCachePolicyType_Default
+                                     andStorePolicy:WFStoreCachePolicyType_Default
                                         andExpireTime:10 // 设置内存缓存时间10秒
                                     andMemCachePolicy:WFMemCachePolicyType_ReturnCache_ElseLoad
                                            andSuccess:^id(id responseDate, NSURLResponse *response, WFDataFromType fromType)

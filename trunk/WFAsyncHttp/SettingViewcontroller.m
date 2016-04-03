@@ -59,15 +59,15 @@
 {
     if(indexPath.row == 0)
     {
-        [WFStorageCacheManager removeAllCache];
+        [WFStoreCacheManager removeAllCache];
     }
     else if (indexPath.row == 1)
     {
-        [WFStorageCacheManager removeAllImageCache];
+        [WFStoreCacheManager removeAllImageCache];
     }
     else if (indexPath.row == 2)
     {
-        [WFStorageCacheManager removeAllWebCache];
+        [WFStoreCacheManager removeAllWebCache];
     }
     [AppDelegate showAlert:@"delete cache success"];
 }

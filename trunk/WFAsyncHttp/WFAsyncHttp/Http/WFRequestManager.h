@@ -12,10 +12,11 @@
 
 @interface WFRequestManager : NSObject
 
+
 @end
 
 #pragma mark - ************************ 使用本地缓存 ************************
-@interface WFRequestManager(WFExtensionRequestUsingStorageCache)
+@interface WFRequestManager(WFExtensionRequestUsingStoreCache)
 
 /**
  *  GET请求系统自带网络请求 -》带缓存
@@ -26,12 +27,12 @@
  *  @param success      成功回调
  *  @param failure      错误回调
  */
-+ (void)GET_UsingStorageCache_WithURLString:(NSString *)URLString
-                                  andHeader:(NSDictionary *)header
-                               andUserAgent:(NSString *)userAgent
-                             andCachePolicy:(WFStorageCachePolicy)cachePolicy
-                                 andSuccess:(BLock_WFRequestDataSuccessCompletion)success
-                                 andFailure:(BLock_WFRequestDataFailureCompletion)failure;
++ (NSURLSessionDataTask *)GET_UsingStoreCache_WithURLString:(NSString *)URLString
+                                andHeader:(NSDictionary *)header
+                             andUserAgent:(NSString *)userAgent
+                           andCachePolicy:(WFStoreCachePolicy)cachePolicy
+                               andSuccess:(BLock_WFRequestDataSuccessCompletion)success
+                               andFailure:(BLock_WFRequestDataFailureCompletion)failure;
 
 /**
  *  POST请求系统自带网络请求 -》带缓存
@@ -43,13 +44,13 @@
  *  @param success      成功回调
  *  @param failure      错误回调
  */
-+ (void)POST_UsingStorageCache_WithURLString:(NSString *)URLString
-                                   andHeader:(NSDictionary *)header
-                                andUserAgent:(NSString *)userAgent
-                                    andParam:(NSDictionary *)param
-                              andCachePolicy:(WFStorageCachePolicy)cachePolicy
-                                  andSuccess:(BLock_WFRequestDataSuccessCompletion)success
-                                  andFailure:(BLock_WFRequestDataFailureCompletion)failure;
++ (NSURLSessionDataTask *)POST_UsingStoreCache_WithURLString:(NSString *)URLString
+                                 andHeader:(NSDictionary *)header
+                              andUserAgent:(NSString *)userAgent
+                                  andParam:(NSDictionary *)param
+                            andCachePolicy:(WFStoreCachePolicy)cachePolicy
+                                andSuccess:(BLock_WFRequestDataSuccessCompletion)success
+                                andFailure:(BLock_WFRequestDataFailureCompletion)failure;
 
 @end
 
@@ -70,10 +71,10 @@
  *  @param success      成功回调
  *  @param failure      错误回调
  */
-+ (void)GET_UsingMemCache_WithURLString:(NSString *)URLString
++ (NSURLSessionDataTask *)GET_UsingMemCache_WithURLString:(NSString *)URLString
                               andHeader:(NSDictionary *)header
                            andUserAgent:(NSString *)userAgent
-                       andStoragePolicy:(WFStorageCachePolicy)storagePolicy
+                         andStorePolicy:(WFStoreCachePolicy)StorePolicy
                           andExpireTime:(NSTimeInterval)expireTime
                       andMemCachePolicy:(WFMemCachePolicy)memcachePolicy
                              andSuccess:(BLock_WFHandlerDataSuccessCompletion)success
@@ -89,11 +90,11 @@
  *  @param success      成功回调
  *  @param failure      错误回调
  */
-+ (void)POST_UsingMemCache_WithURLString:(NSString *)URLString
++ (NSURLSessionDataTask *)POST_UsingMemCache_WithURLString:(NSString *)URLString
                                andHeader:(NSDictionary *)header
                             andUserAgent:(NSString *)userAgent
                                 andParam:(NSDictionary *)param
-                        andStoragePolicy:(WFStorageCachePolicy)storagePolicy
+                          andStorePolicy:(WFStoreCachePolicy)StorePolicy
                            andExpireTime:(NSTimeInterval)expireTime
                           andCachePolicy:(WFMemCachePolicy)cachePolicy
                               andSuccess:(BLock_WFHandlerDataSuccessCompletion)success

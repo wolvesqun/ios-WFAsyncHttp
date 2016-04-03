@@ -1,5 +1,5 @@
 //
-//  WFStorageCacheManager.m
+//  WFStoreCacheManager.m
 //  WFAsyncHttp
 //
 //  Created by mba on 16/3/9.
@@ -7,7 +7,7 @@
 //
 #define kWFAsynHttpCache_Folder    @"kWFAsynHttpCache_Folder" // *** 缓存文件包
 
-#import "WFStorageCacheManager.h"
+#import "WFStoreCacheManager.h"
 #import "WFFileManager.h"
 #import "Base64.h"
 #import "WFWebUtil.h"
@@ -19,7 +19,7 @@ typedef enum : NSUInteger {
     WFAsynHttpCacheFolderType_Web,
 } WFAsynHttpCacheFolderType;
 
-@implementation WFStorageCacheManager
+@implementation WFStoreCacheManager
 #pragma mark - 添加 | 获取 | 判断
 + (void)saveWithData:(id)data andKey:(NSString *)key
 {

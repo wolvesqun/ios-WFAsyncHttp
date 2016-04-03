@@ -50,7 +50,7 @@
  */
 - (void)requestWihtURLString:(NSString *)URLString
                      baseURL:(NSURL *)baseURL
-       andStorageCachePolicy:(WFStorageCachePolicy)sCachePolicy
+       andStoreCachePolicy:(WFStoreCachePolicy)sCachePolicy
            andMemCachePolicy:(WFMemCachePolicy)mCachePolicy;
 
 - (void)destoryAll;

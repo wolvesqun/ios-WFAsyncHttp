@@ -9,7 +9,7 @@
 #import "WFAsyncURLCache.h"
 #import "WFWebUtil.h"
 #import "WFAsyncHttp.h"
-#import "WFStorageCacheManager.h"
+#import "WFStoreCacheManager.h"
 
 
 @interface WFAsyncURLCacheData : NSObject<NSCoding>
@@ -97,11 +97,11 @@
     NSString *URLString = request.URL.absoluteString;
 //    NSLog(@"URLString = %@", URLString);
     // *** 图片缓存 - 》image cache
-    if([WFStorageCacheManager isExistWithKey:URLString])
+    if([WFStoreCacheManager isExistWithKey:URLString])
     {
         if([WFWebUtil isImageRequest:URLString])
         {
-            NSData *cacheData = [WFStorageCacheManager getWithKey:URLString];
+            NSData *cacheData = [WFStoreCacheManager getWithKey:URLString];
             NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
                                                                 MIMEType:[self getMIMETypeImg:request]
                                                    expectedContentLength:((NSData *)cacheData).length
@@ -112,7 +112,7 @@
         // *** 网页文件缓存
         else
         {
-            WFAsyncURLCacheData *cacheData = [WFStorageCacheManager getWithKey:URLString];
+            WFAsyncURLCacheData *cacheData = [WFStoreCacheManager getWithKey:URLString];
             NSURLResponse *response = [[NSURLResponse alloc] initWithURL:request.URL
                                                                 MIMEType:cacheData.MIMEType
                                                    expectedContentLength:cacheData.data.length
@@ -143,7 +143,7 @@
                      
                      if([WFWebUtil isImageRequest:URLString])
                      {
-                         [WFStorageCacheManager saveWithData:data andKey:URLString];
+                         [WFStoreCacheManager saveWithData:data andKey:URLString];
                      }
                      else
                      {
@@ -151,7 +151,7 @@
                          cacheData.MIMEType = response.MIMEType;
                          cacheData.textEncodingName = response.textEncodingName;
                          cacheData.data = data;
-                         [WFStorageCacheManager saveWithData:cacheData andKey:URLString];
+                         [WFStoreCacheManager saveWithData:cacheData andKey:URLString];
                      }
                      
                      cachedResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];

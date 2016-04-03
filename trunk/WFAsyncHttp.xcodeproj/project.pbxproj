@@ -15,7 +15,6 @@
 		2C4B5CE81C8FBA5C006BE1A3 /* NSMutableURLRequest+WFExtensionHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5CE71C8FBA5C006BE1A3 /* NSMutableURLRequest+WFExtensionHttp.m */; };
 		2C4B5CEE1C8FF1E1006BE1A3 /* WFMemcacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5CED1C8FF1E1006BE1A3 /* WFMemcacheManager.m */; };
 		2C4B5CF51C9014A2006BE1A3 /* WFCachePolicyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5CF41C9014A2006BE1A3 /* WFCachePolicyHelper.m */; };
-		2C4B5CF81C901663006BE1A3 /* WFStorageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5CF71C901663006BE1A3 /* WFStorageCacheManager.m */; };
 		2C4B5CFC1C90FF12006BE1A3 /* AsyncHttpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5CFA1C90FF12006BE1A3 /* AsyncHttpViewController.m */; };
 		2C4B5CFD1C90FF12006BE1A3 /* AsyncHttpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4B5CFB1C90FF12006BE1A3 /* AsyncHttpViewController.xib */; };
 		2C4B5D001C9118EC006BE1A3 /* WFUploadTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B5CFF1C9118EC006BE1A3 /* WFUploadTaskManager.m */; };
@@ -49,6 +48,7 @@
 		2CF0160E1BD0F84E000C026B /* WFAsyncHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF015FE1BD0F84E000C026B /* WFAsyncHttp.m */; };
 		2CF19BE61BD0B5D20032D70E /* SettingViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */; };
 		2CF19BF01BD0E7A50032D70E /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF19BEF1BD0E7A50032D70E /* Toast.m */; };
+		BC9D77351CB08ED200E83DA0 /* WFStoreCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9D77341CB08ED200E83DA0 /* WFStoreCacheManager.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +78,6 @@
 		2C4B5CED1C8FF1E1006BE1A3 /* WFMemcacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFMemcacheManager.m; sourceTree = "<group>"; };
 		2C4B5CF31C9014A2006BE1A3 /* WFCachePolicyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCachePolicyHelper.h; sourceTree = "<group>"; };
 		2C4B5CF41C9014A2006BE1A3 /* WFCachePolicyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCachePolicyHelper.m; sourceTree = "<group>"; };
-		2C4B5CF61C901663006BE1A3 /* WFStorageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFStorageCacheManager.h; sourceTree = "<group>"; };
-		2C4B5CF71C901663006BE1A3 /* WFStorageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFStorageCacheManager.m; sourceTree = "<group>"; };
 		2C4B5CF91C90FF12006BE1A3 /* AsyncHttpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncHttpViewController.h; sourceTree = "<group>"; };
 		2C4B5CFA1C90FF12006BE1A3 /* AsyncHttpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncHttpViewController.m; sourceTree = "<group>"; };
 		2C4B5CFB1C90FF12006BE1A3 /* AsyncHttpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AsyncHttpViewController.xib; sourceTree = "<group>"; };
@@ -138,6 +136,8 @@
 		2CF19BE51BD0B5D20032D70E /* SettingViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewcontroller.m; sourceTree = "<group>"; };
 		2CF19BEE1BD0E7A50032D70E /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
 		2CF19BEF1BD0E7A50032D70E /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
+		BC9D77331CB08ED200E83DA0 /* WFStoreCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFStoreCacheManager.h; sourceTree = "<group>"; };
+		BC9D77341CB08ED200E83DA0 /* WFStoreCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFStoreCacheManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,10 +337,10 @@
 		2C8488341BCBBB9F0087961F /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				2C4B5CF61C901663006BE1A3 /* WFStorageCacheManager.h */,
-				2C4B5CF71C901663006BE1A3 /* WFStorageCacheManager.m */,
 				2C4B5CEC1C8FF1E1006BE1A3 /* WFMemcacheManager.h */,
 				2C4B5CED1C8FF1E1006BE1A3 /* WFMemcacheManager.m */,
+				BC9D77331CB08ED200E83DA0 /* WFStoreCacheManager.h */,
+				BC9D77341CB08ED200E83DA0 /* WFStoreCacheManager.m */,
 				2C8488371BCBBB9F0087961F /* WFFileManager.h */,
 				2C8488381BCBBB9F0087961F /* WFFileManager.m */,
 			);
@@ -501,10 +501,10 @@
 				2C4B5CE41C8FB915006BE1A3 /* WFAsyncURLCache.m in Sources */,
 				2C4B5D191C916B9D006BE1A3 /* MJFoundation.m in Sources */,
 				2CF19BE61BD0B5D20032D70E /* SettingViewcontroller.m in Sources */,
+				BC9D77351CB08ED200E83DA0 /* WFStoreCacheManager.m in Sources */,
 				2CF0160E1BD0F84E000C026B /* WFAsyncHttp.m in Sources */,
 				2C4B5D1A1C916B9D006BE1A3 /* MJIvar.m in Sources */,
 				2C4B5D031C916ABA006BE1A3 /* ListViewController.m in Sources */,
-				2C4B5CF81C901663006BE1A3 /* WFStorageCacheManager.m in Sources */,
 				2C8488151BCBBB700087961F /* ViewController.m in Sources */,
 				2C4B5D1B1C916B9D006BE1A3 /* MJType.m in Sources */,
 				2C84880F1BCBBB700087961F /* AppDelegate.m in Sources */,

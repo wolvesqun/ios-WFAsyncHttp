@@ -14,7 +14,7 @@
 
 @interface WFMemcacheManager ()
 
-@property (strong, nonatomic) NSMutableDictionary *storageDict;
+@property (strong, nonatomic) NSMutableDictionary *StoreDict;
 
 @end
 
@@ -28,7 +28,7 @@
         if(manager == nil)
         {
             manager = [[self alloc] init];
-            manager.storageDict = [NSMutableDictionary dictionary];
+            manager.StoreDict = [NSMutableDictionary dictionary];
         }
     });
     return manager;
@@ -54,7 +54,7 @@
     if(data != nil && key != nil)
     {
      
-        [self.storageDict setObject:data forKey:key];
+        [self.StoreDict setObject:data forKey:key];
         if(expiredTime > 0) // 时间失效就清除缓存
         {
             [self performSelector:@selector(deleteWithKey:) withObject:key afterDelay:expiredTime];
@@ -68,7 +68,7 @@
     id obj = nil;
     if(key)
     {
-        obj = [self.storageDict objectForKey:key];
+        obj = [self.StoreDict objectForKey:key];
     }
     return obj;
 }
@@ -77,7 +77,7 @@
 {
     if(key)
     {
-        [self.storageDict removeObjectForKey:key];
+        [self.StoreDict removeObjectForKey:key];
     }
 }
 //+ (NSString *)md5Encode:(NSString*)input

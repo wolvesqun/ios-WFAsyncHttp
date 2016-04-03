@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WFAsyncURLCache.h"
-#import "WFStorageCacheManager.h"
+#import "WFStoreCacheManager.h"
 #import "WFMemcacheManager.h"
 #import "WFRequestManager.h"
 #import "WFUploadTaskManager.h"

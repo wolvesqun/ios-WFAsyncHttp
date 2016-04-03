@@ -1,5 +1,5 @@
 //
-//  WFStorageCacheManager.h
+//  WFStoreCacheManager.h
 //  WFAsyncHttp
 //
 //  Created by mba on 16/3/9.
@@ -11,7 +11,7 @@
 /**
  *  将数据保存到沙盒里
  */
-@interface WFStorageCacheManager : NSObject
+@interface WFStoreCacheManager : NSObject
 /**
  *  save data with a key
  */

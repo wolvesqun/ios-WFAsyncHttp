@@ -13,9 +13,9 @@
 
 #pragma mark -
 // - 根据策略是否要返回缓存
-+ (BOOL)canReturnStoryageCacheWithCachePolicy:(WFStorageCachePolicy)cachePolicy
++ (BOOL)canReturnStoryageCacheWithCachePolicy:(WFStoreCachePolicy)cachePolicy
 {
-    if(cachePolicy == WFStorageCachePolicyType_Default || cachePolicy == WFStorageCachePolicyType_Reload_IgnoringLocalCache)
+    if(cachePolicy == WFStoreCachePolicyType_Default || cachePolicy == WFStoreCachePolicyType_Reload_IgnoringLocalCache)
     {
         return NO;
     }
@@ -31,11 +31,11 @@
 }
 
 // - 根据策略是否要继续请求
-+ (BOOL)canLoadWithStorageCachePolicy:(WFStorageCachePolicy)cachePolicy
++ (BOOL)canLoadWithStoreCachePolicy:(WFStoreCachePolicy)cachePolicy
 {
-    if(cachePolicy == WFStorageCachePolicyType_ReturnCache_DidLoad ||
-       cachePolicy == WFStorageCachePolicyType_ReturnCacheOrNil_DidLoad ||
-       cachePolicy == WFStorageCachePolicyType_Reload_IgnoringLocalCache )
+    if(cachePolicy == WFStoreCachePolicyType_ReturnCache_DidLoad ||
+       cachePolicy == WFStoreCachePolicyType_ReturnCacheOrNil_DidLoad ||
+       cachePolicy == WFStoreCachePolicyType_Reload_IgnoringLocalCache )
     {
         return YES;
     }
